@@ -129,7 +129,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i class="glyphicon glyphicon-glass"></i>
                       </span>
                       <input type="text" class="form-control" name="productType" placeholder="Product Type">
                    </div>                  
@@ -205,6 +205,48 @@
                         <i class="glyphicon glyphicon-map-marker"></i>
                       </span>
                       <input type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            <!-- For Single Unit & Description-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-road"></i>
+                      </span>
+                      <input type="text" class="form-control" name="singleUnit" placeholder="Single Unit">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                      </span>
+                      <input type="text" class="form-control" name="description" placeholder="Description">
+                   </div>
+                  </div>
+                </div>
+              </div>
+           <!-- For deliveryTime & freeShipping-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                      </span>
+                      <input type="text" class="form-control" name="deliveryTime" placeholder="Delivery Time">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-map-asterisk"></i>
+                      </span>
+                      <input type="text" class="form-control" name="freeShipping" placeholder="Free Shipping">
                    </div>
                   </div>
                 </div>
