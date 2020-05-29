@@ -55,7 +55,7 @@
                 <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                 <td class="text-center"> <?php echo $product['subType']; ?></td>
 		<td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
+                <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?></td>
 		<td class="text-center"> <?php echo read_date($product['date']); ?></td>
                 <td class="text-center"> <a target = '_blank' href="<?php echo $product['itemLink']; ?>">Link</a></td>
                 <td class="text-center"> <?php echo $product['company']; ?></td>
