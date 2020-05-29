@@ -8,7 +8,9 @@
 ?>
 <?php
  if(isset($_POST['add_product'])){
-   $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' );
+   $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price',
+                       'productType', 'itemLink','deliveryTime','freeShipping','company','phone','website','email','city',
+                      'zipcode','singleUnit','description');
    validate_fields($req_fields);
    if(empty($errors)){
      $p_name  = remove_junk($db->escape($_POST['product-title']));
@@ -215,7 +217,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-road"></i>
+                        <i class="glyphicon glyphicon-plane"></i>
                       </span>
                       <input type="text" class="form-control" name="singleUnit" placeholder="Single Unit">
                    </div>                  
@@ -223,7 +225,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <i class="glyphicon glyphicon-leaf"></i>
                       </span>
                       <input type="text" class="form-control" name="description" placeholder="Description">
                    </div>
@@ -244,7 +246,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-map-asterisk"></i>
+                        <i class="glyphicon glyphicon-asterisk"></i>
                       </span>
                       <input type="text" class="form-control" name="freeShipping" placeholder="Free Shipping">
                    </div>
