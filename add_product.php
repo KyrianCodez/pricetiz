@@ -151,7 +151,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i class="glyphicon glyphicon-briefcase"></i>
                       </span>
                       <input type="text" class="form-control" name="company" placeholder="Company">
                    </div>                  
@@ -173,7 +173,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i class="glyphicon glyphicon-send"></i>
                       </span>
                       <input type="email" class="form-control" name="email" placeholder="Email">
                    </div>                  
@@ -194,7 +194,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i class="glyphicon glyphicon-road"></i>
                       </span>
                       <input type="text" class="form-control" name="city" placeholder="City">
                    </div>                  
@@ -202,7 +202,7 @@
                   <div class="col-md-6">
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-link"></i>
+                        <i class="glyphicon glyphicon-map-marker"></i>
                       </span>
                       <input type="text" class="form-control" name="zipcode" placeholder="Zip Code">
                    </div>
