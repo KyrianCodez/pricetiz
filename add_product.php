@@ -121,7 +121,93 @@
                       <span class="input-group-addon">.00</span>
                    </div>
                   </div>
-               </div>
+               </div>    
+              </div>
+            <!-- For ProductType & itemLink-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-usd"></i>
+                      </span>
+                      <input type="text" class="form-control" name="productType" placeholder="Product Type">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-link"></i>
+                      </span>
+                      <input type="text" class="form-control" name="itemLink" placeholder="Item Link">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            
+            <!-- For Company & Phone-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-usd"></i>
+                      </span>
+                      <input type="text" class="form-control" name="company" placeholder="Company">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-phone"></i>
+                      </span>
+                      <input type="text" class="form-control" name="phone" placeholder="Phone">
+                   </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- For Website & Email-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-usd"></i>
+                      </span>
+                      <input type="email" class="form-control" name="email" placeholder="Email">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-link"></i>
+                      </span>
+                      <input type="text" class="form-control" name="website" placeholder="Website">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            <!-- For City & ZipCode-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-usd"></i>
+                      </span>
+                      <input type="text" class="form-control" name="city" placeholder="City">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-link"></i>
+                      </span>
+                      <input type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+                   </div>
+                  </div>
+                </div>
               </div>
               <button type="submit" name="add_product" class="btn btn-danger">Add product</button>
           </form>
