@@ -9,7 +9,7 @@
 <?php
  if(isset($_POST['add_product'])){
    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price',
-                       , 'itemLink','deliveryTime','freeShipping','company','phone','website','email','city',
+                       'itemLink','deliveryTime','freeShipping','company','phone','website','email','city',
                       'zipcode','singleUnit','description','purchaseType');
    validate_fields($req_fields);
    if(empty($errors)){
