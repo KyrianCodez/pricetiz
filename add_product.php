@@ -9,7 +9,7 @@
 <?php
  if(isset($_POST['add_product'])){
    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price',
-                       'productType', 'itemLink','deliveryTime','freeShipping','company','phone','website','email','city',
+                       , 'itemLink','deliveryTime','freeShipping','company','phone','website','email','city',
                       'zipcode','singleUnit','description','purchaseType');
    validate_fields($req_fields);
    if(empty($errors)){
@@ -84,14 +84,6 @@
                   <input type="text" class="form-control" name="product-title" placeholder="Product Title">
                </div>
               </div>
-            <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                   <i class="glyphicon glyphicon-list-alt"></i>
-                  </span>
-                  <input type="text" class="form-control" name="purchaseType" placeholder="Product Purchase Type">
-               </div>
-              </div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
@@ -153,7 +145,7 @@
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-glass"></i>
                       </span>
-                      <input type="text" class="form-control" name="productType" placeholder="Product Type">
+                      <input type="text" class="form-control" name="purchaseType" placeholder="Product Type">
                    </div>                  
                   </div>
                   <div class="col-md-6">
