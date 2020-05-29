@@ -17,7 +17,19 @@
      $p_cat   = remove_junk($db->escape($_POST['product-categorie']));
      $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
      $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-     $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
+     $p_sale  = remove_junk($db->escape($_POST['saleing-price']));     
+     $singleUnit = remove_junk($db->escape($_POST['singleUnit']));
+     $itemLink = remove_junk($db->escape($_POST['itemLink']));
+     $city = remove_junk($db->escape($_POST['city']));
+     $zipcode = remove_junk($db->escape($_POST['zipcode']));
+     $phone = remove_junk($db->escape($_POST['phone']));
+     $email = remove_junk($db->escape($_POST['email']));
+     $delieveryTime = remove_junk($db->escape($_POST['delieveryTime']));
+     $freeShipping = remove_junk($db->escape($_POST['freeShipping']));
+     $company = remove_junk($db->escape($_POST['company']));
+     $website = remove_junk($db->escape($_POST['website']));
+     $description = remove_junk($db->escape($_POST['description']));
+     $purchaseType = remove_junk($db->escape($_POST['purchaseType']));
      if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
        $media_id = '0';
      } else {
@@ -25,9 +37,9 @@
      }
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date";
+     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date,singleUnit, itemLink, city, zipcode, phone, email, delieveryTime, freeShipping, company, website, description, purchaseType";
      $query .=") VALUES (";
-     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}'";
+     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}','{$singleUnit}', '{$itemLink}', '{$city}', '{$zipcode}', '{$phone}', '{$email}', '{$delieveryTime}', '{$freeShipping}', '{$company}', '{$website}', '{$description}', '{$purchaseType}'";
      $query .=")";
      $query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
