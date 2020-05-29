@@ -23,18 +23,19 @@
               <tr>
                 <th class="text-center" style="width: 3%;">#</th>
                 <th> Photo</th>
+		<th> ProductType</th>
                 <th> Product Title </th>
-                <th class="text-center" style="width: 10%;"> Categorie </th>
+                <th class="text-center" style="width: 10%;">Type</th>
+		<th class="text-center" style="width: 10%;"> SubType </th>
                 <th class="text-center" style="width: 10%;"> Instock </th>
-                <th class="text-center" style="width: 10%;"> Buying Price </th>
-                <th class="text-center" style="width: 10%;"> Saleing Price </th>
-		<th class="text-center" style="width: 10%;"> Product Added </th>
-		<th class="text-center" style="width: 10%;"> Description </th>
+                <th class="text-center" style="width: 10%;"> Price </th>
+               	<th class="text-center" style="width: 10%;"> Product Added </th>
                 <th class="text-center" style="width: 10%;"> ItemLink </th>
-                <th class="text-center" style="width: 10%;"> Type </th>
-                <th class="text-center" style="width: 10%;"> SubType </th>
                 <th class="text-center" style="width: 10%;"> Company </th>
                 <th class="text-center" style="width: 10%;"> Website </th>
+		<th class="text-center" style="width: 10%;"> City </th>
+		<th class="text-center" style="width: 10%;"> ZipCode </th>
+		<th class="text-center" style="width: 10%;"> Phone </th>
                 <th class="text-center" style="width: 100px;"> Actions </th>
               </tr>
             </thead>
@@ -49,18 +50,19 @@
                   <img class="img-avatar img-circle" src="uploads/products/<?php echo $product['image']; ?>" alt="">
                 <?php endif; ?>
                 </td>
+		<td> <?php echo remove_junk($product['purchaseType']); ?></td>      
                 <td> <?php echo remove_junk($product['name']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($product['sale_price']); ?></td>
-		<td class="text-center"> <?php echo read_date($product['date']); ?></td>
-		<td class="text-center"> <?php echo $product['description']; ?></td>
-                <td class="text-center"> <a target = '_blank' href="<?php echo $product['itemLink']; ?>">Link</a></td>
-                <td class="text-center"> <?php echo $product['categorie']; ?></td>
                 <td class="text-center"> <?php echo $product['subType']; ?></td>
+		<td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($product['buy_price']); ?></td>
+		<td class="text-center"> <?php echo read_date($product['date']); ?></td>
+                <td class="text-center"> <a target = '_blank' href="<?php echo $product['itemLink']; ?>">Link</a></td>
                 <td class="text-center"> <?php echo $product['company']; ?></td>
                 <td class="text-center"><a target = '_blank' href="<?php echo $product['website']; ?>">Link</a></td>
+		<td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
+		<td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
+		<td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
                 <td class="text-center">
                   <div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
