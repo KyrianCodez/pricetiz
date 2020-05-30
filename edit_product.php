@@ -19,18 +19,30 @@ if(!$product){
     validate_fields($req_fields);
 
    if(empty($errors)){
-       $p_name  = remove_junk($db->escape($_POST['product-title']));
-       $p_cat   = (int)$_POST['product-categorie'];
-       $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
-       $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-       $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
+      $p_name  = remove_junk($db->escape($_POST['product-title']));
+      $p_cat   = (int)$_POST['product-categorie'];
+      $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
+      $p_buy   = remove_junk($db->escape($_POST['buying-price']));
+      $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
+      $singleUnit = remove_junk($db->escape($_POST['singleUnit']));
+      $itemLink = remove_junk($db->escape($_POST['itemLink']));
+      $city = remove_junk($db->escape($_POST['city']));
+      $zipcode = remove_junk($db->escape($_POST['zipcode']));
+      $phone = remove_junk($db->escape($_POST['phone']));
+      $email = remove_junk($db->escape($_POST['email']));
+      $delieveryTime = remove_junk($db->escape($_POST['delieveryTime']));
+      $freeShipping = remove_junk($db->escape($_POST['freeShipping']));
+      $company = remove_junk($db->escape($_POST['company']));
+      $website = remove_junk($db->escape($_POST['website']));
+      $description = remove_junk($db->escape($_POST['description']));
+      $purchaseType = remove_junk($db->escape($_POST['purchaseType']));
        if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
          $media_id = '0';
        } else {
          $media_id = remove_junk($db->escape($_POST['product-photo']));
        }
        $query   = "UPDATE products SET";
-       $query  .=" name ='{$p_name}', quantity ='{$p_qty}',";
+       $query  .=" name ='{$p_name}', quantity ='{$p_qty}', singleUnit='{$singleUnit}', itemLink='{$itemLink}', city='{$city}', zipcode='{$zipcode}', phone='{$phone}', email='{$email}', delieveryTime='{$delieveryTime}', freeShipping='{$freeShipping}', company='{$company}', website='{$website}', description='{$description}', purchaseType='{$purchaseType}',";
        $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',media_id='{$media_id}'";
        $query  .=" WHERE id ='{$product['id']}'";
        $result = $db->query($query);
@@ -136,6 +148,135 @@ if(!$product){
                    </div>
                   </div>
                </div>
+              </div>
+
+              <!-- For ProductType & itemLink-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-glass"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['purchaseType']) ?>" type="text" class="form-control" name="purchaseType" placeholder="Product Type">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-link"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['itemLink']) ?>" type="text" class="form-control" name="itemLink" placeholder="Item Link">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            
+            <!-- For Company & Phone-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['company']) ?>" type="text" class="form-control" name="company" placeholder="Company">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-phone"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['phone']) ?>" type="text" class="form-control" name="phone" placeholder="Phone">
+                   </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- For Website & Email-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-send"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['email']) ?>" type="email" class="form-control" name="email" placeholder="Email">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-link"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['website']) ?>" type="text" class="form-control" name="website" placeholder="Website">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            <!-- For City & ZipCode-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-road"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['city']) ?>" type="text" class="form-control" name="city" placeholder="City">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-map-marker"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['zipcode']) ?>" type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+                   </div>
+                  </div>
+                </div>
+              </div>
+            <!-- For Single Unit & Description-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-plane"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['singleUnit']) ?>" type="text" class="form-control" name="singleUnit" placeholder="Single Unit">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-leaf"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['description']) ?>" type="text" class="form-control" name="description" placeholder="Description">
+                   </div>
+                  </div>
+                </div>
+              </div>
+           <!-- For deliveryTime & freeShipping-->
+            <div class="form-group">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['deliveryTime']) ?>" type="text" class="form-control" name="deliveryTime" placeholder="Delivery Time">
+                   </div>                  
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-asterisk"></i>
+                      </span>
+                      <input value="<?php echo remove_junk($product['freeShipping']) ?>" type="text" class="form-control" name="freeShipping" placeholder="Free Shipping">
+                   </div>
+                  </div>
+                </div>
               </div>
               <button type="submit" name="product" class="btn btn-danger">Update</button>
           </form>
