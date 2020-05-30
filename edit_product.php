@@ -46,7 +46,7 @@ if(!$product){
        $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',media_id='{$media_id}'";
        $query  .=" WHERE id ='{$product['id']}'";
        $result = $db->query($query);
-               if($result && $db->affected_rows() === 1){
+               if($result){
                  $session->msg('s',"Product updated ");
                  redirect('product.php', false);
                } else {

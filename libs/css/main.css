@@ -308,3 +308,7 @@ input[type=file]{
 .panel-body {
    overflow-x: auto;
 }
+
+.header-product-search-container{
+  display: inline-block;
+}
