@@ -4,8 +4,9 @@
   $page_title = 'All Product';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(2);
+   page_require_level(false);
   $products = join_product_table();
+  $user = current_user();
 ?>
 
 <?php
@@ -19,6 +20,7 @@
     echo json_encode($products);
   }
 ?>
+
 <?php if(!$_POST): ?>
   <?php include_once('layouts/header.php'); ?>
   <div class="row">
@@ -31,9 +33,9 @@
           <div class="header-product-search-container">
             <input type="text" id="product-search-input" class="form-control header-product-search" placeholder="Search" />
           </div>
-          <div class="pull-right">
+          <?php if($user["user_level"] == '1'): ?><div class="pull-right">
             <a href="add_product.php" class="btn btn-primary">Add New</a>
-          </div>
+          </div><?php endif; ?>
         </div>
         <div class="panel-body">
           <table class="table table-bordered">
@@ -82,14 +84,14 @@
 		<td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
 		<td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
                 <td class="text-center">
-                  <div class="btn-group">
+                <?php if($user["user_level"] == 1) :?><div class="btn-group">
                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
                     <a href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
-                  </div>
+                </div><?php endif; ?>
                 </td>
               </tr>
              <?php endforeach; ?>
@@ -159,14 +161,14 @@
               row += `<td>${index+1}</td>`
             }else if(tCol === "Actions"){
               row += `
-              <td><div class="btn-group">
+              <td><?php if($user["user_level"] == 1) :?><div class="btn-group">
                     <a href="edit_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
                     <a href="delete_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
-              </div></td>`
+              </div><?php endif; ?></td>`
             }
           });
           
