@@ -55,7 +55,7 @@
      </div>
     </header>
     <div class="sidebar">
-      <?php if($user['user_level'] === '1'): ?>
+      <?php if(true): ?>
         <!-- admin menu -->
       <?php include_once('admin_menu.php');?>
 

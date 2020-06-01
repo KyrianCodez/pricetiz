@@ -1,4 +1,6 @@
+<?php $user = current_user(); ?>
 <ul>
+  <?php if($user["user_level"] == '1'): ?>
   <li>
     <a href="admin.php">
       <i class="glyphicon glyphicon-home"></i>
@@ -21,6 +23,7 @@
       <span>Categories</span>
     </a>
   </li>
+  <?php endif; ?>
   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-large"></i>
@@ -28,9 +31,10 @@
     </a>
     <ul class="nav submenu">
        <li><a href="product.php">Manage products</a> </li>
-       <li><a href="add_product.php">Add product</a> </li>
+       <?php if($user["user_level"] == '1'): ?><li><a href="add_product.php">Add product</a> </li><?php endif; ?>
    </ul>
   </li>
+  <?php if($user["user_level"] == '1'): ?>
   <li>
     <a href="media.php" >
       <i class="glyphicon glyphicon-picture"></i>
@@ -58,4 +62,5 @@
         <li><a href="daily_sales.php">Daily sales</a> </li>
       </ul>
   </li>
+  <?php endif; ?>
 </ul>
