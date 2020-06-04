@@ -26,7 +26,7 @@
       echo json_encode($html);
    }
  ?>
- <?php
+<?php
  // find all product
   if(isset($_POST['p_name']) && strlen($_POST['p_name']))
   {
