@@ -6,8 +6,14 @@ body{
   background: #f1f2f7;
   height: 100%;
   width: 100%;
-}a{
-  color #777;
+}.link{
+  margin-right: 0.225rem;
+}
+.sticky-header{
+  position:sticky;
+}
+a{
+
   text-decoration: none;
 }.padding-top{
   padding-top: 20px;
@@ -29,6 +35,14 @@ body{
   top: 50px;
   left: 0;
   padding: 35px 15px 20px 270px;
+}
+
+.rlink{
+  color: red;
+}
+
+.update{
+  margin-top: 20px;
 }
 
 .bg-green{
