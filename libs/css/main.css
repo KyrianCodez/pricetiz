@@ -36,7 +36,13 @@ a{
   left: 0;
   padding: 35px 15px 20px 270px;
 }
+.demopage{
+  position: relative;
+  display: block;
 
+  left: 0;
+
+}
 .rlink{
   color: red;
 }
