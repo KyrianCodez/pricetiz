@@ -38,7 +38,7 @@
             </div>
             <div class="panel-body">
                 <table class="table table-bordered">
-                    <thead >
+                    <thead>
                         <tr class="sticky-header">
                             <th class="text-center" style="width: 3%;">#</th>
                             <th> Photo</th>
@@ -46,8 +46,8 @@
                             <th> Product Title </th>
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
-                            <th class="text-center" style="width: 20%;"> Single Unit Amount </th>
-                            <th class="text-center" style="width: 20%;"> Instock </th>
+                            <th class="text-center" style="width: 20%;"> Pcs. per product </th>
+                            <th class="text-center" style="width: 20%;"> No. of products instock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
                             <th class="text-center" style="width: 20%;"> ItemLink </th>
@@ -80,10 +80,19 @@
                             <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                             <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?></td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
-                            <td class="text-center"> <i class="fas fa-external-link-alt link"></i> <a target='_blank'
+                            <td class="text-center">
+                                <i class="fas fa-external-link-alt link"></i> <a target='_blank'
                                     href="<?php echo $product['itemLink']; ?>">Link</a></td>
-                            <td class="text-center"> <i class="rlink fab fa-youtube "></i> <a target='_blank'
-                                    href="<?php echo $product['reviewLink']; ?>">Link</a></td>
+                            <td class="text-center">
+                            <?php if($product["reviewLink"] === null) :?>
+                            No Link
+                            <?php else: ?>
+                             <i class="rlink fab fa-youtube "></i>
+                              <a target='_blank'
+                                    href="<?php echo  $product['reviewLink']; ?>">Link</a>
+                            <?php endif; ?>
+                            </td>
+
                             <td class="text-center"> <?php echo $product['company']; ?></td>
                             <td class="text-center"> <i class="fas fa-external-link-alt link"></i><a target='_blank'
                                     href="<?php echo $product['website']; ?>">Link</a></td>
@@ -118,7 +127,8 @@ var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_pr
     "purchaseType", "categorie", "image"
 ];
 
-var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType","Single Unit Amount", "Instock", "Price", 
+var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
+    "No. of products instock", "Price",
     "Product Added", "ItemLink", "Review Link", "Company", "Website", "City", "ZipCode", "Phone", "Actions"
 ];
 
@@ -129,8 +139,8 @@ tableProductColMap.set("ProductType", "purchaseType");
 tableProductColMap.set("Product Title", "name");
 tableProductColMap.set("Type", "categorie");
 tableProductColMap.set("SubType", "subType");
-tableProductColMap.set("Single Unit Amount", "singleUnit");
-tableProductColMap.set("Instock", "quantity");
+tableProductColMap.set("Pcs. per product", "singleUnit");
+tableProductColMap.set("No. of products instock", "quantity");
 tableProductColMap.set("Price", "sale_price");
 tableProductColMap.set("Product Added", "date");
 tableProductColMap.set("ItemLink", "itemLink");
@@ -150,43 +160,43 @@ function generateTableData(products) {
         productTableBody.innerHTML = "";
         let tableRows = ``;
         products.forEach((p, index, arr) => {
-                console.log(p[productColumns.findIndex((c) => c === "name")]);
+            console.log(p[productColumns.findIndex((c) => c === "name")]);
 
-                let row = `<tr>`;
+            let row = `<tr>`;
 
-                tableColumns.forEach((tCol, i) => {
+            tableColumns.forEach((tCol, i) => {
 
-                        const productCol = tableProductColMap.get(tCol);
-                        console.log()
-                        if (productCol) {
-                            if (productCol === "itemLink") {
-                                row +=
-                                    `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
-                            } else if (productCol === "website") {
-                                row +=
-                                    `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
-                            } else if ( productCol ===
-                                "reviewLink") {
+                const productCol = tableProductColMap.get(tCol);
+                console.log()
+                if (productCol) {
+                    if (productCol === "itemLink") {
+                        row +=
+                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
+                    } else if (productCol === "website") {
+                        row +=
+                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
+                    } else if (productCol ===
+                        "reviewLink") {
+                        row +=
+                            `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
+                    } else if (productCol === "image") {
+                        let image_url = p[productColumns.findIndex((c) => c === "image")];
+
+                        if (image_url) {
                             row +=
-                                `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
-                        } else if (productCol === "image") {
-                            let image_url = p[productColumns.findIndex((c) => c === "image")];
-
-                            if (image_url) {
-                                row +=
-                                    `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
-                            } else {
-                                row +=
-                                    `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
-                            }
+                                `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
                         } else {
-                            row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
+                            row +=
+                                `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
                         }
+                    } else {
+                        row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
+                    }
 
-                    } else if (tCol === "#") {
-                        row += `<td>${index+1}</td>`
-                    } else if (tCol === "Actions") {
-                        row += `
+                } else if (tCol === "#") {
+                    row += `<td>${index+1}</td>`
+                } else if (tCol === "Actions") {
+                    row += `
               <td><?php if($user["user_level"] == 1) :?><div class="btn-group">
                     <a href="edit_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
@@ -195,15 +205,15 @@ function generateTableData(products) {
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
               </div><?php endif; ?></td>`
-                    }
-                });
+                }
+            });
 
             row += `</tr>`;
             // console.log(`col`, col);
             tableRows += row;
         }, window);
-    productTableBody.innerHTML += tableRows;
-}
+        productTableBody.innerHTML += tableRows;
+    }
 }
 
 async function filterProduct(e) {
