@@ -56,13 +56,13 @@ ob_start();
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
-                            <div class="header-product-search-container">
+                            <!-- <div class="header-product-search-container">
                                 <input type="text" id="product-search-input" class="form-control header-product-search"
                                     placeholder="Search" />
                             </div>
-                        </div>
+                        </div> -->
                         <div class="panel-body">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="productTable">
                                 <thead>
                                     <tr class="sticky-header">
                                         <th class="text-center" style="width: 3%;">#</th>
@@ -147,7 +147,10 @@ ob_start();
                 </div>
             </div>
 
-            <script type="text/javascript">
+        <script type="text/javascript">
+            $(document).ready( function () {
+                $('#productTable').DataTable();
+            } );
             var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id", "date",
                 "description",
                 "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
