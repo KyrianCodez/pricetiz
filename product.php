@@ -47,7 +47,7 @@
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
                             <th class="text-center" style="width: 20%;"> Pcs. per product </th>
-                            <th class="text-center" style="width: 20%;"> No. of products instock </th>
+                            <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
                             <th class="text-center" style="width: 20%;"> ItemLink </th>
@@ -128,7 +128,7 @@ var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_pr
 ];
 
 var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
-    "No. of products instock", "Price",
+    "No. of products in stock", "Price",
     "Product Added", "ItemLink", "Review Link", "Company", "Website", "City", "ZipCode", "Phone", "Actions"
 ];
 
@@ -140,7 +140,7 @@ tableProductColMap.set("Product Title", "name");
 tableProductColMap.set("Type", "categorie");
 tableProductColMap.set("SubType", "subType");
 tableProductColMap.set("Pcs. per product", "singleUnit");
-tableProductColMap.set("No. of products instock", "quantity");
+tableProductColMap.set("No. of products in stock", "quantity");
 tableProductColMap.set("Price", "sale_price");
 tableProductColMap.set("Product Added", "date");
 tableProductColMap.set("ItemLink", "itemLink");
