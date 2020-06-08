@@ -141,7 +141,7 @@ ob_start();
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
-                                </tabel>
+                                </table>
                         </div>
                     </div>
                 </div>
