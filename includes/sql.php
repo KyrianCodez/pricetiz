@@ -191,7 +191,7 @@ function tableExists($table){
        //if user not login
        if (!$session->isUserLoggedIn(true)):
               $session->msg('d','Please login...');
-              redirect('index.php', false);
+              redirect('login.php', false);
         //if Group status Deactive
        elseif($login_level['group_status'] === '0'):
              $session->msg('d','This level user has been banned!');
