@@ -43,27 +43,31 @@
 <?php include_once('layouts/header.php'); ?>
 <div class="login-page">
     <div class="text-center">
-       <h3>Edit Group</h3>
-     </div>
-     <?php echo display_msg($msg); ?>
-      <form method="post" action="edit_group.php?id=<?php echo (int)$e_group['id'];?>" class="clearfix">
+        <h3>Edit Group</h3>
+    </div>
+    <?php echo display_msg($msg); ?>
+    <form method="post" action="edit_group.php?id=<?php echo (int)$e_group['id'];?>" class="clearfix">
         <div class="form-group">
-              <label for="name" class="control-label">Group Name</label>
-              <input type="name" class="form-control" name="group-name" value="<?php echo remove_junk(ucwords($e_group['group_name'])); ?>">
+            <label for="name" class="control-label">Group Name</label>
+            <input type="name" class="form-control" name="group-name"
+                value="<?php echo remove_junk(ucwords($e_group['group_name'])); ?>">
         </div>
         <div class="form-group">
-              <label for="level" class="control-label">Group Level</label>
-              <input type="number" class="form-control" name="group-level" value="<?php echo (int)$e_group['group_level']; ?>">
+            <label for="level" class="control-label">Group Level</label>
+            <input type="number" class="form-control" name="group-level"
+                value="<?php echo (int)$e_group['group_level']; ?>">
         </div>
         <div class="form-group">
-          <label for="status">Status</label>
-              <select class="form-control" name="status">
-                <option <?php if($e_group['group_status'] === '1') echo 'selected="selected"';?> value="1"> Active </option>
-                <option <?php if($e_group['group_status'] === '0') echo 'selected="selected"';?> value="0">Deactive</option>
-              </select>
+            <label for="status">Status</label>
+            <select class="form-control" name="status">
+                <option <?php if($e_group['group_status'] === '1') echo 'selected="selected"';?> value="1"> Active
+                </option>
+                <option <?php if($e_group['group_status'] === '0') echo 'selected="selected"';?> value="0">Deactive
+                </option>
+            </select>
         </div>
         <div class="form-group clearfix">
-                <button type="submit" name="update" class="btn btn-info">Update</button>
+            <button type="submit" name="update" class="btn btn-info">Update</button>
         </div>
     </form>
 </div>

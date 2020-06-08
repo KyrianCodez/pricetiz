@@ -40,7 +40,7 @@
         <div class="panel-heading">
           <strong>
             <span class="glyphicon glyphicon-th"></span>
-            <span>Add New Categorie</span>
+            <span>Add New Category</span>
          </strong>
         </div>
         <div class="panel-body">
@@ -48,7 +48,7 @@
             <div class="form-group">
                 <input type="text" class="form-control" name="categorie-name" placeholder="Categorie Name">
             </div>
-            <button type="submit" name="add_cat" class="btn btn-primary">Add categorie</button>
+            <button type="submit" name="add_cat" class="btn btn-primary">Add category</button>
         </form>
         </div>
       </div>

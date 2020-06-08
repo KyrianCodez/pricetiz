@@ -194,7 +194,7 @@ function tableExists($table){
               redirect('index.php', false);
         //if Group status Deactive
        elseif($login_level['group_status'] === '0'):
-             $session->msg('d','This level user has been band!');
+             $session->msg('d','This level user has been banned!');
              redirect('home.php',false);
         //cheackin log in User level and Require level is Less than or equal to
        elseif($current_user['user_level'] <= (int)$require_level):
@@ -212,7 +212,7 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.description,p.singleUnit,p.itemLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
+     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.description,p.singleUnit,p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
     $sql  .=" ,c.name AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
