@@ -25,7 +25,7 @@
                 if($result && $db->affected_rows() === 1):
                   $session->logout();
                   $session->msg('s',"Login with your new password.");
-                  redirect('index.php', false);
+                  redirect('login.php', false);
                 else:
                   $session->msg('d',' Sorry failed to updated!');
                   redirect('change_password.php', false);

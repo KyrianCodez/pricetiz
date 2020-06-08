@@ -84,7 +84,7 @@
                                 <i class="fas fa-external-link-alt link"></i> <a target='_blank'
                                     href="<?php echo $product['itemLink']; ?>">Link</a></td>
                             <td class="text-center">
-                            <?php if($product["reviewLink"] === null) :?>
+                            <?php if(empty ($product["reviewLink"])) :?>
                             No Link
                             <?php else: ?>
                              <i class="rlink fab fa-youtube "></i>
