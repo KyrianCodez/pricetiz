@@ -122,6 +122,10 @@
   
 <script type="text/javascript">
 
+$(document).ready( function () {
+    $('#productTable').DataTable();
+} );
+
 var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id", "date", "description",
     "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping", "company",
     "website",
