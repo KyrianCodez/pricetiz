@@ -136,8 +136,6 @@ ob_start();
                                         <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                                         <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
                                         <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
-                                        <td class="text-center">
-                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
