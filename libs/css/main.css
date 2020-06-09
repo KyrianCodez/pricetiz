@@ -331,6 +331,11 @@ input[type=file]{
 
 .panel-body {
    overflow-x: auto;
+   max-height: 95vh;
+}
+
+.page .panel-body{
+  max-height: calc(95vh - 60px);
 }
 
 .header-product-search-container{
