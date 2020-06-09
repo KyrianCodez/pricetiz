@@ -50,7 +50,7 @@
                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
-                            <th class="text-center" style="width: 20%;"> ItemLink </th>
+                            <th class="text-center" style="width: 20%;"> Item Link </th>
                             <th class="text-center" style="width: 20%;"> Review Link </th>
                             <th class="text-center" style="width: 20%;"> Company </th>
                             <th class="text-center" style="width: 20%;"> Website </th>
@@ -80,22 +80,36 @@
                             <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                             <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?></td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
+
                             <td class="text-center">
-                                <i class="fas fa-external-link-alt link"></i> <a target='_blank'
-                                    href="<?php echo $product['itemLink']; ?>">Link</a></td>
+                                <?php if(empty ($product["itemLink"])) :?>
+                                No Link
+                                <?php else: ?>
+                                <i class="fas fa-external-link-alt link"></i>
+                                 <a target='_blank' href="<?php echo $product['itemLink']; ?>"> Item Link</a>
+                                <?php endif; ?>
+                            </td>
+
                             <td class="text-center">
-                            <?php if(empty ($product["reviewLink"])) :?>
-                            No Link
-                            <?php else: ?>
-                             <i class="rlink fab fa-youtube "></i>
-                              <a target='_blank'
-                                    href="<?php echo  $product['reviewLink']; ?>">Link</a>
-                            <?php endif; ?>
+                                <?php if(empty ($product["reviewLink"])) :?>
+                                No Link
+                                <?php else: ?>
+                                <i class="rlink fab fa-youtube "></i>
+                                <a target='_blank' href="<?php echo  $product['reviewLink']; ?>">Review Link</a>
+                                <?php endif; ?>
                             </td>
 
                             <td class="text-center"> <?php echo $product['company']; ?></td>
-                            <td class="text-center"> <i class="fas fa-external-link-alt link"></i><a target='_blank'
-                                    href="<?php echo $product['website']; ?>">Link</a></td>
+
+                            <td class="text-center">
+                                <?php if(empty ($product["website"])) :?>
+                                No Link 
+                                <?php else: ?>
+                                <i class="fas fa-external-link-alt link"></i><a target='_blank'
+                                    href="<?php echo $product['website']; ?>">Website</a>
+                                <?php endif; ?>
+                            </td>
+
                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
@@ -114,17 +128,16 @@
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
-                    </table>
+                </table>
             </div>
         </div>
     </div>
 </div>
-  
-<script type="text/javascript">
 
-$(document).ready( function () {
+<script type="text/javascript">
+$(document).ready(function() {
     $('#productTable').DataTable();
-} );
+});
 
 var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id", "date", "description",
     "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping", "company",
@@ -134,7 +147,7 @@ var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_pr
 
 var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
     "No. of products in stock", "Price",
-    "Product Added", "ItemLink", "Review Link", "Company", "Website", "City", "ZipCode", "Phone", "Actions"
+    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone", "Actions"
 ];
 
 var tableProductColMap = new Map();
@@ -148,7 +161,7 @@ tableProductColMap.set("Pcs. per product", "singleUnit");
 tableProductColMap.set("No. of products in stock", "quantity");
 tableProductColMap.set("Price", "sale_price");
 tableProductColMap.set("Product Added", "date");
-tableProductColMap.set("ItemLink", "itemLink");
+tableProductColMap.set("Item Link", "itemLink");
 tableProductColMap.set("Review Link", "reviewLink");
 tableProductColMap.set("Company", "company");
 tableProductColMap.set("Website", "website");
@@ -176,14 +189,14 @@ function generateTableData(products) {
                 if (productCol) {
                     if (productCol === "itemLink") {
                         row +=
-                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
+                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a></td>`;
                     } else if (productCol === "website") {
                         row +=
-                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
+                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a></td>`;
                     } else if (productCol ===
                         "reviewLink") {
                         row +=
-                            `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a></td>`;
+                            `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a></td>`;
                     } else if (productCol === "image") {
                         let image_url = p[productColumns.findIndex((c) => c === "image")];
 
