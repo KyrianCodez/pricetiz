@@ -8,21 +8,11 @@ ob_start();
   $products = join_product_table();
   session_start(["name" => "visit", "cookie_lifetime" => 0]);
   
-  $is_tracked = $_SESSION["TRACKED"]?"true":false;
+  $is_tracked = $_SESSION["TRACKED"];
+  $is_tracked_txt = $is_tracked?"yes":"not yet";
   $session_id = session_id();
-  echo "is tracked? $is_tracked<br>";
-  echo "session id: $session_id<br>";
-  if(!$is_tracked){
-    if(trackVisit($session_id)){
-        $_SESSION["TRACKED"] = true;
-        echo "visit tracked<br>";
-    };
-  }else{
-      echo "visit already tracked<br>";
-  }
 
   $stats = getVisitCount();
-  echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
 <?php
