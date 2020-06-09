@@ -80,22 +80,36 @@
                             <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
                             <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?></td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
+
                             <td class="text-center">
-                                <i class="fas fa-external-link-alt link"></i> <a target='_blank'
-                                    href="<?php echo $product['itemLink']; ?>">Link</a></td>
+                                <?php if(empty ($product["itemLink"])) :?>
+                                No Link
+                                <?php else: ?>
+                                <i class="fas fa-external-link-alt link"></i>
+                                 <a target='_blank' href="<?php echo $product['itemLink']; ?>">Link</a>
+                                <?php endif; ?>
+                            </td>
+
                             <td class="text-center">
-                            <?php if(empty ($product["reviewLink"])) :?>
-                            No Link
-                            <?php else: ?>
-                             <i class="rlink fab fa-youtube "></i>
-                              <a target='_blank'
-                                    href="<?php echo  $product['reviewLink']; ?>">Link</a>
-                            <?php endif; ?>
+                                <?php if(empty ($product["reviewLink"])) :?>
+                                No Link
+                                <?php else: ?>
+                                <i class="rlink fab fa-youtube "></i>
+                                <a target='_blank' href="<?php echo  $product['reviewLink']; ?>">Link</a>
+                                <?php endif; ?>
                             </td>
 
                             <td class="text-center"> <?php echo $product['company']; ?></td>
-                            <td class="text-center"> <i class="fas fa-external-link-alt link"></i><a target='_blank'
-                                    href="<?php echo $product['website']; ?>">Link</a></td>
+
+                            <td class="text-center">
+                                <?php if(empty ($product["website"])) :?>
+                                No Link 
+                                <?php else: ?>
+                                <i class="fas fa-external-link-alt link"></i><a target='_blank'
+                                    href="<?php echo $product['website']; ?>">Link</a>
+                                <?php endif; ?>
+                            </td>
+
                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
@@ -114,17 +128,16 @@
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
-                    </table>
+                </table>
             </div>
         </div>
     </div>
 </div>
-  
-<script type="text/javascript">
 
-$(document).ready( function () {
+<script type="text/javascript">
+$(document).ready(function() {
     $('#productTable').DataTable();
-} );
+});
 
 var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id", "date", "description",
     "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping", "company",
