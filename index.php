@@ -75,7 +75,7 @@ ob_start();
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
-                                            <th class="text-center" style="width: 20%;"> ItemLink </th>
+                                            <th class="text-center" style="width: 20%;"> Item Link </th>
                                             <th class="text-center" style="width: 20%;"> Review Link </th>
                                             <th class="text-center" style="width: 20%;"> Company </th>
                                             <th class="text-center" style="width: 20%;"> Website </th>
@@ -115,7 +115,7 @@ ob_start();
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i>
-                                                <a target='_blank' href="<?php echo $product['itemLink']; ?>">Link</a>
+                                                <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item Link</a>
                                                 <?php endif; ?>
                                             </td>
 
@@ -125,7 +125,7 @@ ob_start();
                                                 <?php else: ?>
                                                 <i class="rlink fab fa-youtube "></i>
                                                 <a target='_blank'
-                                                    href="<?php echo  $product['reviewLink']; ?>">Link</a>
+                                                    href="<?php echo  $product['reviewLink']; ?>">Review Link</a>
                                                 <?php endif; ?>
                                             </td>
 
@@ -136,7 +136,7 @@ ob_start();
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
-                                                    href="<?php echo $product['website']; ?>">Link</a>
+                                                    href="<?php echo $product['website']; ?>">Website</a>
                                                 <?php endif; ?>
                                             </td>
                                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
@@ -174,7 +174,7 @@ ob_start();
 
                 var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
                     "No. of products in stock", "Price",
-                    "Product Added", "ItemLink", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
+                    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
 
                 var tableProductColMap = new Map();
@@ -188,7 +188,7 @@ ob_start();
                 tableProductColMap.set("No. of products in stock", "quantity");
                 tableProductColMap.set("Price", "sale_price");
                 tableProductColMap.set("Product Added", "date");
-                tableProductColMap.set("ItemLink", "itemLink");
+                tableProductColMap.set("Item Link", "itemLink");
                 tableProductColMap.set("Review Link", "reviewLink");
                 tableProductColMap.set("Company", "company");
                 tableProductColMap.set("Website", "website");
@@ -219,14 +219,14 @@ ob_start();
                                             No Link 
                                          <?php else: ?>
                                          <i class="fas fa-external-link-alt link"></i>
-                                         <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a> 
+                                         <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a> 
                                         <?php endif; ?> </td>`;
                                      } else if (productCol === "website") {
                                         row +=
                                             `<td> <?php if(empty($product["website"])) :?>
                                             No Link 
                                              <?php else: ?><i class="fas fa-external-link-alt link"></i>
-                                          <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a> 
+                                          <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a> 
                                 <?php endif; ?> </td>`;
                                     } else if (productCol === "reviewLink") {
                                         row +=
@@ -234,7 +234,7 @@ ob_start();
                                              No Link 
                                          <?php else: ?>
                                 <i class="rlink fab fa-youtube "> </i>
-                                 <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Link</a> <?php endif; ?> </td>`;
+                                 <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a> <?php endif; ?> </td>`;
 
 
 
