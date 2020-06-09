@@ -353,4 +353,16 @@ function  monthlySales($year){
   return find_by_sql($sql);
 }
 
+function trackVisit($id){
+  global $db;
+  $sql = "INSERT INTO site_visits (visit_id) VALUES ('$id')";
+  return $db->query($sql);
+}
+
+function getVisitCount($fromDate = null, $toDate = null){
+  global $db;
+  $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
+  return find_by_sql($sql);
+}
+
 ?>

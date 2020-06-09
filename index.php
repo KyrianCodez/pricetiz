@@ -2,9 +2,27 @@
 ob_start();
   $page_title = 'All Product';
   require_once('includes/load.php');
+  require_once('includes/sql.php');
   // Checkin What level user has permission to view this page
    page_require_level(false);
   $products = join_product_table();
+  session_start(["name" => "visit", "cookie_lifetime" => 0]);
+  
+  $is_tracked = $_SESSION["TRACKED"]?"true":false;
+  $session_id = session_id();
+  echo "is tracked? $is_tracked<br>";
+  echo "session id: $session_id<br>";
+  if(!$is_tracked){
+    if(trackVisit($session_id)){
+        $_SESSION["TRACKED"] = true;
+        echo "visit tracked<br>";
+    };
+  }else{
+      echo "visit already tracked<br>";
+  }
+
+  $stats = getVisitCount();
+  echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
 <?php
