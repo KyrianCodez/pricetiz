@@ -22,8 +22,8 @@ ob_start();
     //   echo "visit tracked previously<br>";
   }
 
-  $stats = getVisitCount();
-  echo "Number of visits: " . $stats["0"]["visits"];
+//   $stats = getVisitCount();
+//   echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
 <?php

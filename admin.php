@@ -1,8 +1,10 @@
 <?php
   $page_title = 'Admin Home Page';
   require_once('includes/load.php');
+  require_once('includes/sql.php');
   // Checkin What level user has permission to view this page
    page_require_level(1);
+   $visits = getVisitCount()[0]["visits"];
 ?>
 <?php
  $c_categorie     = count_by_id('categories');
@@ -54,14 +56,25 @@
         </div>
        </div>
     </div>
+    <!-- <div class="col-md-3">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-yellow">
+          <i class="glyphicon glyphicon-usd"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  /* echo $c_sale['total']; */ ?></h2>
+          <p class="text-muted">Sales</p>
+        </div>
+       </div>
+    </div> -->
     <div class="col-md-3">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-yellow">
           <i class="glyphicon glyphicon-usd"></i>
         </div>
         <div class="panel-value pull-right">
-          <h2 class="margin-top"> <?php  echo $c_sale['total']; ?></h2>
-          <p class="text-muted">Sales</p>
+          <h2 class="margin-top"> <?php  echo $visits ?></h2>
+          <p class="text-muted">Visits</p>
         </div>
        </div>
     </div>
