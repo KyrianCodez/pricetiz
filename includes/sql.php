@@ -353,9 +353,9 @@ function  monthlySales($year){
   return find_by_sql($sql);
 }
 
-function trackVisit($id){
+function trackVisit($visit_id, $ip){
   global $db;
-  $sql = "INSERT INTO site_visits (visit_id) VALUES ('$id')";
+  $sql = "INSERT INTO site_visits (visit_id, ip) VALUES ('$visit_id', '$ip')";
   return $db->query($sql);
 }
 
