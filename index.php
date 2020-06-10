@@ -13,8 +13,10 @@ ob_start();
   $session_id = session_id();
 //   echo "is tracked? $is_tracked_txt<br>";
 //   echo "session id: $session_id<br>";
+  
+  $user_ip = $_SERVER["REMOTE_ADDR"];
   if(!$is_tracked){
-    if(trackVisit($session_id)){
+    if(trackVisit($session_id, $user_ip)){
         $_SESSION["TRACKED"] = true;
         // echo "visit tracked<br>";
     };
