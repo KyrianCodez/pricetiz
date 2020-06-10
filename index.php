@@ -11,8 +11,19 @@ ob_start();
   $is_tracked = $_SESSION["TRACKED"];
   $is_tracked_txt = $is_tracked?"yes":"not yet";
   $session_id = session_id();
+//   echo "is tracked? $is_tracked_txt<br>";
+//   echo "session id: $session_id<br>";
+  if(!$is_tracked){
+    if(trackVisit($session_id)){
+        $_SESSION["TRACKED"] = true;
+        // echo "visit tracked<br>";
+    };
+  }else{
+    //   echo "visit tracked previously<br>";
+  }
 
   $stats = getVisitCount();
+  echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
 <?php
