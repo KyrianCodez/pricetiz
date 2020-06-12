@@ -369,16 +369,16 @@ function  monthlySales($year){
   return find_by_sql($sql);
 }
 
-function trackVisit($visit_id, $ip){
-  global $db;
-  $sql = "INSERT INTO site_visits (visit_id, ip) VALUES ('$visit_id', '$ip')";
-  return $db->query($sql);
-}
+// function trackVisit($visit_id, $ip){
+//   global $db;
+//   $sql = "INSERT INTO site_visits (visit_id, ip) VALUES ('$visit_id', '$ip')";
+//   return $db->query($sql);
+// }
 
-function getVisitCount($fromDate = null, $toDate = null){
-  global $db;
-  $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
-  return find_by_sql($sql);
-}
+// function getVisitCount($fromDate = null, $toDate = null){
+//   global $db;
+//   $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
+//   return find_by_sql($sql);
+// }
 
 ?>
