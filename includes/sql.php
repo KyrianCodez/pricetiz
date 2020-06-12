@@ -221,6 +221,15 @@ function tableExists($table){
     return find_by_sql($sql);
 
    }
+   function join_notification_table(){
+      global $db;
+     $sql  =" SELECT n.id,n.messageContent";
+    $sql  .=" ,m.name AS type";
+    $sql  .=" FROM notifications n";
+    $sql  .=" LEFT JOIN messagetype m ON m.id = n.messageType";
+    $sql  .=" ORDER BY n.id ASC";
+    return find_by_sql($sql);
+   }
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest
@@ -245,7 +254,14 @@ function tableExists($table){
     $sql .=" LIMIT 1";
     return find_by_sql($sql);
   }
+  function get_messageContent($type){
+    global $db;
+  $sql = "SELECT messageContent FROM notifications"; 
+  $sql .= "WHERE messageType = '{$type}'";
+  $sql .= "LIMIT 1";
+  return  find_by_sql($sql);
 
+  }
   /*--------------------------------------------------------------*/
   /* Function for Update product quantity
   /*--------------------------------------------------------------*/
