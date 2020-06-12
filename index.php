@@ -3,9 +3,15 @@ ob_start();
   $page_title = 'All Product';
   require_once('includes/load.php');
   require_once('includes/sql.php');
+  
+  
+
+
   // Checkin What level user has permission to view this page
    page_require_level(false);
   $products = join_product_table();
+  $notifications = join_notification_table();
+
   session_start(["name" => "visit", "cookie_lifetime" => 0]);
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -69,10 +75,33 @@ ob_start();
 
 <body>
     <div class="demopage">
+    
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <?php echo display_msg($msg); ?>
+                    <?php
+if (isset($notifications[0]['type'])) {
+
+
+    if ($notifications[0]['type'] === 'PSA') {
+      
+
+        $session->msg('s', "".$notifications[0]['messageContent']);
+        
+
+
+    } else {
+        
+
+        return "";
+    }
+
+} else {
+
+    return "";
+}
+?>
                 </div>
                 <div class="col-md-12">
                     <div class="panel panel-default">
