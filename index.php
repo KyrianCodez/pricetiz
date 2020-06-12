@@ -12,23 +12,23 @@ ob_start();
   $products = join_product_table();
   $notifications = join_notification_table();
 
-  session_start(["name" => "visit", "cookie_lifetime" => 0]);
+//   session_start(["name" => "visit", "cookie_lifetime" => 0]);
   
-  $is_tracked = $_SESSION["TRACKED"];
-  $is_tracked_txt = $is_tracked?"yes":"not yet";
-  $session_id = session_id();
-//   echo "is tracked? $is_tracked_txt<br>";
-//   echo "session id: $session_id<br>";
+//   $is_tracked = $_SESSION["TRACKED"];
+//   $is_tracked_txt = $is_tracked?"yes":"not yet";
+//   $session_id = session_id();
+// //   echo "is tracked? $is_tracked_txt<br>";
+// //   echo "session id: $session_id<br>";
   
-  $user_ip = $_SERVER["REMOTE_ADDR"];
-  if(!$is_tracked){
-    if(trackVisit($session_id, $user_ip)){
-        $_SESSION["TRACKED"] = true;
-        // echo "visit tracked<br>";
-    };
-  }else{
-    //   echo "visit tracked previously<br>";
-  }
+//   $user_ip = $_SERVER["REMOTE_ADDR"];
+//   if(!$is_tracked){
+//     if(trackVisit($session_id, $user_ip)){
+//         $_SESSION["TRACKED"] = true;
+//         // echo "visit tracked<br>";
+//     };
+//   }else{
+//     //   echo "visit tracked previously<br>";
+//   }
 
 //   $stats = getVisitCount();
 //   echo "Number of visits: " . $stats["0"]["visits"];
