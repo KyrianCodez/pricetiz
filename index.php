@@ -66,9 +66,13 @@ ob_start();
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/eb9107ad61.js" crossorigin="anonymous"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
     <link rel="stylesheet"
         href="libs/css/main.css?<?php echo time(); /* appended to disable browser caching css file remove for release*/ ?>" />
 </head>
@@ -102,108 +106,138 @@ if (isset($notifications[0]['type'])) {
     return "";
 }
 ?>
+                    <button class="btn chatOpen">chat</button>
+
+                    <script>
+                        $(document).ready(function(){
+                            var chatOpen = $('.chatOpen');
+                            var chatWindow = $('#chatWindow');
+                            var resultsWindow = $('#resultsWindow');
+
+                            var chatClose = $('.chatClose');
+
+                            chatOpen.click(function(){
+                                chatWindow.show();
+                                resultsWindow.removeClass('col-md-12');
+                                resultsWindow.addClass('col-md-8');
+                            });
+
+                            chatClose.click(function(){
+                                chatWindow.hide();
+                                resultsWindow.removeClass('col-md-8');
+                                resultsWindow.addClass('col-md-12');
+                            });
+                           
+                        });
+                    </script>
                 </div>
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
-                            <!-- <div class="header-product-search-container">
-                                <input type="text" id="product-search-input" class="form-control header-product-search"
-                                    placeholder="Search" />
-                            </div>
-                        </div> -->
-                            <div class="panel-body">
-                                <table class="table table-bordered" id="productTable">
-                                    <thead>
-                                        <tr class="sticky-header">
-                                            <th class="text-center" style="width: 3%;">#</th>
-                                            <th> Photo</th>
-                                            <th> ProductType</th>
-                                            <th> Product Title </th>
-                                            <th class="text-center" style="width: 20%;">Type</th>
-                                            <th class="text-center" style="width: 20%;"> SubType </th>
-                                            <th class="text-center" style="width: 20%;"> Pcs. per product </th>
-                                            <th class="text-center" style="width: 20%;"> No. of products in stock </th>
-                                            <th class="text-center" style="width: 20%;"> Price </th>
-                                            <th class="text-center" style="width: 50%;"> Product Added </th>
-                                            <th class="text-center" style="width: 20%;"> Item Link </th>
-                                            <th class="text-center" style="width: 20%;"> Review Link </th>
-                                            <th class="text-center" style="width: 20%;"> Company </th>
-                                            <th class="text-center" style="width: 20%;"> Website </th>
-                                            <th class="text-center" style="width: 20%;"> City </th>
-                                            <th class="text-center" style="width: 20%;"> ZipCode </th>
-                                            <th class="text-center" style="width: 20%;"> Phone </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="product-table-body">
-                                        <?php foreach ($products as $product):?>
-                                        <tr>
-                                            <td class="text-center"><?php echo count_id();?></td>
-                                            <td>
-                                                <?php if($product['media_id'] === '0'): ?>
-                                                <img class="img-avatar img-circle" src="uploads/products/no_image.jpg"
-                                                    alt="">
-                                                <?php else: ?>
-                                                <img class="img-avatar img-circle"
-                                                    src="uploads/products/<?php echo $product['image']; ?>" alt="">
-                                                <?php endif; ?>
-                                            </td>
-                                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                                            <td> <?php echo remove_junk($product['name']); ?></td>
-                                            <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
-                                            </td>
-                                            <td class="text-center"> <?php echo $product['subType']; ?></td>
-                                            <td class="text-center"> <?php echo remove_junk($product['singleUnit']); ?>
-                                            </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
-                                            </td>
-                                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
-                                            </td>
-                                            <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
-                                            <td class="text-center">
-                                                <?php if(empty ($product["itemLink"])) :?>
-                                                No Link
-                                                <?php else: ?>
-                                                <i class="fas fa-external-link-alt link"></i>
-                                                <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item Link</a>
-                                                <?php endif; ?>
-                                            </td>
-
-                                            <td class="text-center">
-                                                <?php if(empty ($product["reviewLink"])) :?>
-                                                No Link
-                                                <?php else: ?>
-                                                <i class="rlink fab fa-youtube "></i>
-                                                <a target='_blank'
-                                                    href="<?php echo  $product['reviewLink']; ?>">Review Link</a>
-                                                <?php endif; ?>
-                                            </td>
-
-                                            <td class="text-center"> <?php echo $product['company']; ?></td>
-
-                                            <td class="text-center">
-                                                <?php if(empty ($product["website"])) :?>
-                                                No Link
-                                                <?php else: ?>
-                                                <i class="fas fa-external-link-alt link"></i><a target='_blank'
-                                                    href="<?php echo $product['website']; ?>">Website</a>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
-                                            <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
-                                            </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
+                    <div id="resultsWindow" class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <!-- <div class="header-product-search-container">
+                                    <input type="text" id="product-search-input" class="form-control header-product-search"
+                                        placeholder="Search" />
+                                </div>
+                            </div> -->
+                                <div class="panel-body">
+                                    <table class="table table-bordered" id="productTable">
+                                        <thead>
+                                            <tr class="sticky-header">
+                                                <th class="text-center" style="width: 3%;">#</th>
+                                                <th> Photo</th>
+                                                <th> ProductType</th>
+                                                <th> Product Title </th>
+                                                <th class="text-center" style="width: 20%;">Type</th>
+                                                <th class="text-center" style="width: 20%;"> SubType </th>
+                                                <th class="text-center" style="width: 20%;"> Pcs. per product </th>
+                                                <th class="text-center" style="width: 20%;"> No. of products in stock </th>
+                                                <th class="text-center" style="width: 20%;"> Price </th>
+                                                <th class="text-center" style="width: 50%;"> Product Added </th>
+                                                <th class="text-center" style="width: 20%;"> Item Link </th>
+                                                <th class="text-center" style="width: 20%;"> Review Link </th>
+                                                <th class="text-center" style="width: 20%;"> Company </th>
+                                                <th class="text-center" style="width: 20%;"> Website </th>
+                                                <th class="text-center" style="width: 20%;"> City </th>
+                                                <th class="text-center" style="width: 20%;"> ZipCode </th>
+                                                <th class="text-center" style="width: 20%;"> Phone </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="product-table-body">
+                                            <?php foreach ($products as $product):?>
+                                            <tr>
+                                                <td class="text-center"><?php echo count_id();?></td>
+                                                <td>
+                                                    <?php if($product['media_id'] === '0'): ?>
+                                                    <img class="img-avatar img-circle" src="uploads/products/no_image.jpg"
+                                                        alt="">
+                                                    <?php else: ?>
+                                                    <img class="img-avatar img-circle"
+                                                        src="uploads/products/<?php echo $product['image']; ?>" alt="">
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td> <?php echo remove_junk($product['purchaseType']); ?></td>
+                                                <td> <?php echo remove_junk($product['name']); ?></td>
+                                                <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
+                                                </td>
+                                                <td class="text-center"> <?php echo $product['subType']; ?></td>
+                                                <td class="text-center"> <?php echo remove_junk($product['singleUnit']); ?>
+                                                </td>
+                                                <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                                                </td>
+                                                <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                                                </td>
+                                                <td class="text-center"> <?php echo read_date($product['date']); ?></td>
+    
+                                                <td class="text-center">
+                                                    <?php if(empty ($product["itemLink"])) :?>
+                                                    No Link
+                                                    <?php else: ?>
+                                                    <i class="fas fa-external-link-alt link"></i>
+                                                    <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item Link</a>
+                                                    <?php endif; ?>
+                                                </td>
+    
+                                                <td class="text-center">
+                                                    <?php if(empty ($product["reviewLink"])) :?>
+                                                    No Link
+                                                    <?php else: ?>
+                                                    <i class="rlink fab fa-youtube "></i>
+                                                    <a target='_blank'
+                                                        href="<?php echo  $product['reviewLink']; ?>">Review Link</a>
+                                                    <?php endif; ?>
+                                                </td>
+    
+                                                <td class="text-center"> <?php echo $product['company']; ?></td>
+    
+                                                <td class="text-center">
+                                                    <?php if(empty ($product["website"])) :?>
+                                                    No Link
+                                                    <?php else: ?>
+                                                    <i class="fas fa-external-link-alt link"></i><a target='_blank'
+                                                        href="<?php echo $product['website']; ?>">Website</a>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
+                                                <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
+                                                </td>
+                                                <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+    
+                    <div class="col-md-4" id="chatWindow" style="display: none; height: 85vh;">
+                        <i class="fa fa-times chatClose" aria-hidden="true"></i>
+                        <iframe src="http://www.pricetize.com/ptchat/blabax.php" title="Pricetize Chat" style="width: 100%; height: 100%;">
+                        </iframe>
+                    </div>
 
-                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
                 <link rel="stylesheet" type="text/css"
                     href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
                 <script type="text/javascript" charset="utf8"
