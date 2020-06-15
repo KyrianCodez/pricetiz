@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: http://localhost:8888");
+header("Access-Control-Allow-Origin: http://hwsrv-737215.hostwindsdns.com");
 
     $searchString = $_POST['searchString'];
 
