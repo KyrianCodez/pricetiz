@@ -12,7 +12,7 @@ ob_start();
   $products = join_product_table();
   $notifications = join_notification_table();
 
- session_start(["name" => "visit", "cookie_lifetime" => 0]);
+//  session_start(["name" => "visit", "cookie_lifetime" => 0]);
   
 //   $is_tracked = $_SESSION["TRACKED"];
 //   $is_tracked_txt = $is_tracked?"yes":"not yet";
