@@ -66,7 +66,7 @@
                             <td class="text-center"><?php echo count_id();?></td>
                             <td>
                                 <?php if($product['media_id'] === '0'): ?>
-                                <img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt="">
+                                <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg" alt="">
                                 <?php else: ?>
                                 <img class="img-avatar img-circle"
                                     src="uploads/products/<?php echo $product['image']; ?>" alt="">
