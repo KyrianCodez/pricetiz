@@ -313,7 +313,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" name="add_product" class="btn btn-danger">Add product</button>
+                            <button type="submit" name="add_product" class="update btn btn-primary">Add product</button>
+                            <a href="product.php" class="update btn btn-default">Cancel</a>
                     </form>
                 </div>
             </div>

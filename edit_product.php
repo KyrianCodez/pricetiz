@@ -76,7 +76,7 @@ if(!$product){
         <div class="panel-heading">
             <strong>
                 <span class="glyphicon glyphicon-th"></span>
-                <span>Add New Product</span>
+                <span>Edit Product Info</span>
             </strong>
         </div>
         <div class="panel-body">
@@ -337,7 +337,8 @@ if(!$product){
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" name="product" class="update btn btn-danger">Update</button>
+                        <button type="submit" name="product" class="update btn btn-primary">Update</button>
+                        <a href="product.php" class="update btn btn-default">Cancel</a>
                 </form>
             </div>
         </div>
