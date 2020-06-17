@@ -10,7 +10,7 @@
  if(isset($_POST['add_product'])){
    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price',
                        'itemLink','deliveryTime','freeShipping','company','website','city',
-                      'zipcode','singleUnit','description','purchaseType');
+                      'zipcode','singleUnit','description','purchaseType' ,'singleUnits', 'singleValue');
    validate_fields($req_fields);
    if(empty($errors)){
      $p_name  = remove_junk($db->escape($_POST['product-title']));
@@ -31,6 +31,9 @@
      $website = remove_junk($db->escape($_POST['website']));
      $description = remove_junk($db->escape($_POST['description']));
      $purchaseType = remove_junk($db->escape($_POST['purchaseType']));
+     $singleUnits= remove_junk($db->escape($_POST['singleUnits']));
+     $singleValue = remove_junk($db->escape($_POST['singleValue']));
+     
      if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
        $media_id = '0';
      } else {
@@ -38,9 +41,9 @@
      }
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date,singleUnit, itemLink, reviewLink, city, zipcode, phone, email, delieveryTime, freeShipping, company, website, description, purchaseType";
+     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date,singleUnit, itemLink, reviewLink, city, zipcode, phone, email, delieveryTime, freeShipping, company, website, description, purchaseType, singleUnits, singleValue";
      $query .=") VALUES (";
-     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}','{$singleUnit}', '{$itemLink}', '{$reviewLink}','{$city}', '{$zipcode}', '{$phone}', '{$email}', '{$delieveryTime}', '{$freeShipping}', '{$company}', '{$website}', '{$description}', '{$purchaseType}'";
+     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}','{$singleUnit}', '{$itemLink}', '{$reviewLink}','{$city}', '{$zipcode}', '{$phone}', '{$email}', '{$delieveryTime}', '{$freeShipping}', '{$company}', '{$website}', '{$description}', '{$purchaseType}', '{$singleUnits}, '{$singleValue}";
      $query .=")";
      $query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
@@ -271,6 +274,28 @@
                                         </span>
                                         <input type="text" class="form-control" name="freeShipping"
                                             placeholder="Free Shipping">
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                             <i class="glyphicon glyphicon-pencil"></i>
+                                        </span>
+                                        <input type="text" class="form-control" name="singleValue"
+                                            placeholder="Number of pieces ">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </span>
+                                        <input type="text" class="form-control" name="singleUnits"
+                                            placeholder="Gallons, kilograms, pcs etc.">
                                     </div>
                                 </div>
                             </div>

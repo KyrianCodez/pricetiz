@@ -1,6 +1,8 @@
 <?php
   $page_title = 'All Product';
   require_once('includes/load.php');
+
+
   // Checkin What level user has permission to view this page
    page_require_level(false);
   $products = join_product_table();
@@ -47,6 +49,7 @@
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
                             <th class="text-center" style="width: 20%;"> Pcs. per product </th>
+                              <th class="text-center" style="width: 20%;"> Price Per product</th>
                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -76,9 +79,23 @@
                             <td> <?php echo remove_junk($product['name']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
-                            <td class="text-center"> <?php echo remove_junk($product['singleUnit']); ?></td>
-                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?></td>
-                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?></td>
+                            <td class="text-center">
+                                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                                            </td>
+                                         
+                                          
+                                            <td class="text-center">
+                                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
+                                                    N/A
+                                                    <?php else: ?>
+                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                                            </td>
+                                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                                            </td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                             <td class="text-center">
@@ -139,35 +156,39 @@ $(document).ready(function() {
     $('#productTable').DataTable();
 });
 
-var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id", "date", "description",
-    "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping", "company",
-    "website",
-    "purchaseType", "categorie", "image"
-];
+ var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
+                    "date",
+                    "description",
+                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
+                    "company",
+                    "website",
+                    "purchaseType", "categorie", "image,"
+                ];
 
-var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
-    "No. of products in stock", "Price",
-    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone", "Actions"
-];
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
+                    "No. of products in stock", "Price",
+                    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
+                ];
 
-var tableProductColMap = new Map();
-tableProductColMap.set("#", false);
-tableProductColMap.set("Photo", "image");
-tableProductColMap.set("ProductType", "purchaseType");
-tableProductColMap.set("Product Title", "name");
-tableProductColMap.set("Type", "categorie");
-tableProductColMap.set("SubType", "subType");
-tableProductColMap.set("Pcs. per product", "singleUnit");
-tableProductColMap.set("No. of products in stock", "quantity");
-tableProductColMap.set("Price", "sale_price");
-tableProductColMap.set("Product Added", "date");
-tableProductColMap.set("Item Link", "itemLink");
-tableProductColMap.set("Review Link", "reviewLink");
-tableProductColMap.set("Company", "company");
-tableProductColMap.set("Website", "website");
-tableProductColMap.set("City", "city");
-tableProductColMap.set("ZipCode", "zipcode");
-tableProductColMap.set("Phone", "phone");
+                var tableProductColMap = new Map();
+                tableProductColMap.set("#", false);
+                tableProductColMap.set("Photo", "image");
+                tableProductColMap.set("ProductType", "purchaseType");
+                tableProductColMap.set("Product Title", "name");
+                tableProductColMap.set("Type", "categorie");
+                tableProductColMap.set("SubType", "subType");
+                tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
+                tableProductColMap.set("Price per product", "singleValue / buy_price");
+                tableProductColMap.set("No. of products in stock", "quantity");
+                tableProductColMap.set("Price", "sale_price");
+                tableProductColMap.set("Product Added", "date");
+                tableProductColMap.set("Item Link", "itemLink");
+                tableProductColMap.set("Review Link", "reviewLink");
+                tableProductColMap.set("Company", "company");
+                tableProductColMap.set("Website", "website");
+                tableProductColMap.set("City", "city");
+                tableProductColMap.set("ZipCode", "zipcode");
+                tableProductColMap.set("Phone", "phone");
 tableProductColMap.set("Actions", false);
 
 window.productColumns = productColumns;

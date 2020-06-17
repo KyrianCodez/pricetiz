@@ -25,6 +25,8 @@ if(!$product){
       $p_buy   = remove_junk($db->escape($_POST['buying-price']));
       $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
       $singleUnit = remove_junk($db->escape($_POST['singleUnit']));
+      $singleUnits = remove_junk($db->escape($_POST['singleUnits']));
+      $singleValue = remove_junk($db->escape($_POST['singleValue']));
       $itemLink = remove_junk($db->escape($_POST['itemLink']));
       $reviewLink = remove_junk($db->escape($_POST['reviewLink']));
       $city = remove_junk($db->escape($_POST['city']));
@@ -43,7 +45,7 @@ if(!$product){
          $media_id = remove_junk($db->escape($_POST['product-photo']));
        }
        $query   = "UPDATE products SET";
-       $query  .=" name ='{$p_name}', quantity ='{$p_qty}', singleUnit='{$singleUnit}', itemLink='{$itemLink}', reviewLink='{$reviewLink}', city='{$city}', zipcode='{$zipcode}', phone='{$phone}', email='{$email}', delieveryTime='{$delieveryTime}', freeShipping='{$freeShipping}', company='{$company}', website='{$website}', description='{$description}', purchaseType='{$purchaseType}',";
+       $query  .=" name ='{$p_name}', quantity ='{$p_qty}', singleUnit='{$singleUnit}', singleUnits ='{$singleUnits}',singleValue='{$singleValue}', itemLink='{$itemLink}', reviewLink='{$reviewLink}', city='{$city}', zipcode='{$zipcode}', phone='{$phone}', email='{$email}', delieveryTime='{$delieveryTime}', freeShipping='{$freeShipping}', company='{$company}', website='{$website}', description='{$description}', purchaseType='{$purchaseType}',";
        $query  .=" buy_price ='{$p_buy}', sale_price ='{$p_sale}', categorie_id ='{$p_cat}',media_id='{$media_id}'";
        $query  .=" WHERE id ='{$product['id']}'";
        $result = $db->query($query);
@@ -295,6 +297,29 @@ if(!$product){
                                     </span>
                                     <input value="<?php echo remove_junk($product['freeShipping']) ?>" type="text"
                                         class="form-control" name="freeShipping" placeholder="Free Shipping">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- For product values and units-->
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <i class="glyphicon glyphicon-pencil"></i>
+                                    </span>
+                                    <input value="<?php echo remove_junk($product['singleValue']) ?>" type="text"
+                                        class="form-control" name="singleValue" placeholder="Pcs per product">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                       <i class="glyphicon glyphicon-pencil"></i>
+                                    </span>
+                                    <input value="<?php echo remove_junk($product['singleUnits']) ?>" type="text"
+                                        class="form-control" name="singleUnits" placeholder="Product Units Gallons kilos etc">
                                 </div>
                             </div>
                         </div>

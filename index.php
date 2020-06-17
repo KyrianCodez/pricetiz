@@ -79,7 +79,7 @@ ob_start();
 
 <body>
     <div class="demopage">
-    
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -109,133 +109,150 @@ if (isset($notifications[0]['type'])) {
                     <button class="btn chatOpen">chat</button>
 
                     <script>
-                        $(document).ready(function(){
-                            var chatOpen = $('.chatOpen');
-                            var chatWindow = $('#chatWindow');
-                            var resultsWindow = $('#resultsWindow');
+                    $(document).ready(function() {
+                        var chatOpen = $('.chatOpen');
+                        var chatWindow = $('#chatWindow');
+                        var resultsWindow = $('#resultsWindow');
 
-                            var chatClose = $('.chatClose');
+                        var chatClose = $('.chatClose');
 
-                            chatOpen.click(function(){
-                                chatWindow.show();
-                                resultsWindow.removeClass('col-md-12');
-                                resultsWindow.addClass('col-md-8');
-                            });
-
-                            chatClose.click(function(){
-                                chatWindow.hide();
-                                resultsWindow.removeClass('col-md-8');
-                                resultsWindow.addClass('col-md-12');
-                            });
-                           
+                        chatOpen.click(function() {
+                            chatWindow.show();
+                            resultsWindow.removeClass('col-md-12');
+                            resultsWindow.addClass('col-md-8');
                         });
+
+                        chatClose.click(function() {
+                            chatWindow.hide();
+                            resultsWindow.removeClass('col-md-8');
+                            resultsWindow.addClass('col-md-12');
+                        });
+
+                    });
                     </script>
                 </div>
 
-                    <div id="resultsWindow" class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading clearfix">
-                                <!-- <div class="header-product-search-container">
+                <div id="resultsWindow" class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <!-- <div class="header-product-search-container">
                                     <input type="text" id="product-search-input" class="form-control header-product-search"
                                         placeholder="Search" />
                                 </div>
                             </div> -->
-                                <div class="panel-body">
-                                    <table class="table table-bordered" id="productTable">
-                                        <thead>
-                                            <tr class="sticky-header">
-                                                <th class="text-center" style="width: 3%;">#</th>
-                                                <th> Photo</th>
-                                                <th> ProductType</th>
-                                                <th> Product Title </th>
-                                                <th class="text-center" style="width: 20%;">Type</th>
-                                                <th class="text-center" style="width: 20%;"> SubType </th>
-                                                <th class="text-center" style="width: 20%;"> Pcs. per product </th>
-                                                <th class="text-center" style="width: 20%;"> No. of products in stock </th>
-                                                <th class="text-center" style="width: 20%;"> Price </th>
-                                                <th class="text-center" style="width: 50%;"> Product Added </th>
-                                                <th class="text-center" style="width: 20%;"> Item Link </th>
-                                                <th class="text-center" style="width: 20%;"> Review Link </th>
-                                                <th class="text-center" style="width: 20%;"> Company </th>
-                                                <th class="text-center" style="width: 20%;"> Website </th>
-                                                <th class="text-center" style="width: 20%;"> City </th>
-                                                <th class="text-center" style="width: 20%;"> ZipCode </th>
-                                                <th class="text-center" style="width: 20%;"> Phone </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="product-table-body">
-                                            <?php foreach ($products as $product):?>
-                                            <tr>
-                                                <td class="text-center"><?php echo count_id();?></td>
-                                                <td>
-                                                    <?php if($product['media_id'] === '0'): ?>
-                                                    <img class="img-avatar img-circle" src="uploads/products/no_image.jpg"
-                                                        alt="">
+                            <div class="panel-body">
+                                <table class="table table-bordered" id="productTable">
+                                    <thead>
+                                        <tr class="sticky-header">
+                                            <th class="text-center" style="width: 3%;">#</th>
+                                            <th> Photo</th>
+                                            <th> ProductType</th>
+                                            <th> Product Title </th>
+                                            <th class="text-center" style="width: 20%;">Type</th>
+                                            <th class="text-center" style="width: 20%;"> SubType </th>
+                                            <th class="text-center" style="width: 20%;">Pcs. per product </th>
+                                        
+                                 
+                                            <th class="text-center" style="width: 20%;"> Price Per product</th>
+                                            <th class="text-center" style="width: 20%;"> No. of products in stock </th>
+                                            <th class="text-center" style="width: 20%;"> Price </th>
+                                            <th class="text-center" style="width: 50%;"> Product Added </th>
+                                            <th class="text-center" style="width: 20%;"> Item Link </th>
+                                            <th class="text-center" style="width: 20%;"> Review Link </th>
+                                            <th class="text-center" style="width: 20%;"> Company </th>
+                                            <th class="text-center" style="width: 20%;"> Website </th>
+                                            <th class="text-center" style="width: 20%;"> City </th>
+                                            <th class="text-center" style="width: 20%;"> ZipCode </th>
+                                            <th class="text-center" style="width: 20%;"> Phone </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="product-table-body">
+                                        <?php foreach ($products as $product):?>
+                                        <tr>
+                                            <td class="text-center"><?php echo count_id();?></td>
+                                            <td>
+                                                <?php if($product['media_id'] === '0'): ?>
+                                                <img class="img-avatar img-circle" src="uploads/products/no_image.jpg"
+                                                    alt="">
+                                                <?php else: ?>
+                                                <img class="img-avatar img-circle"
+                                                    src="uploads/products/<?php echo $product['image']; ?>" alt="">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
+                                            <td> <?php echo remove_junk($product['name']); ?></td>
+                                            <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
+                                            </td>
+                                            <td class="text-center"> <?php echo $product['subType']; ?></td>
+
+                                            <td class="text-center">
+                                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                                            </td>
+                                         
+                                          
+                                            <td class="text-center">
+                                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
+                                                    N/A
                                                     <?php else: ?>
-                                                    <img class="img-avatar img-circle"
-                                                        src="uploads/products/<?php echo $product['image']; ?>" alt="">
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                                                <td> <?php echo remove_junk($product['name']); ?></td>
-                                                <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
-                                                </td>
-                                                <td class="text-center"> <?php echo $product['subType']; ?></td>
-                                                <td class="text-center"> <?php echo remove_junk($product['singleUnit']); ?>
-                                                </td>
-                                                <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
-                                                </td>
-                                                <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
-                                                </td>
-                                                <td class="text-center"> <?php echo read_date($product['date']); ?></td>
-    
-                                                <td class="text-center">
-                                                    <?php if(empty ($product["itemLink"])) :?>
-                                                    No Link
-                                                    <?php else: ?>
-                                                    <i class="fas fa-external-link-alt link"></i>
-                                                    <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item Link</a>
-                                                    <?php endif; ?>
-                                                </td>
-    
-                                                <td class="text-center">
-                                                    <?php if(empty ($product["reviewLink"])) :?>
-                                                    No Link
-                                                    <?php else: ?>
-                                                    <i class="rlink fab fa-youtube "></i>
-                                                    <a target='_blank'
-                                                        href="<?php echo  $product['reviewLink']; ?>">Review Link</a>
-                                                    <?php endif; ?>
-                                                </td>
-    
-                                                <td class="text-center"> <?php echo $product['company']; ?></td>
-    
-                                                <td class="text-center">
-                                                    <?php if(empty ($product["website"])) :?>
-                                                    No Link
-                                                    <?php else: ?>
-                                                    <i class="fas fa-external-link-alt link"></i><a target='_blank'
-                                                        href="<?php echo $product['website']; ?>">Website</a>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
-                                                <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
-                                                </td>
-                                                <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                                            </td>
+                                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                                            </td>
+                                            <td class="text-center"> <?php echo read_date($product['date']); ?></td>
+
+                                            <td class="text-center">
+                                                <?php if(empty ($product["itemLink"])) :?>
+                                                No Link
+                                                <?php else: ?>
+                                                <i class="fas fa-external-link-alt link"></i>
+                                                <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item
+                                                    Link</a>
+                                                <?php endif; ?>
+                                            </td>
+
+                                            <td class="text-center">
+                                                <?php if(empty ($product["reviewLink"])) :?>
+                                                No Link
+                                                <?php else: ?>
+                                                <i class="rlink fab fa-youtube "></i>
+                                                <a target='_blank' href="<?php echo  $product['reviewLink']; ?>">Review
+                                                    Link</a>
+                                                <?php endif; ?>
+                                            </td>
+
+                                            <td class="text-center"> <?php echo $product['company']; ?></td>
+
+                                            <td class="text-center">
+                                                <?php if(empty ($product["website"])) :?>
+                                                No Link
+                                                <?php else: ?>
+                                                <i class="fas fa-external-link-alt link"></i><a target='_blank'
+                                                    href="<?php echo $product['website']; ?>">Website</a>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
+                                            <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
+                                            </td>
+                                            <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-    
-                    <div class="col-md-4" id="chatWindow" style="display: none; height: 85vh;">
-                        <i class="fa fa-times chatClose" aria-hidden="true"></i>
-                        <iframe src="http://www.pricetize.com/ptchat/blabax.php" title="Pricetize Chat" style="width: 100%; height: 100%;">
-                        </iframe>
-                    </div>
+                </div>
+
+                <div class="col-md-4" id="chatWindow" style="display: none; height: 85vh;">
+                    <i class="fa fa-times chatClose" aria-hidden="true"></i>
+                    <iframe src="http://www.pricetize.com/ptchat/blabax.php" title="Pricetize Chat"
+                        style="width: 100%; height: 100%;">
+                    </iframe>
+                </div>
 
 
                 <link rel="stylesheet" type="text/css"
@@ -250,13 +267,13 @@ if (isset($notifications[0]['type'])) {
                 var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
                     "date",
                     "description",
-                    "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
+                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
                     "company",
                     "website",
-                    "purchaseType", "categorie", "image"
+                    "purchaseType", "categorie", "image,"
                 ];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
                     "No. of products in stock", "Price",
                     "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
@@ -268,7 +285,8 @@ if (isset($notifications[0]['type'])) {
                 tableProductColMap.set("Product Title", "name");
                 tableProductColMap.set("Type", "categorie");
                 tableProductColMap.set("SubType", "subType");
-                tableProductColMap.set("Pcs. per product", "singleUnit");
+                tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
+                tableProductColMap.set("Price per product", "singleValue / buy_price");
                 tableProductColMap.set("No. of products in stock", "quantity");
                 tableProductColMap.set("Price", "sale_price");
                 tableProductColMap.set("Product Added", "date");
@@ -298,14 +316,14 @@ if (isset($notifications[0]['type'])) {
                                 console.log()
                                 if (productCol) {
                                     if (productCol === "itemLink") {
-                                         row +=
+                                        row +=
                                             `<td> <?php if(empty($product["itemLink"])) :?>
                                             No Link 
                                          <?php else: ?>
                                          <i class="fas fa-external-link-alt link"></i>
                                          <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a> 
                                         <?php endif; ?> </td>`;
-                                     } else if (productCol === "website") {
+                                    } else if (productCol === "website") {
                                         row +=
                                             `<td> <?php if(empty($product["website"])) :?>
                                             No Link 
@@ -352,6 +370,9 @@ if (isset($notifications[0]['type'])) {
                         }, window);
                         productTableBody.innerHTML += tableRows;
                     }
+                }
+                async function filterSingleUnit() {
+                    products.foreach()
                 }
 
                 async function filterProduct(e) {
