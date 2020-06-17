@@ -15,7 +15,7 @@ header("Access-Control-Allow-Origin: http://hwsrv-737215.hostwindsdns.com");
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM products AND media WHERE name LIKE '%" . $searchString . "%' ";
+    $sql = "SELECT * FROM products WHERE name LIKE '%" . $searchString . "%' ";
     $result = mysqli_query($conn, $sql);
 
     $results_json = array();
@@ -36,8 +36,7 @@ header("Access-Control-Allow-Origin: http://hwsrv-737215.hostwindsdns.com");
                     'email' => $row["email"],
                     'website' => $row["website"],
                     'company'=> $row["company"],
-                    'reviewLink' => $row["reviewLink"],
-                    'file_name' =>$row["file_name"]
+                    'reviewLink' => $row["reviewLink"]
                 )
             );
 
