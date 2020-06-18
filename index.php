@@ -87,7 +87,7 @@ ob_start();
                 <div class="col-md-12">
                     <?php echo display_msg($msg); ?>
   
-                    <button class="btn chatOpen">chat</button>
+                    <button class="btn btn-chat chatOpen">Chat</button>
 
                     <script>
                     $(document).ready(function() {
@@ -121,7 +121,7 @@ ob_start();
                                         placeholder="Search" />
                                 </div>
                             </div> -->
-                            <div class="panel-body">
+                            <div class="panel-body index-panel">
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">

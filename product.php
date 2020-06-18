@@ -38,10 +38,10 @@
                     <a href="add_product.php" class="btn btn-primary">Add New</a>
                 </div><?php endif; ?>
             </div> -->
-            <div class="panel-body">
+            <div class="panel-body product-panel">
                 <table class="table table-bordered" id="productTable">
                     <thead>
-                        <tr class="sticky-header">
+                        <tr>
                             <th class="text-center" style="width: 3%;">#</th>
                             <th> Photo</th>
                             <th> ProductType</th>
@@ -49,7 +49,7 @@
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
                             <th class="text-center" style="width: 20%;"> Pcs. per product </th>
-                              <th class="text-center" style="width: 20%;"> Price Per product</th>
+                            <th class="text-center" style="width: 20%;"> Price Per product</th>
                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
