@@ -314,7 +314,7 @@
                                 </div>
                             </div>
                             <button type="submit" name="add_product" class="update btn btn-primary">Add product</button>
-                            <a href="product.php" class="update btn btn-default">Cancel</a>
+                            <a href="product.php" class="cancel update btn btn-danger">Cancel</a>
                     </form>
                 </div>
             </div>

@@ -338,7 +338,7 @@ if(!$product){
                             </div>
                         </div>
                         <button type="submit" name="product" class="update btn btn-primary">Update</button>
-                        <a href="product.php" class="update btn btn-default">Cancel</a>
+                        <a href="product.php" class="cancel update btn btn-danger">Cancel</a>
                 </form>
             </div>
         </div>

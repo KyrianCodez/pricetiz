@@ -67,6 +67,10 @@ a {
   margin-top: 20px;
 }
 
+.cancel{
+  margin-left: 30px;
+}
+
 .bg-green {
   background-color: #A3C86D;
 }
