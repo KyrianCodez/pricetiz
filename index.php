@@ -186,7 +186,7 @@ ob_start();
                                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["itemLink"])) :?>
+                                                <?php if(empty ($product["itemLink"])|| $product['itemLink']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i>
@@ -196,7 +196,7 @@ ob_start();
                                             </td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["reviewLink"])) :?>
+                                                <?php if(empty ($product["reviewLink"])|| $product['reviewLink']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="rlink fab fa-youtube "></i>
@@ -208,7 +208,7 @@ ob_start();
                                             <td class="text-center"> <?php echo $product['company']; ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["website"])) :?>
+                                                <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
