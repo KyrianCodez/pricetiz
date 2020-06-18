@@ -1,5 +1,7 @@
 <?php
 ob_start();
+
+
   $page_title = 'All Product';
   require_once('includes/load.php');
   require_once('includes/sql.php');
@@ -12,7 +14,7 @@ ob_start();
   $products = join_product_table();
   $notifications = join_notification_table();
 
-//  session_start(["name" => "visit", "cookie_lifetime" => 0]);
+//  session_start();
   
 //   $is_tracked = $_SESSION["TRACKED"];
 //   $is_tracked_txt = $is_tracked?"yes":"not yet";
@@ -84,28 +86,7 @@ ob_start();
             <div class="row">
                 <div class="col-md-12">
                     <?php echo display_msg($msg); ?>
-                    <?php
-if (isset($notifications[0]['type'])) {
-
-
-    if ($notifications[0]['type'] === 'PSA') {
-      
-
-        $session->msg('s', "".$notifications[0]['messageContent']);
-        
-
-
-    } else {
-        
-
-        return "";
-    }
-
-} else {
-
-    return "";
-}
-?>
+  
                     <button class="btn chatOpen">chat</button>
 
                     <script>
