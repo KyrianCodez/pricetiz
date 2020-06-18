@@ -12,7 +12,7 @@
         <div class="panel">
             <div class="jumbotron text-center">
                 <h1>This is your new home page!</h1>
-                <p>Just browes around and find out what page you can access.</p>
+                <p>Just browse around and find out what page you can access.</p>
             </div>
         </div>
     </div>

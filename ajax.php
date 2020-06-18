@@ -57,7 +57,7 @@
 
         }
     } else {
-        $html ='<tr><td>product name not resgister in database</td></tr>';
+        $html ='<tr><td>product name not registered in database</td></tr>';
     }
 
     echo json_encode($html);
