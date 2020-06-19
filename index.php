@@ -108,7 +108,7 @@ if (isset($notifications[0]['type'])) {
     return "";
 }
 ?>
-                    <button class="btn chatOpen">chat</button>
+       
   
                     <button class="btn btn-chat chatOpen">Chat</button>
 
