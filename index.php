@@ -178,7 +178,8 @@ if (isset($notifications[0]['type'])) {
                                                     alt="">
                                                 <?php else: ?>
                                                 <img class="img-avatar img-circle"
-                                                    src="uploads/products/<?php echo $product['image']; ?>" alt="">
+                                                    src="uploads/products/<?php echo $product['image']; ?>"
+                                                    onerror="this.onerror=null; this.src='uploads/products/no_image.jpg'" alt="">
                                                 <?php endif; ?>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
