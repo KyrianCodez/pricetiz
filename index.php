@@ -109,6 +109,8 @@ if (isset($notifications[0]['type'])) {
 }
 ?>
                     <button class="btn chatOpen">chat</button>
+  
+                    <button class="btn btn-chat chatOpen">Chat</button>
 
                     <script>
                     $(document).ready(function() {
@@ -142,7 +144,7 @@ if (isset($notifications[0]['type'])) {
                                         placeholder="Search" />
                                 </div>
                             </div> -->
-                            <div class="panel-body">
+                            <div class="panel-body index-panel">
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">
@@ -205,7 +207,7 @@ if (isset($notifications[0]['type'])) {
                                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["itemLink"])) :?>
+                                                <?php if(empty ($product["itemLink"])|| $product['itemLink']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i>
@@ -215,7 +217,7 @@ if (isset($notifications[0]['type'])) {
                                             </td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["reviewLink"])) :?>
+                                                <?php if(empty ($product["reviewLink"])|| $product['reviewLink']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="rlink fab fa-youtube "></i>
@@ -227,7 +229,7 @@ if (isset($notifications[0]['type'])) {
                                             <td class="text-center"> <?php echo $product['company']; ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["website"])) :?>
+                                                <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
