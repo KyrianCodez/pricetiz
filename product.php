@@ -75,8 +75,9 @@
                                     src="uploads/products/<?php echo $product['image']; ?>" alt="">
                                 <?php endif; ?>
                             </td>
-                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                            <td> <?php echo remove_junk($product['name']); ?></td>
+                            <td> <?php echo remove_junk($product['purchaseType']); ?>
+                                <a target='_blank' href="#<?php echo ($product['name']); ?>"></a></td>
+                            <td id="prodname"> <?php echo remove_junk($product['name']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
@@ -132,6 +133,10 @@
                             <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
                             <td class="text-center">
                                 <?php if($user["user_level"] == 1) :?><div class="btn-group">
+                                    <button onclick="copyProductLink(); return false;"
+                                       class="btn btn-success btn-xs" title="Share" data-toggle="tooltip">
+                                        <span class="glyphicon glyphicon-share"></span>
+                                    </button>
                                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>"
                                         class="btn btn-info btn-xs" title="Edit" data-toggle="tooltip">
                                         <span class="glyphicon glyphicon-edit"></span>
@@ -311,6 +316,16 @@ async function filterProduct(e) {
 var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
+}
+
+function copyProductLink() {
+    var copyText = document.getElementById("prodname");
+    //copyText = "http://localhost:8000/product.php#" + name;
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    copyText.execCommand("copy");
+    console.log(copyText.value)
+    alert("Copied the text: " + copyText.value);
 }
 </script>
 <?php include_once('layouts/footer.php'); ?>
