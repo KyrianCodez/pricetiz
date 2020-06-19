@@ -194,7 +194,7 @@ if (isset($notifications[0]['type'])) {
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                                                 N/A
                                                 <?php else: ?>
-                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+                                                $<?php echo bcdiv($product['buy_price'] / $product['singleValue'],1,2); ?>
 
                                                 <?php endif; ?>
                                             </td>
