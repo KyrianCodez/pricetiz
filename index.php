@@ -86,6 +86,29 @@ ob_start();
             <div class="row">
                 <div class="col-md-12">
                     <?php echo display_msg($msg); ?>
+                    <?php
+if (isset($notifications[0]['type'])) {
+
+
+    if ($notifications[0]['type'] === 'PSA') {
+      
+
+        $session->msg('s', "".$notifications[0]['messageContent']);
+        
+
+
+    } else {
+        
+
+        return "";
+    }
+
+} else {
+
+    return "";
+}
+?>
+                    <button class="btn chatOpen">chat</button>
   
                     <button class="btn btn-chat chatOpen">Chat</button>
 
@@ -132,8 +155,6 @@ ob_start();
                                             <th class="text-center" style="width: 20%;">Type</th>
                                             <th class="text-center" style="width: 20%;"> SubType </th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
-                                        
-                                 
                                             <th class="text-center" style="width: 20%;"> Price Per product</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
@@ -169,13 +190,13 @@ ob_start();
                                             <td class="text-center">
                                                 <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
                                             </td>
-                                         
-                                          
+
+
                                             <td class="text-center">
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
-                                                    N/A
-                                                    <?php else: ?>
-                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+                                                N/A
+                                                <?php else: ?>
+                                                $<?php echo bcdiv($product['buy_price'] / $product['singleValue'],1,2); ?>
 
                                                 <?php endif; ?>
                                             </td>
@@ -230,7 +251,7 @@ ob_start();
 
                 <div class="col-md-4" id="chatWindow" style="display: none; height: 85vh;">
                     <i class="fa fa-times chatClose" aria-hidden="true"></i>
-                    <iframe src="http://www.pricetize.com/ptchat/blabax.php" title="Pricetize Chat"
+                    <iframe src="https://www.pricetize.com/ptchat/blabax.php" title="Pricetize Chat"
                         style="width: 100%; height: 100%;">
                     </iframe>
                 </div>
@@ -248,13 +269,15 @@ ob_start();
                 var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
                     "date",
                     "description",
-                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
+                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone",
+                    "zipcode", "freeShipping",
                     "company",
                     "website",
                     "purchaseType", "categorie", "image,"
                 ];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
+                    "Price per Product",
                     "No. of products in stock", "Price",
                     "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
