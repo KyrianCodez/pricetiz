@@ -212,7 +212,7 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.description,p.singleUnit,p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
+     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
     $sql  .=" ,c.name AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
@@ -369,16 +369,16 @@ function  monthlySales($year){
   return find_by_sql($sql);
 }
 
-// function trackVisit($visit_id, $ip){
-//   global $db;
-//   $sql = "INSERT INTO site_visits (visit_id, ip) VALUES ('$visit_id', '$ip')";
-//   return $db->query($sql);
-// }
+function trackVisit($visit_id, $ip){
+  global $db;
+  $sql = "INSERT INTO site_visits (visit_id, ip) VALUES ('$visit_id', '$ip')";
+  return $db->query($sql);
+}
 
-// function getVisitCount($fromDate = null, $toDate = null){
-//   global $db;
-//   $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
-//   return find_by_sql($sql);
-// }
+function getVisitCount($fromDate = null, $toDate = null){
+  global $db;
+  $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
+  return find_by_sql($sql);
+}
 
 ?>

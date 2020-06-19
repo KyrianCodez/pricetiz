@@ -1,5 +1,7 @@
 <?php
 ob_start();
+
+
   $page_title = 'All Product';
   require_once('includes/load.php');
   require_once('includes/sql.php');
@@ -12,7 +14,7 @@ ob_start();
   $products = join_product_table();
   $notifications = join_notification_table();
 
- session_start(["name" => "visit", "cookie_lifetime" => 0]);
+//  session_start();
   
 //   $is_tracked = $_SESSION["TRACKED"];
 //   $is_tracked_txt = $is_tracked?"yes":"not yet";
@@ -66,52 +68,60 @@ ob_start();
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/eb9107ad61.js" crossorigin="anonymous"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
     <link rel="stylesheet"
         href="libs/css/main.css?<?php echo time(); /* appended to disable browser caching css file remove for release*/ ?>" />
 </head>
 
 <body>
     <div class="demopage">
-    
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <?php echo display_msg($msg); ?>
-                    <?php
-if (isset($notifications[0]['type'])) {
+  
+                    <button class="btn btn-chat chatOpen">Chat</button>
 
+                    <script>
+                    $(document).ready(function() {
+                        var chatOpen = $('.chatOpen');
+                        var chatWindow = $('#chatWindow');
+                        var resultsWindow = $('#resultsWindow');
 
-    if ($notifications[0]['type'] === 'PSA') {
-      
+                        var chatClose = $('.chatClose');
 
-        $session->msg('s', "".$notifications[0]['messageContent']);
-        
+                        chatOpen.click(function() {
+                            chatWindow.show();
+                            resultsWindow.removeClass('col-md-12');
+                            resultsWindow.addClass('col-md-8');
+                        });
 
+                        chatClose.click(function() {
+                            chatWindow.hide();
+                            resultsWindow.removeClass('col-md-8');
+                            resultsWindow.addClass('col-md-12');
+                        });
 
-    } else {
-        
-
-        return "";
-    }
-
-} else {
-
-    return "";
-}
-?>
+                    });
+                    </script>
                 </div>
-                <div class="col-md-12">
+
+                <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
                             <!-- <div class="header-product-search-container">
-                                <input type="text" id="product-search-input" class="form-control header-product-search"
-                                    placeholder="Search" />
-                            </div>
-                        </div> -->
-                            <div class="panel-body">
+                                    <input type="text" id="product-search-input" class="form-control header-product-search"
+                                        placeholder="Search" />
+                                </div>
+                            </div> -->
+                            <div class="panel-body index-panel">
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">
@@ -121,7 +131,10 @@ if (isset($notifications[0]['type'])) {
                                             <th> Product Title </th>
                                             <th class="text-center" style="width: 20%;">Type</th>
                                             <th class="text-center" style="width: 20%;"> SubType </th>
-                                            <th class="text-center" style="width: 20%;"> Pcs. per product </th>
+                                            <th class="text-center" style="width: 20%;">Pcs. per product </th>
+                                        
+                                 
+                                            <th class="text-center" style="width: 20%;"> Price Per product</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -152,7 +165,19 @@ if (isset($notifications[0]['type'])) {
                                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
                                             </td>
                                             <td class="text-center"> <?php echo $product['subType']; ?></td>
-                                            <td class="text-center"> <?php echo remove_junk($product['singleUnit']); ?>
+
+                                            <td class="text-center">
+                                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                                            </td>
+                                         
+                                          
+                                            <td class="text-center">
+                                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
+                                                    N/A
+                                                    <?php else: ?>
+                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+
+                                                <?php endif; ?>
                                             </td>
                                             <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
                                             </td>
@@ -161,28 +186,29 @@ if (isset($notifications[0]['type'])) {
                                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["itemLink"])) :?>
+                                                <?php if(empty ($product["itemLink"])|| $product['itemLink']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i>
-                                                <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item Link</a>
+                                                <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item
+                                                    Link</a>
                                                 <?php endif; ?>
                                             </td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["reviewLink"])) :?>
+                                                <?php if(empty ($product["reviewLink"])|| $product['reviewLink']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="rlink fab fa-youtube "></i>
-                                                <a target='_blank'
-                                                    href="<?php echo  $product['reviewLink']; ?>">Review Link</a>
+                                                <a target='_blank' href="<?php echo  $product['reviewLink']; ?>">Review
+                                                    Link</a>
                                                 <?php endif; ?>
                                             </td>
 
                                             <td class="text-center"> <?php echo $product['company']; ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["website"])) :?>
+                                                <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
@@ -202,8 +228,14 @@ if (isset($notifications[0]['type'])) {
                     </div>
                 </div>
 
-                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+                <div class="col-md-4" id="chatWindow" style="display: none; height: 85vh;">
+                    <i class="fa fa-times chatClose" aria-hidden="true"></i>
+                    <iframe src="http://www.pricetize.com/ptchat/blabax.php" title="Pricetize Chat"
+                        style="width: 100%; height: 100%;">
+                    </iframe>
+                </div>
+
+
                 <link rel="stylesheet" type="text/css"
                     href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
                 <script type="text/javascript" charset="utf8"
@@ -216,13 +248,13 @@ if (isset($notifications[0]['type'])) {
                 var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
                     "date",
                     "description",
-                    "singleUnit", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
+                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
                     "company",
                     "website",
-                    "purchaseType", "categorie", "image"
+                    "purchaseType", "categorie", "image,"
                 ];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
                     "No. of products in stock", "Price",
                     "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
@@ -234,7 +266,8 @@ if (isset($notifications[0]['type'])) {
                 tableProductColMap.set("Product Title", "name");
                 tableProductColMap.set("Type", "categorie");
                 tableProductColMap.set("SubType", "subType");
-                tableProductColMap.set("Pcs. per product", "singleUnit");
+                tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
+                tableProductColMap.set("Price per product", "singleValue / buy_price");
                 tableProductColMap.set("No. of products in stock", "quantity");
                 tableProductColMap.set("Price", "sale_price");
                 tableProductColMap.set("Product Added", "date");
@@ -264,14 +297,14 @@ if (isset($notifications[0]['type'])) {
                                 console.log()
                                 if (productCol) {
                                     if (productCol === "itemLink") {
-                                         row +=
+                                        row +=
                                             `<td> <?php if(empty($product["itemLink"])) :?>
                                             No Link 
                                          <?php else: ?>
                                          <i class="fas fa-external-link-alt link"></i>
                                          <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a> 
                                         <?php endif; ?> </td>`;
-                                     } else if (productCol === "website") {
+                                    } else if (productCol === "website") {
                                         row +=
                                             `<td> <?php if(empty($product["website"])) :?>
                                             No Link 
@@ -318,6 +351,9 @@ if (isset($notifications[0]['type'])) {
                         }, window);
                         productTableBody.innerHTML += tableRows;
                     }
+                }
+                async function filterSingleUnit() {
+                    products.foreach()
                 }
 
                 async function filterProduct(e) {
