@@ -79,7 +79,7 @@ ob_start();
         href="libs/css/main.css?<?php echo time(); /* appended to disable browser caching css file remove for release*/ ?>" />
 </head>
 
-<body>
+<body class="noscroll">
     <div class="demopage">
 
         <div class="container-fluid">
