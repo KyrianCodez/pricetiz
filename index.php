@@ -80,7 +80,7 @@ ob_start();
     <link rel="stylesheet" href="libs/css/main.css?<?php echo time(); ?>" />
 </head>
 
-<body>
+<body class="noscroll">
     <div class="demopage">
         <div class="container-fluid">
             <div class="row">
@@ -143,7 +143,8 @@ ob_start();
                                                     alt="">
                                                 <?php else: ?>
                                                 <img class="img-avatar img-circle"
-                                                    src="uploads/products/<?php echo $product['image']; ?>" alt="">
+                                                    src="uploads/products/<?php echo $product['image']; ?>"
+                                                    onerror="this.onerror=null; this.src='uploads/products/no_image.jpg'" alt="">
                                                 <?php endif; ?>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
