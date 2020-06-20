@@ -4,7 +4,7 @@ ob_start();
 
   $page_title = 'All Product';
   require_once('includes/load.php');
-  require_once('includes/sql.php');
+  
   
   
 
@@ -162,7 +162,9 @@ ob_start();
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                                                 N/A
                                                 <?php else: ?>
-                                                $<?php echo bcdiv($product['buy_price'] / $product['singleValue'],1,2); ?>
+                                                    <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
+                                                $<?php echo $price; ?><img class="img-avatar img-circle blink-img"
+                                                src="uploads/products/great value.png">
 
                                                 <?php endif; ?>
                                             </td>
