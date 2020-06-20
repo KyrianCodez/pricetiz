@@ -498,10 +498,10 @@ img.img-size-2 {
   overflow-x: auto;
 }
 
-.index-panel{
+/* .index-panel {
   overflow-y: scroll;
   max-height: 90vh;
-}
+} */
 
 .product-panel{
   overflow-y: scroll;
