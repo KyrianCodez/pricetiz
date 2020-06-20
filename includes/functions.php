@@ -1,5 +1,9 @@
 <?php
  $errors = array();
+//  require_once('includes/load.php');
+
+//   $all_categories = find_all('categories');
+
 
  /*--------------------------------------------------------------*/
  /* Function for Remove escapes special
@@ -57,6 +61,14 @@ function display_msg($msg =''){
      return "" ;
    }
 }
+// Function for category comparison
+
+// function greatDeal($price){
+//   foreach ($all_categories as $cat) {
+//     if()
+   
+//   }
+// }
 /*--------------------------------------------------------------*/
 /* Function for redirect
 /*--------------------------------------------------------------*/
