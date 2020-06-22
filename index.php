@@ -4,7 +4,7 @@ ob_start();
 
   $page_title = 'All Product';
   require_once('includes/load.php');
-  require_once('includes/sql.php');
+  
   
   
 
@@ -57,83 +57,48 @@ ob_start();
     <meta charset="UTF-8">
     <title>
         <?php if (!empty($page_title)) {
-    echo remove_junk($page_title);
-} elseif (!empty($user)) {
-    echo ucfirst($user['name']);
-} else {
-    echo "Simple inventory System";
-}
-?>
-
+            echo remove_junk($page_title);
+            } elseif (!empty($user)) {
+                echo ucfirst($user['name']);
+            } else {
+                echo "Simple inventory System";
+            }
+        ?>
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/eb9107ad61.js" crossorigin="anonymous"></script>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
-    <link rel="stylesheet"
-        href="libs/css/main.css?<?php echo time(); /* appended to disable browser caching css file remove for release*/ ?>" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" defer></script>
+
+    <link rel="stylesheet" href="libs/css/main.css?<?php echo time(); ?>" />
 </head>
 
 <body class="noscroll">
     <div class="demopage">
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <?php echo display_msg($msg); ?>
                     <?php
-if (isset($notifications[0]['type'])) {
-
-
-    if ($notifications[0]['type'] === 'PSA') {
-      
-
-        $session->msg('s', "".$notifications[0]['messageContent']);
-        
-
-
-    } else {
-        
-
-        return "";
-    }
-
-} else {
-
-    return "";
-}
-?>
+                        if (isset($notifications[0]['type'])) {
+                            if ($notifications[0]['type'] === 'PSA') {                      
+                                $session->msg('s', "".$notifications[0]['messageContent']);
+                            } else {
+                                return "";
+                            }
+                        } else {
+                            return "";
+                        }
+                    ?>
        
-  
                     <button class="btn btn-chat chatOpen">Chat</button>
-
-                    <script>
-                    $(document).ready(function() {
-                        var chatOpen = $('.chatOpen');
-                        var chatWindow = $('#chatWindow');
-                        var resultsWindow = $('#resultsWindow');
-
-                        var chatClose = $('.chatClose');
-
-                        chatOpen.click(function() {
-                            chatWindow.show();
-                            resultsWindow.removeClass('col-md-12');
-                            resultsWindow.addClass('col-md-8');
-                        });
-
-                        chatClose.click(function() {
-                            chatWindow.hide();
-                            resultsWindow.removeClass('col-md-8');
-                            resultsWindow.addClass('col-md-12');
-                        });
-
-                    });
-                    </script>
                 </div>
 
                 <div id="resultsWindow" class="col-md-12">
@@ -144,7 +109,7 @@ if (isset($notifications[0]['type'])) {
                                         placeholder="Search" />
                                 </div>
                             </div> -->
-                            <div class="panel-body index-panel">
+                            <div class="panel-body index-panel containerishere">
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">
@@ -178,7 +143,8 @@ if (isset($notifications[0]['type'])) {
                                                     alt="">
                                                 <?php else: ?>
                                                 <img class="img-avatar img-circle"
-                                                    src="uploads/products/<?php echo $product['image']; ?>" alt="">
+                                                    src="uploads/products/<?php echo $product['image']; ?>"
+                                                    onerror="this.onerror=null; this.src='uploads/products/no_image.jpg'" alt="">
                                                 <?php endif; ?>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
@@ -196,7 +162,9 @@ if (isset($notifications[0]['type'])) {
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                                                 N/A
                                                 <?php else: ?>
-                                                $<?php echo bcdiv($product['buy_price'] / $product['singleValue'],1,2); ?>
+                                                    <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
+                                                $<?php echo $price; ?><img class="img-avatar img-circle blink-img"
+                                                src="uploads/products/great value.png">
 
                                                 <?php endif; ?>
                                             </td>
@@ -255,92 +223,111 @@ if (isset($notifications[0]['type'])) {
                         style="width: 100%; height: 100%;">
                     </iframe>
                 </div>
+            </div>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var chatOpen = $('.chatOpen');
+            var chatWindow = $('#chatWindow');
+            var resultsWindow = $('#resultsWindow');
 
-                <link rel="stylesheet" type="text/css"
-                    href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-                <script type="text/javascript" charset="utf8"
-                    src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" defer></script>
+            var chatClose = $('.chatClose');
 
-                <script type="text/javascript">
-                $(document).ready(function() {
-                    $('#productTable').DataTable();
-                });
-                var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
-                    "date",
-                    "description",
-                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone",
-                    "zipcode", "freeShipping",
-                    "company",
-                    "website",
-                    "purchaseType", "categorie", "image,"
-                ];
+            chatOpen.click(function() {
+                chatWindow.show();
+                resultsWindow.removeClass('col-md-12');
+                resultsWindow.addClass('col-md-8');
+            });
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
-                    "Price per Product",
-                    "No. of products in stock", "Price",
-                    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
-                ];
+            chatClose.click(function() {
+                chatWindow.hide();
+                resultsWindow.removeClass('col-md-8');
+                resultsWindow.addClass('col-md-12');
+            });
 
-                var tableProductColMap = new Map();
-                tableProductColMap.set("#", false);
-                tableProductColMap.set("Photo", "image");
-                tableProductColMap.set("ProductType", "purchaseType");
-                tableProductColMap.set("Product Title", "name");
-                tableProductColMap.set("Type", "categorie");
-                tableProductColMap.set("SubType", "subType");
-                tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
-                tableProductColMap.set("Price per product", "singleValue / buy_price");
-                tableProductColMap.set("No. of products in stock", "quantity");
-                tableProductColMap.set("Price", "sale_price");
-                tableProductColMap.set("Product Added", "date");
-                tableProductColMap.set("Item Link", "itemLink");
-                tableProductColMap.set("Review Link", "reviewLink");
-                tableProductColMap.set("Company", "company");
-                tableProductColMap.set("Website", "website");
-                tableProductColMap.set("City", "city");
-                tableProductColMap.set("ZipCode", "zipcode");
-                tableProductColMap.set("Phone", "phone");
+            // $('#productTable').DataTable();
+            $('#productTable').DataTable( {
+                "scrollX": true,
+                "scrollY": '55vh',
+                "scrollCollapse": false,
+                "paging": true
+            } );
+        });
+        var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
+            "date",
+            "description",
+            "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone",
+            "zipcode", "freeShipping",
+            "company",
+            "website",
+            "purchaseType", "categorie", "image,"
+        ];
 
-                window.productColumns = productColumns;
+        var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
+            "Price per Product",
+            "No. of products in stock", "Price",
+            "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
+        ];
 
-                function generateTableData(products) {
-                    let productTableBody = document.getElementById("product-table-body");
-                    if (productTableBody && Array.isArray(products)) {
-                        productTableBody.innerHTML = "";
-                        let tableRows = ``;
-                        products.forEach((p, index, arr) => {
-                            console.log(p[productColumns.findIndex((c) => c === "name")]);
+        var tableProductColMap = new Map();
+        tableProductColMap.set("#", false);
+        tableProductColMap.set("Photo", "image");
+        tableProductColMap.set("ProductType", "purchaseType");
+        tableProductColMap.set("Product Title", "name");
+        tableProductColMap.set("Type", "categorie");
+        tableProductColMap.set("SubType", "subType");
+        tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
+        tableProductColMap.set("Price per product", "singleValue / buy_price");
+        tableProductColMap.set("No. of products in stock", "quantity");
+        tableProductColMap.set("Price", "sale_price");
+        tableProductColMap.set("Product Added", "date");
+        tableProductColMap.set("Item Link", "itemLink");
+        tableProductColMap.set("Review Link", "reviewLink");
+        tableProductColMap.set("Company", "company");
+        tableProductColMap.set("Website", "website");
+        tableProductColMap.set("City", "city");
+        tableProductColMap.set("ZipCode", "zipcode");
+        tableProductColMap.set("Phone", "phone");
 
-                            let row = `<tr>`;
+        window.productColumns = productColumns;
 
-                            tableColumns.forEach((tCol, i) => {
+        function generateTableData(products) {
+            let productTableBody = document.getElementById("product-table-body");
+            if (productTableBody && Array.isArray(products)) {
+                productTableBody.innerHTML = "";
+                let tableRows = ``;
+                products.forEach((p, index, arr) => {
+                    console.log(p[productColumns.findIndex((c) => c === "name")]);
 
-                                const productCol = tableProductColMap.get(tCol);
-                                console.log()
-                                if (productCol) {
-                                    if (productCol === "itemLink") {
-                                        row +=
-                                            `<td> <?php if(empty($product["itemLink"])) :?>
-                                            No Link 
-                                         <?php else: ?>
-                                         <i class="fas fa-external-link-alt link"></i>
-                                         <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a> 
-                                        <?php endif; ?> </td>`;
-                                    } else if (productCol === "website") {
-                                        row +=
-                                            `<td> <?php if(empty($product["website"])) :?>
-                                            No Link 
-                                             <?php else: ?><i class="fas fa-external-link-alt link"></i>
-                                          <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a> 
+                    let row = `<tr>`;
+
+                    tableColumns.forEach((tCol, i) => {
+
+                        const productCol = tableProductColMap.get(tCol);
+                        console.log()
+                        if (productCol) {
+                            if (productCol === "itemLink") {
+                                row +=
+                                    `<td> <?php if(empty($product["itemLink"])) :?>
+                                    No Link 
+                                <?php else: ?>
+                                <i class="fas fa-external-link-alt link"></i>
+                                <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a> 
                                 <?php endif; ?> </td>`;
-                                    } else if (productCol === "reviewLink") {
-                                        row +=
-                                            `<td> <?php if(empty($product["reviewLink"])) :?>
-                                             No Link 
-                                         <?php else: ?>
-                                <i class="rlink fab fa-youtube "> </i>
-                                 <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a> <?php endif; ?> </td>`;
+                            } else if (productCol === "website") {
+                                row +=
+                                    `<td> <?php if(empty($product["website"])) :?>
+                                    No Link 
+                                    <?php else: ?><i class="fas fa-external-link-alt link"></i>
+                                <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a> 
+                        <?php endif; ?> </td>`;
+                            } else if (productCol === "reviewLink") {
+                                row +=
+                                    `<td> <?php if(empty($product["reviewLink"])) :?>
+                                    No Link 
+                                <?php else: ?>
+                        <i class="rlink fab fa-youtube "> </i>
+                        <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a> <?php endif; ?> </td>`;
 
 
 
@@ -348,97 +335,97 @@ if (isset($notifications[0]['type'])) {
 
 
 
-                                    } else if (productCol === "image") {
-                                        let image_url = p[productColumns.findIndex((c) => c ===
-                                            "image")];
+                            } else if (productCol === "image") {
+                                let image_url = p[productColumns.findIndex((c) => c ===
+                                    "image")];
 
-                                        if (image_url) {
-                                            row +=
-                                                `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
-                                        } else {
-                                            row +=
-                                                `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
-                                        }
-                                    } else {
-                                        row +=
-                                            `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
-                                    }
-
-                                } else if (tCol === "#") {
-                                    row += `<td>${index+1}</td>`
+                                if (image_url) {
+                                    row +=
+                                        `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
+                                } else {
+                                    row +=
+                                        `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
                                 }
-                            });
-                            row += `</tr>`;
-                            // console.log(`col`, col);
-                            tableRows += row;
-                        }, window);
-                        productTableBody.innerHTML += tableRows;
-                    }
-                }
-                async function filterSingleUnit() {
-                    products.foreach()
-                }
-
-                async function filterProduct(e) {
-                    let text = e.target.value;
-
-                    var http = new XMLHttpRequest();
-                    var data = "searchText=" + text;
-
-                    http.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            try {
-                                let products = JSON.parse(this.responseText);
-
-                                if (Array.isArray(products)) {
-
-                                    products = products.filter((p) => {
-
-                                        try {
-                                            const regex = new RegExp(`${text}`, "gi");
-                                            for (let tCol of tableColumns) {
-                                                let pCol = tableProductColMap.get(tCol);
-                                                if (pCol) {
-                                                    console.log(p[productColumns.findIndex((c) => c ===
-                                                        pCol)]);
-                                                    let matches = (p[productColumns.findIndex((c) =>
-                                                            c ===
-                                                            pCol)] || "")
-                                                        .toString().match(regex);
-
-                                                    if (matches) {
-                                                        return true;
-                                                    }
-                                                }
-                                            }
-                                        } catch (e) {
-                                            console.log(e);
-                                            return true;
-                                        }
-
-
-
-                                        return false;
-                                    })
-                                    generateTableData(products);
-                                }
-                            } catch (e) {
-                                console.log(e)
+                            } else {
+                                row +=
+                                    `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
                             }
+
+                        } else if (tCol === "#") {
+                            row += `<td>${index+1}</td>`
                         }
+                    });
+                    row += `</tr>`;
+                    // console.log(`col`, col);
+                    tableRows += row;
+                }, window);
+                productTableBody.innerHTML += tableRows;
+            }
+        }
+        async function filterSingleUnit() {
+            products.foreach()
+        }
+
+        async function filterProduct(e) {
+            let text = e.target.value;
+
+            var http = new XMLHttpRequest();
+            var data = "searchText=" + text;
+
+            http.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    try {
+                        let products = JSON.parse(this.responseText);
+
+                        if (Array.isArray(products)) {
+
+                            products = products.filter((p) => {
+
+                                try {
+                                    const regex = new RegExp(`${text}`, "gi");
+                                    for (let tCol of tableColumns) {
+                                        let pCol = tableProductColMap.get(tCol);
+                                        if (pCol) {
+                                            console.log(p[productColumns.findIndex((c) => c ===
+                                                pCol)]);
+                                            let matches = (p[productColumns.findIndex((c) =>
+                                                    c ===
+                                                    pCol)] || "")
+                                                .toString().match(regex);
+
+                                            if (matches) {
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                } catch (e) {
+                                    console.log(e);
+                                    return true;
+                                }
+
+
+
+                                return false;
+                            })
+                            generateTableData(products);
+                        }
+                    } catch (e) {
+                        console.log(e)
                     }
-                    console.log(window.location);
-                    http.open('POST', window.location.href, true);
-                    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    http.send(data);
-
                 }
+            }
+            console.log(window.location);
+            http.open('POST', window.location.href, true);
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.send(data);
+
+        }
 
 
-                var search_input = document.getElementById("product-search-input");
-                if (search_input) {
-                    search_input.addEventListener("input", filterProduct);
-                }
-                </script>
-                <?php include_once('layouts/footer.php'); ?>
-                <?php endif ?>
+        var search_input = document.getElementById("product-search-input");
+        if (search_input) {
+            search_input.addEventListener("input", filterProduct);
+        }
+    </script>
+    <?php include_once('layouts/footer.php'); ?>
+<?php endif ?>

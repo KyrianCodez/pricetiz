@@ -470,7 +470,24 @@ td img.img-thumbnail {
   height: 125px;
   vertical-align: top;
 }
+.blink-img
+{
+  animation-name: blink;
+  animation-duration: 1.75s;
+  animation-iteration-count: infinite;
+  }
 
+@keyframes blink{
+  0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
 .img-avatar {
   width: 50px;
   height: 50px;
@@ -502,10 +519,10 @@ img.img-size-2 {
   overflow-x: auto;
 }
 
-.index-panel{
+/* .index-panel {
   overflow-y: scroll;
   max-height: 90vh;
-}
+} */
 
 .product-panel{
   overflow-y: scroll;
