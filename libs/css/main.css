@@ -519,11 +519,6 @@ img.img-size-2 {
   overflow-x: auto;
 }
 
-/* .index-panel {
-  overflow-y: scroll;
-  max-height: 90vh;
-} */
-
 .product-panel{
   overflow-y: scroll;
   max-height: 85vh;
@@ -531,4 +526,15 @@ img.img-size-2 {
 
 .header-product-search-container {
   display: inline-block;
+}
+
+.no_color{
+  border-color: transparent;
+}
+.wide{
+  max-width: max-content;
+}
+
+.item-table{
+  width:95vh;
 }

@@ -109,7 +109,7 @@ ob_start();
                                         placeholder="Search" />
                                 </div>
                             </div> -->
-                            <div class="panel-body index-panel containerishere">
+                            <div class="panel-body containerishere">
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">

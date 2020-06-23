@@ -4,7 +4,7 @@
 
 
   // Checkin What level user has permission to view this page
-   page_require_level(false);
+    page_require_level(false);
   $products = join_product_table();
   $user = current_user();
 ?>
@@ -66,18 +66,18 @@
                     <tbody id="product-table-body">
                         <?php foreach ($products as $product):?>
                         <tr>
-                            <td class="text-center"><?php echo count_id();?></td>
+                            <td class="text-center"><?php echo count_id(); ?></td>
                             <td>
                                 <?php if($product['media_id'] === '0'): ?>
                                 <img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt="">
                                 <?php else: ?>
                                 <img class="img-avatar img-circle"
-                                    src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null; this.src='uploads/products/no_image.jpg'" alt="">
+                                    src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null;
+                                    this.src='uploads/products/no_image.jpg'" alt="">
                                 <?php endif; ?>
                             </td>
-                            <td> <?php echo remove_junk($product['purchaseType']); ?>
-                                <a target='_blank' href="#<?php echo ($product['name']); ?>"></a></td>
-                            <td id="prodname"> <?php echo remove_junk($product['name']); ?></td>
+                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
+                            <td id="prodname<?php echo (int)$product['id'];?>"> <a href="#<?php echo (int)$product['id'];?>" id="prod_id"></a><?php echo ($product['name']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
@@ -133,7 +133,7 @@
                             <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
                             <td class="text-center">
                                 <?php if($user["user_level"] == 1) :?><div class="btn-group">
-                                    <button onclick="copyProductLink(); return false;"
+                                    <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
                                        class="btn btn-success btn-xs" title="Share" data-toggle="tooltip">
                                         <span class="glyphicon glyphicon-share"></span>
                                     </button>
@@ -148,6 +148,7 @@
                                 </div><?php endif; ?>
                             </td>
                         </tr>
+
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -318,15 +319,17 @@ if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
 
-function copyProductLink() {
-    var copyText = document.getElementById("prodname");
-    //copyText = "http://localhost:8000/product.php#" + name;
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    copyText.execCommand("copy");
-    console.log(copyText.value)
-    alert("Copied the text: " + copyText.value);
+
+function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = "localhost:8000/view_product.php?id=" + text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
 }
+
+
 </script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
