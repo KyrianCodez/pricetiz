@@ -152,9 +152,15 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#productTable').DataTable();
-});
+    $(document).ready(function() {
+           // $('#productTable').DataTable();
+        $('#productTable').DataTable( {
+            "scrollX": true,
+            "scrollY": '60vh',
+            "scrollCollapse": false,
+            "paging": true
+        } );
+    });
 
  var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
                     "date",
