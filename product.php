@@ -327,9 +327,11 @@ function copyToClipboard(text) {
     dummy.select();
     document.execCommand("copy");
     document.body.removeChild(dummy);
+    alert("Product Link Copied");
 }
 
 
 </script>
+
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
