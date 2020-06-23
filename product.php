@@ -39,6 +39,10 @@
                 </div><?php endif; ?>
             </div> -->
             <div class="panel-body product-panel">
+                <form>
+                    <input type="checkbox" id="something" name="hide">
+                    <label for="something">Hide Out of Stock Products </label>
+                </form>
                 <table class="table table-bordered" id="productTable">
                     <thead>
                         <tr>
@@ -318,6 +322,16 @@ var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
+
+
+$('input[name=hide]').change(function(){
+    if($(this).is(':checked')) {
+        alert("Hey!")
+    } else {
+        // Checkbox is not checked..
+    }
+});
+
 </script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
