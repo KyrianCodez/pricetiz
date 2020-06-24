@@ -26,9 +26,11 @@
 <div class="row">
     <div class="col-md-12">
         <?php echo display_msg($msg); ?>
+
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
+
             <!-- <div class="panel-heading clearfix">
                 <div class="header-product-search-container">
                     <input type="text" id="product-search-input" class="form-control header-product-search"
@@ -40,7 +42,7 @@
             </div> -->
             <div class="panel-body product-panel">
                 <form>
-                    <input type="checkbox" id="something" name="hide">
+                    <input type="checkbox" id="something" name="hide" autocomplete="on">
                     <label for="something">Hide Out of Stock Products </label>
                 </form>
                 <table class="table table-bordered" id="productTable">
@@ -76,7 +78,8 @@
                                 <img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt="">
                                 <?php else: ?>
                                 <img class="img-avatar img-circle"
-                                    src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null; this.src='uploads/products/no_image.jpg'" alt="">
+                                    src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null;
+                                    this.src='uploads/products/no_image.jpg'" alt="">
                                 <?php endif; ?>
                             </td>
                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
@@ -203,50 +206,55 @@ tableProductColMap.set("Actions", false);
 
 window.productColumns = productColumns;
 
+let hideOutStock = false;
+
 function generateTableData(products) {
     let productTableBody = document.getElementById("product-table-body");
     if (productTableBody && Array.isArray(products)) {
         productTableBody.innerHTML = "";
-        let tableRows = ``;
-        products.forEach((p, index, arr) => {
-            console.log(p[productColumns.findIndex((c) => c === "name")]);
 
-            let row = `<tr>`;
+             let tableRows = ``;
+            products.forEach((p, index, arr) => {
+                console.log(p[productColumns.findIndex((c) => c === "name")]);
 
-            tableColumns.forEach((tCol, i) => {
+                let row = `<tr>`;
 
-                const productCol = tableProductColMap.get(tCol);
-                console.log()
-                if (productCol) {
-                    if (productCol === "itemLink") {
-                        row +=
-                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a></td>`;
-                    } else if (productCol === "website") {
-                        row +=
-                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a></td>`;
-                    } else if (productCol ===
-                        "reviewLink") {
-                        row +=
-                            `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a></td>`;
-                    } else if (productCol === "image") {
-                        let image_url = p[productColumns.findIndex((c) => c === "image")];
+                tableColumns.forEach((tCol, i) => {
 
-                        if (image_url) {
+                    const productCol = tableProductColMap.get(tCol);
+                    console.log()
+                    if (productCol) {
+                        if (productCol === "itemLink") {
                             row +=
-                                `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
+                                `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a></td>`;
+                        } else if (productCol === "website") {
+                            row +=
+                                `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a></td>`;
+                        } else if (productCol ===
+                            "reviewLink") {
+                            row +=
+                                `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a></td>`;
+                        } else if (productCol === "image") {
+                            let image_url = p[productColumns.findIndex((c) => c === "image")];
+
+                            if (image_url) {
+                                row +=
+                                    `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
+                            } else {
+                                row +=
+                                    `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
+                            }
                         } else {
-                            row +=
-                                `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
+                            row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
                         }
-                    } else {
-                        row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
-                    }
 
-                } else if (tCol === "#") {
-                    row += `<td>${index+1}</td>`
-                } else if (tCol === "Actions") {
-                    row += `
-              <td><?php if($user["user_level"] == 1) :?><div class="btn-group">
+                    } else if (tCol === "#") {
+                        row += `<td>${index + 1}</td>`
+                    }
+                    else if (tCol === "Pcs. per product") {
+                        row += `<td>pcs per product</td>`
+                    }else if (tCol === "Actions") {
+                        row += `<td> <?php if($user["user_level"] == 1) :?><div class="btn-group">
                     <a href="edit_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
@@ -254,20 +262,20 @@ function generateTableData(products) {
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
               </div><?php endif; ?></td>`
-                }
-            });
+                    }
+                });
 
-            row += `</tr>`;
-            // console.log(`col`, col);
-            tableRows += row;
-        }, window);
-        productTableBody.innerHTML += tableRows;
+                row += `</tr>`;
+                // console.log(`col`, col);
+                tableRows += row;
+            }, window);
+            productTableBody.innerHTML += tableRows;
+
     }
 }
 
 async function filterProduct(e) {
     let text = e.target.value;
-
     var http = new XMLHttpRequest();
     var data = "searchText=" + text;
 
@@ -305,7 +313,7 @@ async function filterProduct(e) {
                     })
                     generateTableData(products);
                 }
-            } catch (e) {
+                } catch (e) {
                 console.log(e)
             }
         }
@@ -324,13 +332,29 @@ if (search_input) {
 }
 
 
-$('input[name=hide]').change(function(){
+$('input[name=hide]').change(async function(){
     if($(this).is(':checked')) {
-        alert("Hey!")
-    } else {
-        // Checkbox is not checked..
+       hideOutStock =true;
+       <?php $hide = true; ?>
+       console.log("What??")
+        var jArray = <?php echo json_encode($products); ?>;
+        var f =[];
+        for(var i=225; i<jArray.length; i++){
+            let n = parseInt(jArray[i].quantity);
+        if (n===0){
+                f.push(jArray[i]);
+            }
+
+        generateTableData(f);
+
+    }}
+        else {
+        hideOutStock =false;
+        jArray = <?php echo json_encode($products); ?>;
+        generateTableData(jArray);
     }
 });
+
 
 </script>
 <?php include_once('layouts/footer.php'); ?>
