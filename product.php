@@ -338,11 +338,6 @@ var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
-
-<<<<<<< HEAD
-;
-
-=======
 /*
 $('input[name=hide]').change(async function(){
     if($(this).is(':checked')) {
@@ -366,9 +361,7 @@ $('input[name=hide]').change(async function(){
         generateTableData(jArray);
     }
 });
-*/
->>>>>>> 4d99e8d0be5c083c0d6fe0aab5a8674ddf12f49f
-
+ */
 </script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
