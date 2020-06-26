@@ -42,10 +42,11 @@
                 </div><?php endif; ?>
             </div> -->
             <div class="panel-body product-panel">
+                <!--
                 <form>
                     <input type="checkbox" id="something" name="hide" autocomplete="on">
                     <label for="something">Hide Out of Stock Products </label>
-                </form>
+                </form> -->
                 <table class="table table-bordered" id="productTable">
                     <thead>
                         <tr>
@@ -338,7 +339,7 @@ if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
 
-
+/*
 $('input[name=hide]').change(async function(){
     if($(this).is(':checked')) {
        hideOutStock =true;
@@ -361,7 +362,7 @@ $('input[name=hide]').change(async function(){
         generateTableData(jArray);
     }
 });
-
+*/
 
 </script>
 <?php include_once('layouts/footer.php'); ?>
