@@ -121,7 +121,7 @@ ob_start();
                                             <th class="text-center" style="width: 20%;">Type</th>
                                             <th class="text-center" style="width: 20%;"> SubType </th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
-                                            <th class="text-center" style="width: 20%;"> Price Per product</th>
+                                            <th class="text-center" style="width: 20%;"> Price per piece</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -208,7 +208,12 @@ ob_start();
                                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                                             <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
                                             </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
+                                            <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
+                                              <td class="text-center">N/A </td>
+                                              <?php else: ?>
+                                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
+                                            <?php echo remove_junk($product['phone']); ?></a> </td>
+                                            <?php endif; ?>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>
