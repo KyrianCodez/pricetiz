@@ -11,28 +11,29 @@ ob_start();
 
   // Checkin What level user has permission to view this page
    page_require_level(false);
-  $products = join_product_table();
+  //$products = join_product_table();
+  $products = join_product_table_wstock();
   $notifications = join_notification_table();
 
 //  session_start();
   
-//   $is_tracked = $_SESSION["TRACKED"];
-//   $is_tracked_txt = $is_tracked?"yes":"not yet";
-//   $session_id = session_id();
-// //   echo "is tracked? $is_tracked_txt<br>";
-// //   echo "session id: $session_id<br>";
+  $is_tracked = $_SESSION["TRACKED"];
+  $is_tracked_txt = $is_tracked?"yes":"not yet";
+  $session_id = session_id();
+//   echo "is tracked? $is_tracked_txt<br>";
+//   echo "session id: $session_id<br>";
   
-//   $user_ip = $_SERVER["REMOTE_ADDR"];
-//   if(!$is_tracked){
-//     if(trackVisit($session_id, $user_ip)){
-//         $_SESSION["TRACKED"] = true;
-//         // echo "visit tracked<br>";
-//     };
-//   }else{
-//     //   echo "visit tracked previously<br>";
-//   }
+  $user_ip = $_SERVER["REMOTE_ADDR"];
+  if(!$is_tracked){
+    if(trackVisit($session_id, $user_ip)){
+        $_SESSION["TRACKED"] = true;
+        // echo "visit tracked<br>";
+    };
+  }else{
+    //   echo "visit tracked previously<br>";
+  }
 
-//   $stats = getVisitCount();
+  $stats = getVisitCount();
 //   echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
@@ -120,7 +121,7 @@ ob_start();
                                             <th class="text-center" style="width: 20%;">Type</th>
                                             <th class="text-center" style="width: 20%;"> SubType </th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
-                                            <th class="text-center" style="width: 20%;"> Price Per product</th>
+                                            <th class="text-center" style="width: 20%;"> Price per piece</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -163,8 +164,9 @@ ob_start();
                                                 N/A
                                                 <?php else: ?>
                                                     <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
-                                                $<?php echo $price; ?><img class="img-avatar img-circle blink-img"
-                                                src="uploads/products/great value.png">
+                                                $<?php echo $price; ?>
+                                                <!-- <img class="img-avatar img-circle blink-img"
+                                                src="uploads/products/great value.png">  -->
 
                                                 <?php endif; ?>
                                             </td>
@@ -207,7 +209,12 @@ ob_start();
                                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                                             <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
                                             </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
+                                            <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
+                                              <td class="text-center">N/A </td>
+                                              <?php else: ?>
+                                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
+                                            <?php echo remove_junk($product['phone']); ?></a> </td>
+                                            <?php endif; ?>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -263,9 +270,9 @@ ob_start();
             "purchaseType", "categorie", "image,"
         ];
 
-        var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
-            "Price per Product",
-            "No. of products in stock", "Price",
+        var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case",
+            "Price per case",
+            "No. of cases in stock", "Price",
             "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
         ];
 
