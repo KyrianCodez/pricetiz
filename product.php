@@ -56,7 +56,7 @@
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
                             <th class="text-center" style="width: 20%;"> Pcs. per product </th>
-                            <th class="text-center" style="width: 20%;"> Price Per product</th>
+                            <th class="text-center" style="width: 20%;"> Price Per piece</th>
                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
