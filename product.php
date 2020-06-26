@@ -55,9 +55,9 @@
                             <th> Product Title </th>
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
-                            <th class="text-center" style="width: 20%;"> Pcs. per product </th>
-                            <th class="text-center" style="width: 20%;"> Price Per product</th>
-                            <th class="text-center" style="width: 20%;"> No. of products in stock </th>
+                            <th class="text-center" style="width: 20%;"> Pcs. per Case </th>
+                            <th class="text-center" style="width: 20%;"> Price Per Case</th>
+                            <th class="text-center" style="width: 20%;"> No. of cases in stock </th>
                             <th class="text-center" style="width: 20%;"> Price </th>
                             <th class="text-center" style="width: 50%;"> Product Added </th>
                             <th class="text-center" style="width: 20%;"> Item Link </th>
@@ -96,7 +96,8 @@
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                                                     N/A
                                                     <?php else: ?>
-                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+                                                <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
+                                                $<?php echo $price; ?>
 
                                                 <?php endif; ?>
                                             </td>
@@ -179,8 +180,8 @@
                     "purchaseType", "categorie", "image,"
                 ];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
-                    "No. of products in stock", "Price",
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case", "Price per case",
+                    "No. of cases in stock", "Price",
                     "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
 
