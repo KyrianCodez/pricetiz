@@ -206,7 +206,12 @@ ob_start();
                                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                                             <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
                                             </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['phone']); ?></td>
+                                            <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
+                                              <td class="text-center">N/A </td>
+                                              <?php else: ?>
+                                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
+                                            <?php echo remove_junk($product['phone']); ?></a> </td>
+                                            <?php endif; ?>
                                         </tr>
                                         <?php endforeach; ?>
                                     </tbody>
