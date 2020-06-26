@@ -96,7 +96,8 @@
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                                                     N/A
                                                     <?php else: ?>
-                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+                                                <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
+                                                $<?php echo $price; ?>
 
                                                 <?php endif; ?>
                                             </td>
@@ -184,8 +185,8 @@
                     "purchaseType", "categorie", "image,"
                 ];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
-                    "No. of products in stock", "Price",
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case", "Price per case",
+                    "No. of cases in stock", "Price",
                     "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
 
