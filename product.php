@@ -343,6 +343,32 @@ var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
+
+/*
+$('input[name=hide]').change(async function(){
+    if($(this).is(':checked')) {
+       hideOutStock =true;
+       <?php $hide = true; ?>
+       console.log("What??")
+        var jArray = <?php echo json_encode($products); ?>;
+        var f =[];
+        for(var i=225; i<jArray.length; i++){
+            let n = parseInt(jArray[i].quantity);
+        if (n===0){
+                f.push(jArray[i]);
+            }
+
+        generateTableData(f);
+
+    }}
+        else {
+        hideOutStock =false;
+        jArray = <?php echo json_encode($products); ?>;
+        generateTableData(jArray);
+    }
+});
+ */
+
 </script>
 
 <?php include_once('layouts/footer.php'); ?>
