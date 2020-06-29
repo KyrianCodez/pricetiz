@@ -338,6 +338,7 @@ var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
+
 /*
 $('input[name=hide]').change(async function(){
     if($(this).is(':checked')) {
@@ -362,6 +363,7 @@ $('input[name=hide]').change(async function(){
     }
 });
  */
+
 </script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
