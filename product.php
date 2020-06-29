@@ -24,6 +24,7 @@
 
 <?php if(!$_POST): ?>
 <?php include_once('layouts/header.php'); ?>
+
 <div class="row">
     <div class="col-md-12">
         <?php echo display_msg($msg); ?>
@@ -31,8 +32,10 @@
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
-
-            <!-- <div class="panel-heading clearfix">
+            <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
+                <p class="short">Product Link Copied.</p>
+            </div>
+                        <!-- <div class="panel-heading clearfix">
                 <div class="header-product-search-container">
                     <input type="text" id="product-search-input" class="form-control header-product-search"
                         placeholder="Search" />
@@ -77,11 +80,11 @@
                             <td class="text-center"><?php echo count_id(); ?></td>
                             <td>
                                 <?php if($product['media_id'] === '0'): ?>
-                                <img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt="">
+                                <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg" alt="">
                                 <?php else: ?>
                                 <img class="img-avatar img-circle"
                                     src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null;
-                                    this.src='uploads/products/no_image.jpg'" alt="">
+                                    this.src='uploads/products/new_no_image.jpg'" alt="">
                                 <?php endif; ?>
                             </td>
                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
@@ -148,7 +151,7 @@
                             <td class="text-center">
                                 <?php if($user["user_level"] == 1) :?><div class="btn-group">
                                     <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                                       class="btn btn-success btn-xs" title="Share" data-toggle="tooltip">
+                                            aria-controls="flashMessage1" class="btn btn-success btn-xs" title="Share" data-toggle="tooltip">
                                         <span class="glyphicon glyphicon-share"></span>
                                     </button>
                                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>"
@@ -343,6 +346,93 @@ var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
+
+function copyToClipboard(text) {
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = "localhost:8000/view_product.php?id=" + text;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+}
+    
+    (function() {
+        var FlashMessage = function(element) {
+            this.element = element;
+            this.showClass = "flash-message--is-visible";
+            this.messageDuration = parseInt(this.element.getAttribute('data-duration')) || 3000;
+            this.triggers = document.querySelectorAll('[aria-controls="'+this.element.getAttribute('id')+'"]');
+            this.temeoutId = null;
+            this.isVisible = false;
+            this.initFlashMessage();
+        };
+
+        FlashMessage.prototype.initFlashMessage = function() {
+            var self = this;
+            //open modal when clicking on trigger buttons
+            if ( self.triggers ) {
+                for(var i = 0; i < self.triggers.length; i++) {
+                    self.triggers[i].addEventListener('click', function(event) {
+                        event.preventDefault();
+                        self.showFlashMessage();
+                    });
+                }
+            }
+            //listen to the event that triggers the opening of a flash message
+            self.element.addEventListener('showFlashMessage', function(){
+                self.showFlashMessage();
+            });
+        };
+
+        FlashMessage.prototype.showFlashMessage = function() {
+            var self = this;
+            Util.addClass(self.element, self.showClass);
+            self.isVisible = true;
+            //hide other flash messages
+            self.hideOtherFlashMessages();
+            if( self.messageDuration > 0 ) {
+                //hide the message after an interveal (this.messageDuration)
+                self.temeoutId = setTimeout(function(){
+                    self.hideFlashMessage();
+                }, self.messageDuration);
+            }
+        };
+
+        FlashMessage.prototype.hideFlashMessage = function() {
+            Util.removeClass(this.element, this.showClass);
+            this.isVisible = false;
+            //reset timeout
+            clearTimeout(this.temeoutId);
+            this.temeoutId = null;
+        };
+
+        FlashMessage.prototype.hideOtherFlashMessages = function() {
+            var event = new CustomEvent('flashMessageShown', { detail: this.element });
+            window.dispatchEvent(event);
+        };
+
+        FlashMessage.prototype.checkFlashMessage = function(message) {
+            if( !this.isVisible ) return;
+            if( this.element === message) return;
+            this.hideFlashMessage();
+        };
+
+        //initialize the FlashMessage objects
+        var flashMessages = document.getElementsByClassName('js-flash-message');
+        if( flashMessages.length > 0 ) {
+            var flashMessagesArray = [];
+            for( var i = 0; i < flashMessages.length; i++) {
+                (function(i){flashMessagesArray.push(new FlashMessage(flashMessages[i]));})(i);
+            }
+
+            //listen for a flash message to be shown -> close the others
+            window.addEventListener('flashMessageShown', function(event){
+                flashMessagesArray.forEach(function(element){
+                    element.checkFlashMessage(event.detail);
+                });
+            });
+        }
+    }());
 
 /*
 $('input[name=hide]').change(async function(){

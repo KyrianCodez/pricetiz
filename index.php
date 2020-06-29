@@ -140,12 +140,12 @@ ob_start();
                                             <td class="text-center"><?php echo count_id();?></td>
                                             <td>
                                                 <?php if($product['media_id'] === '0'): ?>
-                                                <img class="img-avatar img-circle" src="uploads/products/no_image.jpg"
+                                                <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg"
                                                     alt="">
                                                 <?php else: ?>
                                                 <img class="img-avatar img-circle"
                                                     src="uploads/products/<?php echo $product['image']; ?>"
-                                                    onerror="this.onerror=null; this.src='uploads/products/no_image.jpg'" alt="">
+                                                    onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'" alt="">
                                                 <?php endif; ?>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
