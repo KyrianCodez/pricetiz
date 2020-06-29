@@ -17,23 +17,23 @@ ob_start();
 
 //  session_start();
   
-//   $is_tracked = $_SESSION["TRACKED"];
-//   $is_tracked_txt = $is_tracked?"yes":"not yet";
-//   $session_id = session_id();
-// //   echo "is tracked? $is_tracked_txt<br>";
-// //   echo "session id: $session_id<br>";
+  $is_tracked = $_SESSION["TRACKED"];
+  $is_tracked_txt = $is_tracked?"yes":"not yet";
+  $session_id = session_id();
+//   echo "is tracked? $is_tracked_txt<br>";
+//   echo "session id: $session_id<br>";
   
-//   $user_ip = $_SERVER["REMOTE_ADDR"];
-//   if(!$is_tracked){
-//     if(trackVisit($session_id, $user_ip)){
-//         $_SESSION["TRACKED"] = true;
-//         // echo "visit tracked<br>";
-//     };
-//   }else{
-//     //   echo "visit tracked previously<br>";
-//   }
+  $user_ip = $_SERVER["REMOTE_ADDR"];
+  if(!$is_tracked){
+    if(trackVisit($session_id, $user_ip)){
+        $_SESSION["TRACKED"] = true;
+        // echo "visit tracked<br>";
+    };
+  }else{
+    //   echo "visit tracked previously<br>";
+  }
 
-//   $stats = getVisitCount();
+  $stats = getVisitCount();
 //   echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
@@ -164,8 +164,9 @@ ob_start();
                                                 N/A
                                                 <?php else: ?>
                                                     <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
-                                                $<?php echo $price; ?><img class="img-avatar img-circle blink-img"
-                                                src="uploads/products/great value.png">
+                                                $<?php echo $price; ?>
+                                                <!-- <img class="img-avatar img-circle blink-img"
+                                                src="uploads/products/great value.png">  -->
 
                                                 <?php endif; ?>
                                             </td>
@@ -269,9 +270,9 @@ ob_start();
             "purchaseType", "categorie", "image,"
         ];
 
-        var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product",
-            "Price per Product",
-            "No. of products in stock", "Price",
+        var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case",
+            "Price per case",
+            "No. of cases in stock", "Price",
             "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
         ];
 

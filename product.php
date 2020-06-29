@@ -42,10 +42,11 @@
                 </div><?php endif; ?>
             </div> -->
             <div class="panel-body product-panel">
+                <!--
                 <form>
                     <input type="checkbox" id="something" name="hide" autocomplete="on">
                     <label for="something">Hide Out of Stock Products </label>
-                </form>
+                </form> -->
                 <table class="table table-bordered" id="productTable">
                     <thead>
                         <tr>
@@ -96,7 +97,8 @@
                                                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                                                     N/A
                                                     <?php else: ?>
-                                                $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
+                                                <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
+                                                $<?php echo $price; ?>
 
                                                 <?php endif; ?>
                                             </td>
@@ -184,8 +186,8 @@
                     "purchaseType", "categorie", "image,"
                 ];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per product", "Price per Product",
-                    "No. of products in stock", "Price",
+                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case", "Price per case",
+                    "No. of cases in stock", "Price",
                     "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
                 ];
 
@@ -336,8 +338,7 @@ var search_input = document.getElementById("product-search-input");
 if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
-
-
+/*
 $('input[name=hide]').change(async function(){
     if($(this).is(':checked')) {
        hideOutStock =true;
@@ -360,8 +361,7 @@ $('input[name=hide]').change(async function(){
         generateTableData(jArray);
     }
 });
-
-
+ */
 </script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
