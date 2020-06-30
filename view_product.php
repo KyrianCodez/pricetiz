@@ -6,9 +6,9 @@
 ?>
 <?php
 $product = find_by_id('products',(int)$_GET['id']);
+$image = find_by_id('media', (int)$product['media_id']);
 $all_categories = find_all('categories');
 $all_photo = find_all('media');
-$products = join_product_table();
 $user = current_user();
 $cat_name='';
 foreach ($all_categories as $cat):
@@ -35,11 +35,10 @@ if(!$product){
         <section class="container">
 
             <div class="one">
-
                 <?php if($product['media_id'] === '0'): ?>
                     <img src="uploads/products/new_no_image.jpg" alt="">
                 <?php else: ?>
-                    <img src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null;
+                    <img src="uploads/products/<?php echo $image['file_name']; ?>" onerror="this.onerror=null;
                         this.src='uploads/products/new_no_image.jpg'" alt="">
                 <?php endif; ?>
             </div>
