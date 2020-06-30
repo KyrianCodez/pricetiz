@@ -37,10 +37,10 @@ if(!$product){
             <div class="one">
 
                 <?php if($product['media_id'] === '0'): ?>
-                    <img src="uploads/products/no_image.jpg" alt="">
+                    <img src="uploads/products/new_no_image.jpg" alt="">
                 <?php else: ?>
                     <img src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null;
-                        this.src='no_image.jpg'" alt="">
+                        this.src='uploads/products/new_no_image.jpg'" alt="">
                 <?php endif; ?>
             </div>
             <div class="two">
