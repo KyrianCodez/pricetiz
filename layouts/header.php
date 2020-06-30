@@ -26,6 +26,7 @@
         href="libs/css/main.css?<?php echo time();/* appended to disable browser caching css file remove for release*/ ?>" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" defer></script>
+    <script src="https://unpkg.com/codyhouse-framework/main/assets/js/util.js"></script>
 </head>
 
 <body>

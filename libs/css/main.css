@@ -76,6 +76,10 @@ a {
   margin-left: 30px;
 }
 
+.card{
+  margin-top: 20px;
+}
+
 .bg-green {
   background-color: #A3C86D;
 }
@@ -91,6 +95,7 @@ a {
 .bg-red {
   background-color: #FF7857;
 }
+
 
 .panel-default>.panel-heading {
   background-color: #f5f5f5;
@@ -533,4 +538,72 @@ img.img-size-2 {
 */
 .header-product-search-container {
   display: inline-block;
+}
+
+.no_color{
+  border-color: transparent;
+}
+.wide{
+  max-width: fit-content;
+}
+
+.item-table{
+  width:95vh;
+}
+
+.flash-message {
+  position: fixed;
+  bottom: 75%;
+  left: 75%;
+  z-index: 1;
+
+  background-color: #2ecc71b5;
+  padding: 10px 10px 0px 10px;
+  border-radius: 5px;
+  color: black;
+  font-size: var(--text-sm);
+
+  transition: .2s;
+  transform: translateY(16px);
+  transform-origin: bottom left;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.flash-message--is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.container {
+  /*width: 800px;*/
+  width: fit-content;
+  background: #0000000f;
+  margin: auto;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.one {
+  width: 300px;
+  background: transparent;
+  float: left;
+  padding-top: 60px;
+}
+
+.two {
+  width: 500px;
+  background: transparent;
+  margin-left: 350px;
+}
+
+.tab{
+  margin-left: 50px;
+  background: transparent;
+}
+
+.prodp{
+  height:300px;
+  width:300px;
 }
