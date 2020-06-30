@@ -33,8 +33,9 @@ if(!$product){
             <p class="short">Product Link Copied.</p>
         </div>
         <section class="container">
-            <span><h1><?php echo ($product['name']); ?> Details</h1> </span>
+
             <div class="one">
+
                 <?php if($product['media_id'] === '0'): ?>
                     <img src="uploads/products/no_image.jpg" alt="">
                 <?php else: ?>
@@ -43,53 +44,68 @@ if(!$product){
                 <?php endif; ?>
             </div>
             <div class="two">
-                Purchase Type: <?php echo remove_junk($product['purchaseType']); ?> <br>
-                Category: <?php echo $cat_name; ?> <br>
-                SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?> <br>
-                Eh: <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
-
-                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
-                    N/A
-                <?php else: ?>
-                    $<?php echo $product['buy_price'] / $product['singleValue']; ?>.00
-
-                <?php endif; ?>
-
-                <?php echo remove_junk($product['quantity']); ?>
-
-                $<?php echo remove_junk($product['buy_price']); ?>
-                <br>
                 <?php if(empty ($product["itemLink"]) || $product['itemLink']=="N/A") :?>
-                    No Link
+                    <h1><?php echo ($product['name']); ?> Details</h1>
                 <?php else: ?>
-                    <i class="fas fa-external-link-alt link"></i>
-                    <a target='_blank' href="<?php echo $product['itemLink']; ?>"> Click here to view Item Link</a>
+                    <a target='_blank' title="Click here for product website"
+                       href="<?php echo $product['itemLink']; ?>">
+                        <span>
+                            <h1><?php echo ($product['name']); ?></h1>
+                        </span>
+                    </a>
                 <?php endif; ?>
+                Price: $<?php echo remove_junk($product['buy_price']); ?><br>
+                Pieces per product: <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?><br>
+                In stock quantity:
+                <?php echo remove_junk($product['quantity']); ?><br>
+                Unit Price:
+                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
+                    Not Available.
+                <?php else: ?>
+                    $<?php echo  number_format($product['buy_price'] / $product['singleValue'],2); ?>
+
+                <?php endif; ?><br>
                 <br>
+                Available for <?php echo remove_junk($product['purchaseType']); ?> <br>
+                Product Category: <?php echo $cat_name; ?> <br>
+                SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?> <br>
+                <br>
+                Watch a Product Review:
                 <?php if(empty ($product["reviewLink"])|| $product['reviewLink']=="N/A") :?>
-                    No Link
+                    No Review Available.
                 <?php else: ?>
                     <i class="rlink fab fa-youtube "></i>
-                    <a target='_blank' href="<?php echo  $product['reviewLink']; ?>">Click here to veiw a Review of the Item</a>
+                    <a target='_blank' href="<?php echo  $product['reviewLink']; ?>"> Click here!</a>
                 <?php endif; ?>
-
+                <br>
                 </br>
-                Company Info: <?php echo $product['company']; ?>
+                Sold by:<br>
+                <div class="tab">
                 <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
-                    No Link
+                    <?php echo $product['company']; ?>
                 <?php else: ?>
-                    <i class="fas fa-external-link-alt link"></i><a target='_blank'
-                                                                    href="<?php echo $product['website']; ?>">Website</a>
+                    <a target='_blank' title="Company Website" href="<?php echo $product['website']; ?>"><?php echo $product['company']; ?></a>
+                <?php endif; ?><br>
+                <?php if($product["city"]=="NA"|| $product['zipcode']=="NA") :?>
+                    No address provided.
+                <?php else: ?>
+                    <?php echo remove_junk($product['city']); ?>
+                    <?php echo remove_junk($product['zipcode']); ?>
+                <?php endif; ?><br>
+                <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
+                    No Phone Number Available.
+                <?php else: ?>
+                    <i class="fa fa-phone "></i>
+                    <a href="tel:<?php echo remove_junk($product['phone']); ?>">
+                            <?php echo remove_junk($product['phone']); ?></a>
                 <?php endif; ?>
-                <?php echo remove_junk($product['city']); ?>
-                <?php echo remove_junk($product['zipcode']); ?>
-                <?php echo remove_junk($product['phone']); ?>
+                </div>
                 <br>
                 <?php if($user["user_level"] == 1) :?>
                     <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                            aria-controls="flashMessage1" class="btn btn-success" title="Share" data-toggle="tooltip">Copy Product Link
+                            aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
                     </button>
-                    <a href="product.php" class="cancel btn btn-danger">Back to all Products</a>
+                    <a href="product.php" class="btn btn-danger card">Back to all Products</a>
                 <?php endif; ?>
             </div>
         </section>

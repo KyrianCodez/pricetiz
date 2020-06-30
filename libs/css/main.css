@@ -76,6 +76,10 @@ a {
   margin-left: 30px;
 }
 
+.card{
+  margin-top: 20px;
+}
+
 .bg-green {
   background-color: #A3C86D;
 }
@@ -573,19 +577,27 @@ img.img-size-2 {
 }
 
 .container {
-  width: 70%;
-  background: aqua;
+  /*width: 800px;*/
+  width: fit-content;
+  background: #0000000f;
   margin: auto;
-  padding: 10px;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .one {
-  width: 40%;
+  width: 300px;
   background: transparent;
   float: left;
 }
 
 .two {
-  margin-left: 15%;
+  width: 500px;
+  background: transparent;
+  margin-left: 350px;
+}
+
+.tab{
+  margin-left: 50px;
   background: transparent;
 }
