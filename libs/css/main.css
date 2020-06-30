@@ -11,7 +11,9 @@ body {
 .noscroll{
   overflow-y: hidden;
 }
-
+.notification{
+  
+}
 .link {
   margin-right: 0.225rem;
 }
