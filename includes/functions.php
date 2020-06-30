@@ -1,6 +1,6 @@
 <?php
  $errors = array();
-//  require_once('includes/load.php');
+require_once('includes/load.php');
 
 //   $all_categories = find_all('categories');
 
@@ -61,6 +61,29 @@ function display_msg($msg =''){
      return "" ;
    }
 }
+  
+ 
+
+function display_notification($notifications)
+{
+    $output; 
+    if (isset($notifications[0]['type'])) {
+     
+    if ($notifications[0]['type'] === 'PSA') {
+      $value = $notifications[0]['messageContent'];
+      echo $value;
+        
+    }
+    
+     else {
+        return "";
+    }
+} else {
+    return "";
+}
+
+}
+
 // Function for category comparison
 
 // function greatDeal($price){
