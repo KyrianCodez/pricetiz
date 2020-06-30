@@ -362,7 +362,7 @@ $('input[name=hide]').change(async function(){
         generateTableData(jArray);
     }
 });
-*/
+ */
 
 </script>
 <?php include_once('layouts/footer.php'); ?>
