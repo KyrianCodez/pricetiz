@@ -362,6 +362,10 @@ $('input[name=hide]').change(async function(){
     }
 });
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9c1225b9c68208aba873426f9c47494003302d92
 </script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>

@@ -1,5 +1,7 @@
 <?php
+
  session_start(["name" => "visit", "cookie_lifetime" => 0]);
+
 
 class Session {
 

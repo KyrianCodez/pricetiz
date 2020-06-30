@@ -86,18 +86,10 @@ ob_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                 <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
+            </div>
                     <?php echo display_msg($msg); ?>
-                    <?php
-                        if (isset($notifications[0]['type'])) {
-                            if ($notifications[0]['type'] === 'PSA') {                      
-                                $session->msg('s', "".$notifications[0]['messageContent']);
-                            } else {
-                                return "";
-                            }
-                        } else {
-                            return "";
-                        }
-                    ?>
+                   
        
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
