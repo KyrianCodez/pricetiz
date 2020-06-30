@@ -36,7 +36,7 @@ if(!$product){
 
             <div class="one">
                 <?php if($product['media_id'] === '0'): ?>
-                    <img src="uploads/products/new_no_image.jpg" alt="">
+                    <img src="uploads/products/new_no_image.jpg" class='prodp' alt="">
                 <?php else: ?>
                     <img src="uploads/products/<?php echo $image['file_name']; ?>" onerror="this.onerror=null;
                         this.src='uploads/products/new_no_image.jpg'" alt="">
