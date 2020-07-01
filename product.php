@@ -35,7 +35,7 @@
             <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
                 <p class="short">Product Link Copied.</p>
             </div>
-                        <!-- <div class="panel-heading clearfix">
+            <!-- <div class="panel-heading clearfix">
                 <div class="header-product-search-container">
                     <input type="text" id="product-search-input" class="form-control header-product-search"
                         placeholder="Search" />
@@ -88,27 +88,29 @@
                                 <?php endif; ?>
                             </td>
                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                            <td id="prodname<?php echo (int)$product['id'];?>"> <a href="#<?php echo (int)$product['id'];?>" id="prod_id"></a><?php echo ($product['name']); ?></td>
+                            <td id="prodname<?php echo (int)$product['id'];?>"> <a
+                                    href="#<?php echo (int)$product['id'];?>"
+                                    id="prod_id"></a><?php echo ($product['name']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
-                                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
-                                            </td>
-                                         
-                                          
-                                            <td class="text-center">
-                                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
-                                                    N/A
-                                                    <?php else: ?>
-                                                <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
-                                                $<?php echo $price; ?>
+                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                            </td>
 
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
-                                            </td>
-                                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
-                                            </td>
+
+                            <td class="text-center">
+                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
+                                N/A
+                                <?php else: ?>
+                                <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
+                                $<?php echo $price; ?>
+
+                                <?php endif; ?>
+                            </td>
+                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                            </td>
+                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                            </td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                             <td class="text-center">
@@ -116,7 +118,7 @@
                                 No Link
                                 <?php else: ?>
                                 <i class="fas fa-external-link-alt link"></i>
-                                 <a target='_blank' href="<?php echo $product['itemLink']; ?>"> Item Link</a>
+                                <a target='_blank' href="<?php echo $product['itemLink']; ?>"> Item Link</a>
                                 <?php endif; ?>
                             </td>
 
@@ -133,7 +135,7 @@
 
                             <td class="text-center">
                                 <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
-                                No Link 
+                                No Link
                                 <?php else: ?>
                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
                                     href="<?php echo $product['website']; ?>">Website</a>
@@ -143,15 +145,17 @@
                             <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
                             <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
-                                <td class="text-center">N/A </td>
+                            <td class="text-center">N/A </td>
                             <?php else: ?>
-                                <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
-                                        <?php echo remove_junk($product['phone']); ?></a> </td>
+                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
+                                    <?php echo remove_junk($product['phone']); ?></a> </td>
                             <?php endif; ?>
                             <td class="text-center">
-                                <?php if($user["user_level"] == 1) :?><div class="btn-group">
+                                <?php if($user["user_level"] == 1) :?>
+                                <div class="btn-group">
                                     <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                                            aria-controls="flashMessage1" class="btn btn-success btn-xs" title="Share" data-toggle="tooltip">
+                                        aria-controls="flashMessage1" class="btn btn-success btn-xs" title="Share"
+                                        data-toggle="tooltip">
                                         <span class="glyphicon glyphicon-share"></span>
                                     </button>
                                     <a href="edit_product.php?id=<?php echo (int)$product['id'];?>"
@@ -175,49 +179,50 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-           // $('#productTable').DataTable();
-        $('#productTable').DataTable( {
-            "scrollX": true,
-            "scrollY": '60vh',
-            "scrollCollapse": false,
-            "paging": true
-        } );
+$(document).ready(function() {
+    // $('#productTable').DataTable();
+    $('#productTable').DataTable({
+        "scrollX": true,
+        "scrollY": '60vh',
+        "scrollCollapse": false,
+        "paging": true
     });
+});
 
- var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
-                    "date",
-                    "description",
-                    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode", "freeShipping",
-                    "company",
-                    "website",
-                    "purchaseType", "categorie", "image,"
-                ];
+var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
+    "date",
+    "description",
+    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode",
+    "freeShipping",
+    "company",
+    "website",
+    "purchaseType", "categorie", "image,"
+];
 
-                var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case", "Price per case",
-                    "No. of cases in stock", "Price",
-                    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
-                ];
+var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case", "Price per case",
+    "No. of cases in stock", "Price",
+    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
+];
 
-                var tableProductColMap = new Map();
-                tableProductColMap.set("#", false);
-                tableProductColMap.set("Photo", "image");
-                tableProductColMap.set("ProductType", "purchaseType");
-                tableProductColMap.set("Product Title", "name");
-                tableProductColMap.set("Type", "categorie");
-                tableProductColMap.set("SubType", "subType");
-                tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
-                tableProductColMap.set("Price per product", "singleValue / buy_price");
-                tableProductColMap.set("No. of products in stock", "quantity");
-                tableProductColMap.set("Price", "sale_price");
-                tableProductColMap.set("Product Added", "date");
-                tableProductColMap.set("Item Link", "itemLink");
-                tableProductColMap.set("Review Link", "reviewLink");
-                tableProductColMap.set("Company", "company");
-                tableProductColMap.set("Website", "website");
-                tableProductColMap.set("City", "city");
-                tableProductColMap.set("ZipCode", "zipcode");
-                tableProductColMap.set("Phone", "phone");
+var tableProductColMap = new Map();
+tableProductColMap.set("#", false);
+tableProductColMap.set("Photo", "image");
+tableProductColMap.set("ProductType", "purchaseType");
+tableProductColMap.set("Product Title", "name");
+tableProductColMap.set("Type", "categorie");
+tableProductColMap.set("SubType", "subType");
+tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
+tableProductColMap.set("Price per product", "singleValue / buy_price");
+tableProductColMap.set("No. of products in stock", "quantity");
+tableProductColMap.set("Price", "sale_price");
+tableProductColMap.set("Product Added", "date");
+tableProductColMap.set("Item Link", "itemLink");
+tableProductColMap.set("Review Link", "reviewLink");
+tableProductColMap.set("Company", "company");
+tableProductColMap.set("Website", "website");
+tableProductColMap.set("City", "city");
+tableProductColMap.set("ZipCode", "zipcode");
+tableProductColMap.set("Phone", "phone");
 tableProductColMap.set("Actions", false);
 
 window.productColumns = productColumns;
@@ -229,48 +234,47 @@ function generateTableData(products) {
     if (productTableBody && Array.isArray(products)) {
         productTableBody.innerHTML = "";
 
-             let tableRows = ``;
-            products.forEach((p, index, arr) => {
-                console.log(p[productColumns.findIndex((c) => c === "name")]);
+        let tableRows = ``;
+        products.forEach((p, index, arr) => {
+            console.log(p[productColumns.findIndex((c) => c === "name")]);
 
-                let row = `<tr>`;
+            let row = `<tr>`;
 
-                tableColumns.forEach((tCol, i) => {
+            tableColumns.forEach((tCol, i) => {
 
-                    const productCol = tableProductColMap.get(tCol);
-                    console.log()
-                    if (productCol) {
-                        if (productCol === "itemLink") {
+                const productCol = tableProductColMap.get(tCol);
+                console.log()
+                if (productCol) {
+                    if (productCol === "itemLink") {
+                        row +=
+                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a></td>`;
+                    } else if (productCol === "website") {
+                        row +=
+                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a></td>`;
+                    } else if (productCol ===
+                        "reviewLink") {
+                        row +=
+                            `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a></td>`;
+                    } else if (productCol === "image") {
+                        let image_url = p[productColumns.findIndex((c) => c === "image")];
+
+                        if (image_url) {
                             row +=
-                                `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a></td>`;
-                        } else if (productCol === "website") {
-                            row +=
-                                `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a></td>`;
-                        } else if (productCol ===
-                            "reviewLink") {
-                            row +=
-                                `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a></td>`;
-                        } else if (productCol === "image") {
-                            let image_url = p[productColumns.findIndex((c) => c === "image")];
-
-                            if (image_url) {
-                                row +=
-                                    `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
-                            } else {
-                                row +=
-                                    `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
-                            }
+                                `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
                         } else {
-                            row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
+                            row +=
+                                `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
                         }
-
-                    } else if (tCol === "#") {
-                        row += `<td>${index + 1}</td>`
+                    } else {
+                        row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
                     }
-                    else if (tCol === "Pcs. per product") {
-                        row += `<td>pcs per product</td>`
-                    }else if (tCol === "Actions") {
-                        row += `<td> <?php if($user["user_level"] == 1) :?><div class="btn-group">
+
+                } else if (tCol === "#") {
+                    row += `<td>${index + 1}</td>`
+                } else if (tCol === "Pcs. per product") {
+                    row += `<td>pcs per product</td>`
+                } else if (tCol === "Actions") {
+                    row += `<td> <?php if($user["user_level"] == 1) :?><div class="btn-group">
                     <a href="edit_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
@@ -278,14 +282,14 @@ function generateTableData(products) {
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
               </div><?php endif; ?></td>`
-                    }
-                });
+                }
+            });
 
-                row += `</tr>`;
-                // console.log(`col`, col);
-                tableRows += row;
-            }, window);
-            productTableBody.innerHTML += tableRows;
+            row += `</tr>`;
+            // console.log(`col`, col);
+            tableRows += row;
+        }, window);
+        productTableBody.innerHTML += tableRows;
 
     }
 }
@@ -329,7 +333,7 @@ async function filterProduct(e) {
                     })
                     generateTableData(products);
                 }
-                } catch (e) {
+            } catch (e) {
                 console.log(e)
             }
         }
@@ -362,7 +366,7 @@ function copyToClipboard(text) {
         this.element = element;
         this.showClass = "flash-message--is-visible";
         this.messageDuration = parseInt(this.element.getAttribute('data-duration')) || 3000;
-        this.triggers = document.querySelectorAll('[aria-controls="'+this.element.getAttribute('id')+'"]');
+        this.triggers = document.querySelectorAll('[aria-controls="' + this.element.getAttribute('id') + '"]');
         this.temeoutId = null;
         this.isVisible = false;
         this.initFlashMessage();
@@ -371,8 +375,8 @@ function copyToClipboard(text) {
     FlashMessage.prototype.initFlashMessage = function() {
         var self = this;
         //open modal when clicking on trigger buttons
-        if ( self.triggers ) {
-            for(var i = 0; i < self.triggers.length; i++) {
+        if (self.triggers) {
+            for (var i = 0; i < self.triggers.length; i++) {
                 self.triggers[i].addEventListener('click', function(event) {
                     event.preventDefault();
                     self.showFlashMessage();
@@ -380,7 +384,7 @@ function copyToClipboard(text) {
             }
         }
         //listen to the event that triggers the opening of a flash message
-        self.element.addEventListener('showFlashMessage', function(){
+        self.element.addEventListener('showFlashMessage', function() {
             self.showFlashMessage();
         });
     };
@@ -391,9 +395,9 @@ function copyToClipboard(text) {
         self.isVisible = true;
         //hide other flash messages
         self.hideOtherFlashMessages();
-        if( self.messageDuration > 0 ) {
+        if (self.messageDuration > 0) {
             //hide the message after an interveal (this.messageDuration)
-            self.temeoutId = setTimeout(function(){
+            self.temeoutId = setTimeout(function() {
                 self.hideFlashMessage();
             }, self.messageDuration);
         }
@@ -408,27 +412,31 @@ function copyToClipboard(text) {
     };
 
     FlashMessage.prototype.hideOtherFlashMessages = function() {
-        var event = new CustomEvent('flashMessageShown', { detail: this.element });
+        var event = new CustomEvent('flashMessageShown', {
+            detail: this.element
+        });
         window.dispatchEvent(event);
     };
 
     FlashMessage.prototype.checkFlashMessage = function(message) {
-        if( !this.isVisible ) return;
-        if( this.element === message) return;
+        if (!this.isVisible) return;
+        if (this.element === message) return;
         this.hideFlashMessage();
     };
 
     //initialize the FlashMessage objects
     var flashMessages = document.getElementsByClassName('js-flash-message');
-    if( flashMessages.length > 0 ) {
+    if (flashMessages.length > 0) {
         var flashMessagesArray = [];
-        for( var i = 0; i < flashMessages.length; i++) {
-            (function(i){flashMessagesArray.push(new FlashMessage(flashMessages[i]));})(i);
+        for (var i = 0; i < flashMessages.length; i++) {
+            (function(i) {
+                flashMessagesArray.push(new FlashMessage(flashMessages[i]));
+            })(i);
         }
 
         //listen for a flash message to be shown -> close the others
-        window.addEventListener('flashMessageShown', function(event){
-            flashMessagesArray.forEach(function(element){
+        window.addEventListener('flashMessageShown', function(event) {
+            flashMessagesArray.forEach(function(element) {
                 element.checkFlashMessage(event.detail);
             });
         });
@@ -459,7 +467,6 @@ $('input[name=hide]').change(async function(){
     }
 });
  */
-
 </script>
 
 <?php include_once('layouts/footer.php'); ?>
