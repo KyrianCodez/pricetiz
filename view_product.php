@@ -26,7 +26,7 @@ if(!$product){
 
 <div class="row">
     <div >
-        <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
+        <div class="flash-message js-flash-message viewp-flash" role="status" id="flashMessage1" data-duration="2000">
             <p class="short">Product Link Copied.</p>
         </div>
         <section class="container">

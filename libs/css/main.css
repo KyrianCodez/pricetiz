@@ -543,8 +543,8 @@ img.img-size-2 {
 
 .flash-message {
   position: fixed;
-  bottom: 75%;
-  left: 75%;
+  bottom: 82%;
+  left: 65%;
   z-index: 1;
 
   background-color: #2ecc71b5;
@@ -566,7 +566,7 @@ img.img-size-2 {
   transform: translateY(0);
 }
 
-.index-flash{
+.viewp-flash{
   bottom: 80%;
   left: 55%;
 }
