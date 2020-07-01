@@ -83,6 +83,9 @@ ob_start();
                 <div class="col-md-12">
                  <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
             </div>
+                    
+                   
+       
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 
