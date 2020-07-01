@@ -72,6 +72,7 @@ ob_start();
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js" defer></script>
+    <script src="https://unpkg.com/codyhouse-framework/main/assets/js/util.js"></script>
 
     <link rel="stylesheet" href="libs/css/main.css?<?php echo time(); ?>" />
 </head>
@@ -88,6 +89,9 @@ ob_start();
 
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
+                        <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
+                            <p class="short">Product Link Copied.</p>
+                        </div>
                         <div class="panel-heading clearfix">
                             <!-- <div class="header-product-search-container">
                                     <input type="text" id="product-search-input" class="form-control header-product-search"
@@ -136,7 +140,12 @@ ob_start();
                                                 </a>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                                            <td> <?php echo remove_junk($product['name']); ?></td>
+                                            <td> <?php echo remove_junk($product['name']); ?>
+                                                <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
+                                                        aria-controls="flashMessage1" class="btn btn-xs btn-chat" title="Share"
+                                                        data-toggle="tooltip">
+                                                    <span class="glyphicon glyphicon-share"></span>Share
+                                                </button></td>
                                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
                                             </td>
                                             <td class="text-center"> <?php echo $product['subType']; ?></td>
@@ -323,12 +332,6 @@ ob_start();
                         <i class="rlink fab fa-youtube "> </i>
                         <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a> <?php endif; ?> </td>`;
 
-
-
-
-
-
-
                             } else if (productCol === "image") {
                                 let image_url = p[productColumns.findIndex((c) => c ===
                                     "image")];
@@ -420,6 +423,99 @@ ob_start();
         if (search_input) {
             search_input.addEventListener("input", filterProduct);
         }
+
+        function copyToClipboard(text) {
+            var dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            var res = window.location.href.split('/');
+            dummy.value = res[2] + "/view_product.php?id=" + text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+        }
+
+        (function() {
+            var FlashMessage = function(element) {
+                this.element = element;
+                this.showClass = "flash-message--is-visible";
+                this.messageDuration = parseInt(this.element.getAttribute('data-duration')) || 3000;
+                this.triggers = document.querySelectorAll('[aria-controls="' + this.element.getAttribute('id') + '"]');
+                this.temeoutId = null;
+                this.isVisible = false;
+                this.initFlashMessage();
+            };
+
+            FlashMessage.prototype.initFlashMessage = function() {
+                var self = this;
+                //open modal when clicking on trigger buttons
+                if (self.triggers) {
+                    for (var i = 0; i < self.triggers.length; i++) {
+                        self.triggers[i].addEventListener('click', function(event) {
+                            event.preventDefault();
+                            self.showFlashMessage();
+                        });
+                    }
+                }
+                //listen to the event that triggers the opening of a flash message
+                self.element.addEventListener('showFlashMessage', function() {
+                    self.showFlashMessage();
+                });
+            };
+
+            FlashMessage.prototype.showFlashMessage = function() {
+                var self = this;
+                Util.addClass(self.element, self.showClass);
+                self.isVisible = true;
+                //hide other flash messages
+                self.hideOtherFlashMessages();
+                if (self.messageDuration > 0) {
+                    //hide the message after an interveal (this.messageDuration)
+                    self.temeoutId = setTimeout(function() {
+                        self.hideFlashMessage();
+                    }, self.messageDuration);
+                }
+            };
+
+            FlashMessage.prototype.hideFlashMessage = function() {
+                Util.removeClass(this.element, this.showClass);
+                this.isVisible = false;
+                //reset timeout
+                clearTimeout(this.temeoutId);
+                this.temeoutId = null;
+            };
+
+            FlashMessage.prototype.hideOtherFlashMessages = function() {
+                var event = new CustomEvent('flashMessageShown', {
+                    detail: this.element
+                });
+                window.dispatchEvent(event);
+            };
+
+            FlashMessage.prototype.checkFlashMessage = function(message) {
+                if (!this.isVisible) return;
+                if (this.element === message) return;
+                this.hideFlashMessage();
+            };
+
+            //initialize the FlashMessage objects
+            var flashMessages = document.getElementsByClassName('js-flash-message');
+            if (flashMessages.length > 0) {
+                var flashMessagesArray = [];
+                for (var i = 0; i < flashMessages.length; i++) {
+                    (function(i) {
+                        flashMessagesArray.push(new FlashMessage(flashMessages[i]));
+                    })(i);
+                }
+
+                //listen for a flash message to be shown -> close the others
+                window.addEventListener('flashMessageShown', function(event) {
+                    flashMessagesArray.forEach(function(element) {
+                        element.checkFlashMessage(event.detail);
+                    });
+                });
+            }
+        }());
+
     </script>
     <?php include_once('layouts/footer.php'); ?>
 <?php endif ?>
