@@ -1,13 +1,8 @@
 <?php
 ob_start();
 
-
   $page_title = 'All Product';
   require_once('includes/load.php');
-  
-  
-  
-
 
   // Checkin What level user has permission to view this page
    page_require_level(false);
@@ -88,9 +83,6 @@ ob_start();
                 <div class="col-md-12">
                  <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
             </div>
-                    <?php echo display_msg($msg); ?>
-                   
-       
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 

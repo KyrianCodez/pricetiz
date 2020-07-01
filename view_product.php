@@ -22,11 +22,7 @@ if(!$product){
 ?>
 
 <?php include_once('layouts/header.php'); ?>
-<div class="row">
-    <div class="col-md-12">
-        <?php echo display_msg($msg); ?>
-    </div>
-</div>
+
 <div class="row">
     <div >
         <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
