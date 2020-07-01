@@ -9,7 +9,6 @@
         <h1>Welcome</h1>
         <p>Sign in to start your session</p>
     </div>
-    <?php echo display_msg($msg); ?>
     <form method="post" action="auth.php" class="clearfix">
         <div class="form-group">
             <label for="username" class="control-label">Username</label>
@@ -20,7 +19,7 @@
             <input type="password" name="password" class="form-control" placeholder="password">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-info  pull-right">Login</button>
+            <button type="submit" class="btn btn-info  pull-right pad-below">Login</button>
         </div>
     </form>
 </div>

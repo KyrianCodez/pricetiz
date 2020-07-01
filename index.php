@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-  $page_title = 'All Product';
+  $page_title = 'All Products - Pricetize';
   require_once('includes/load.php');
 
   // Checkin What level user has permission to view this page
@@ -83,9 +83,6 @@ ob_start();
                 <div class="col-md-12">
                  <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
             </div>
-                    
-                   
-       
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 
@@ -125,15 +122,18 @@ ob_start();
                                         <?php foreach ($products as $product):?>
                                         <tr>
                                             <td class="text-center"><?php echo count_id();?></td>
-                                            <td>
+                                            <td class="details">
+                                                <a href="view_product.php?id=<?php echo (int)$product['id'];?>">
                                                 <?php if($product['media_id'] === '0'): ?>
                                                 <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg"
-                                                    alt="">
+                                                     title="Click for details" alt="Image unavailable.">
                                                 <?php else: ?>
                                                 <img class="img-avatar img-circle"
                                                     src="uploads/products/<?php echo $product['image']; ?>"
-                                                    onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'" alt="">
+                                                    onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"
+                                                     title="Click for details" alt="Product Image.">
                                                 <?php endif; ?>
+                                                </a>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
                                             <td> <?php echo remove_junk($product['name']); ?></td>
