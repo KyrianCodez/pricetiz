@@ -30,7 +30,7 @@ $user = current_user();
                         <?php foreach ($notifications as $notification):?>
                         <tr>
                             <td class="text-center"><?php echo count_id();?></td>
-                            <td> <?php echo remove_junk($notification['messageContent']); ?></td>
+                            <td> <?php echo ($notification['messageContent']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($notification['type']); ?></td>
 
                             <td class="text-center">
@@ -39,7 +39,7 @@ $user = current_user();
                                         class="btn btn-info btn-xs" title="Edit" data-toggle="tooltip">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
-                                    <a href="delete_notification.php?id=<?php echo (int)$notification['id'];?>"
+                                    <a href="delete_notice.php?id=<?php echo (int)$notification['id'];?>"
                                         class="btn btn-danger btn-xs" title="Delete" data-toggle="tooltip">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </a>
