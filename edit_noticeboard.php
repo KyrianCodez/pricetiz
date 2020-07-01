@@ -83,7 +83,7 @@ if(isset($_POST['edit_notice'])){
                                 <div class="input-group">
 
                                     <textarea class="form-control" id="message-content" name="message-content" rows="5"
-                                        cols="100"><?php echo remove_junk($notifications['messageContent']) ?>
+                                        cols="100"><?php echo ($notifications['messageContent']) ?>
 </textarea>
                                 </div>
                             </div>

@@ -30,7 +30,7 @@ $user = current_user();
                         <?php foreach ($notifications as $notification):?>
                         <tr>
                             <td class="text-center"><?php echo count_id();?></td>
-                            <td> <?php echo remove_junk($notification['messageContent']); ?></td>
+                            <td> <?php echo ($notification['messageContent']); ?></td>
                             <td class="text-center"> <?php echo remove_junk($notification['type']); ?></td>
 
                             <td class="text-center">
