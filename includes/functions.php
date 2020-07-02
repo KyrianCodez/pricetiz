@@ -84,14 +84,6 @@ function display_notification($notifications)
 
 }
 
-// Function for category comparison
-
-// function greatDeal($price){
-//   foreach ($all_categories as $cat) {
-//     if()
-   
-//   }
-// }
 /*--------------------------------------------------------------*/
 /* Function for redirect
 /*--------------------------------------------------------------*/
