@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'All Product';
+  $page_title = 'All Products - Pricetize';
   require_once('includes/load.php');
 
 
@@ -56,7 +56,7 @@
                             <th class="text-center" style="width: 3%;">#</th>
                             <th> Photo</th>
                             <th> ProductType</th>
-                            <th> Product Title </th>
+                            <th class="text-center"> Product Title </th>
                             <th class="text-center" style="width: 20%;">Type</th>
                             <th class="text-center" style="width: 20%;"> SubType </th>
                             <th class="text-center" style="width: 20%;"> Pcs. per product </th>
@@ -78,19 +78,27 @@
                         <?php foreach ($products as $product):?>
                         <tr>
                             <td class="text-center"><?php echo count_id(); ?></td>
-                            <td>
+                            <td class="details">
+                                <a href="view_product.php?id=<?php echo (int)$product['id'];?>" >
                                 <?php if($product['media_id'] === '0'): ?>
-                                <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg" alt="">
+                                <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg"
+                                     title="Click for details" alt="Image unavailable.">
                                 <?php else: ?>
                                 <img class="img-avatar img-circle"
                                     src="uploads/products/<?php echo $product['image']; ?>" onerror="this.onerror=null;
-                                    this.src='uploads/products/new_no_image.jpg'" alt="">
+                                    this.src='uploads/products/new_no_image.jpg'" title="Click for details" alt="Product Image.">
                                 <?php endif; ?>
+                                </a>
                             </td>
                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                            <td id="prodname<?php echo (int)$product['id'];?>"> <a
-                                    href="#<?php echo (int)$product['id'];?>"
-                                    id="prod_id"></a><?php echo ($product['name']); ?></td>
+                            <td id="prodname">
+                                    <?php echo ($product['name']); ?> <br>
+                                <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
+                                      aria-controls="flashMessage1" class="btn btn-xs btn-chat" title="Share"
+                                        data-toggle="tooltip">
+                                    <span class="glyphicon glyphicon-share"></span> Share
+                                </button>
+                            </td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">

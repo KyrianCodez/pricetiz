@@ -1,8 +1,8 @@
 <?php
-  $page_title = 'View product';
+  $page_title = 'View product - Pricetize';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(2);
+   page_require_level(false);
 ?>
 <?php
 $product = find_by_id('products',(int)$_GET['id']);
@@ -22,14 +22,11 @@ if(!$product){
 ?>
 
 <?php include_once('layouts/header.php'); ?>
-<div class="row">
-    <div class="col-md-12">
-        <?php echo display_msg($msg); ?>
-    </div>
-</div>
+
+
 <div class="row">
     <div >
-        <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
+        <div class="flash-message js-flash-message viewp-flash" role="status" id="flashMessage1" data-duration="2000">
             <p class="short">Product Link Copied.</p>
         </div>
         <section class="container">
@@ -77,7 +74,7 @@ if(!$product){
                     <a target='_blank' href="<?php echo  $product['reviewLink']; ?>"> Click here!</a>
                 <?php endif; ?>
                 <br>
-                </br>
+                <br>
                 Sold by:<br>
                 <div class="tab">
                 <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
@@ -100,11 +97,17 @@ if(!$product){
                 <?php endif; ?>
                 </div>
                 <br>
-                <?php if($user["user_level"] == 1) :?>
+                <?php if($user) :?>
                     <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
                             aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
                     </button>
                     <a href="product.php" class="btn btn-danger card">Back to all Products</a>
+                <?php endif; ?>
+                <?php if(empty($user)):?>
+                    <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
+                            aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
+                    </button>
+                    <a href="index.php" class="btn btn-danger card">Back to all Products</a>
                 <?php endif; ?>
             </div>
         </section>
