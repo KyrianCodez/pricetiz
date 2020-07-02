@@ -9,16 +9,15 @@
 <?php
  if(isset($_POST['add_product'])){
    $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price',
-                       'itemLink','deliveryTime','freeShipping','company','website','city',
-                      'zipcode','singleUnit','description','purchaseType' ,'singleUnits', 'singleValue');
+                       'itemLink','freeShipping','company','website','city',
+                      'zipcode','description','purchaseType' ,'singleUnits', 'singleValue');
    validate_fields($req_fields);
    if(empty($errors)){
      $p_name  = remove_junk($db->escape($_POST['product-title']));
      $p_cat   = remove_junk($db->escape($_POST['product-categorie']));
      $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
      $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-     $p_sale  = remove_junk($db->escape($_POST['saleing-price']));     
-     $singleUnit = remove_junk($db->escape($_POST['singleUnit']));
+     $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
      $itemLink = remove_junk($db->escape($_POST['itemLink']));
      $reviewLink = remove_junk($db->escape($_POST['reviewLink']));
      $city = remove_junk($db->escape($_POST['city']));
@@ -41,9 +40,9 @@
      }
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date,singleUnit, itemLink, reviewLink, city, zipcode, phone, email, delieveryTime, freeShipping, company, website, description, purchaseType, singleUnits, singleValue";
+     $query .="name,quantity,buy_price,sale_price,categorie_id,media_id,date,itemLink,reviewLink,city,zipcode,phone,email,delieveryTime,freeShipping,company,website,description,purchaseType,singleUnits,singleValue";
      $query .=") VALUES (";
-     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}','{$singleUnit}', '{$itemLink}', '{$reviewLink}','{$city}', '{$zipcode}', '{$phone}', '{$email}', '{$delieveryTime}', '{$freeShipping}', '{$company}', '{$website}', '{$description}', '{$purchaseType}', '{$singleUnits}, '{$singleValue}";
+     $query .="'{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}', '{$itemLink}', '{$reviewLink}','{$city}', '{$zipcode}', '{$phone}', '{$email}', '{$delieveryTime}', '{$freeShipping}', '{$company}', '{$website}', '{$description}', '{$purchaseType}', '{$singleUnits}', '{$singleValue}'";
      $query .=")";
      $query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
@@ -238,15 +237,6 @@
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <i class="glyphicon glyphicon-pencil"></i>
-                                        </span>
-                                        <input type="text" class="form-control" name="singleUnit"
-                                            placeholder="Single Unit">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
                                             <i class="fas fa-envelope-open-text"></i>
                                         </span>
                                         <input type="text" class="form-control" name="description"
@@ -263,7 +253,7 @@
                                         <span class="input-group-addon">
                                              <i class="far fa-clock"></i>
                                         </span>
-                                        <input type="text" class="form-control" name="deliveryTime"
+                                        <input type="text" class="form-control" name="delieveryTime"
                                             placeholder="Delivery Time">
                                     </div>
                                 </div>
