@@ -139,7 +139,6 @@ ob_start();
                                                 <?php endif; ?>
                                                 </a>
                                             </td>
-<<<<<<< HEAD
                                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
                                             <td> <?php echo remove_junk($product['name']); ?>
                                                 <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
@@ -148,11 +147,6 @@ ob_start();
                                                     <span class="glyphicon glyphicon-share"></span>Share
                                                 </button></td>
                                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
-=======
-                                            <td> <?php echo  ($product['purchaseType']); ?></td>
-                                            <td> <?php echo  ($product['name']); ?></td>
-                                            <td class="text-center"> <?php echo  ($product['categorie']); ?>
->>>>>>> 186ea79b4dac6703cff90dcd2608a1f487e3b956
                                             </td>
                                             <td class="text-center"> <?php echo $product['subType']; ?></td>
 
@@ -179,7 +173,7 @@ ob_start();
                                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["itemLink"])|| $product['itemLink']=="N/A") :?>
+                                                <?php if(empty ($product["itemLink"])|| $product['itemLink']==="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i>
@@ -189,7 +183,7 @@ ob_start();
                                             </td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["reviewLink"])|| $product['reviewLink']=="N/A") :?>
+                                                <?php if(empty ($product["reviewLink"])|| $product['reviewLink']==="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="rlink fab fa-youtube "></i>
@@ -201,7 +195,7 @@ ob_start();
                                             <td class="text-center"> <?php echo $product['company']; ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
+                                                <?php if(empty ($product["website"])|| $product['website']==="N/A") :?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
@@ -242,7 +236,6 @@ ob_start();
 
             var chatClose = $('.chatClose');
 
-
             chatOpen.click(function() {
                 chatWindow.show();
                 resultsWindow.removeClass('col-md-12');
@@ -263,13 +256,13 @@ ob_start();
                 "paging": true
             } );
         });
-        function changeStyle() {
-            if(empty(display_notification($notifications))){
-                document.getElementById("noMessageSet").classList.add('notification');
+        // function changeStyle() {
+//     if(empty(display_notification($notifications))){
+//         document.getElementById("noMessageSet").classList.add('notification');
 
-            }
-            
-        }
+//     }
+
+// }
         var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
             "date",
             "description",

@@ -90,7 +90,6 @@
                                 <?php endif; ?>
                                 </a>
                             </td>
-<<<<<<< HEAD
                             <td> <?php echo remove_junk($product['purchaseType']); ?></td>
                             <td id="prodname">
                                     <?php echo ($product['name']); ?> <br>
@@ -101,13 +100,6 @@
                                 </button>
                             </td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
-=======
-                            <td> <?php echo  ($product['purchaseType']); ?></td>
-                            <td id="prodname<?php echo (int)$product['id'];?>"> <a
-                                    href="#<?php echo (int)$product['id'];?>"
-                                    id="prod_id"></a><?php echo ($product['name']); ?></td>
-                            <td class="text-center"> <?php echo  ($product['categorie']); ?></td>
->>>>>>> 186ea79b4dac6703cff90dcd2608a1f487e3b956
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
                                 <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
