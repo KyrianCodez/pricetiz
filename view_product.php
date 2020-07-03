@@ -53,10 +53,10 @@ if(!$product){
                         </span>
                     </a>
                 <?php endif; ?>
-                Price: $<?php echo remove_junk($product['buy_price']); ?><br>
-                Pieces per product: <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?><br>
+                Price: $<?php echo  ($product['buy_price']); ?><br>
+                Pieces per product: <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?><br>
                 In stock quantity:
-                <?php echo remove_junk($product['quantity']); ?><br>
+                <?php echo  ($product['quantity']); ?><br>
                 Unit Price:
                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                     Not Available.
@@ -65,7 +65,7 @@ if(!$product){
 
                 <?php endif; ?><br>
                 <br>
-                Available for <?php echo remove_junk($product['purchaseType']); ?> <br>
+                Available for <?php echo  ($product['purchaseType']); ?> <br>
                 Product Category: <?php echo $cat_name; ?> <br>
                 SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?> <br>
                 <br>
@@ -88,15 +88,15 @@ if(!$product){
                 <?php if($product["city"]=="NA"|| $product['zipcode']=="NA") :?>
                     No address provided.
                 <?php else: ?>
-                    <?php echo remove_junk($product['city']); ?>
-                    <?php echo remove_junk($product['zipcode']); ?>
+                    <?php echo  ($product['city']); ?>
+                    <?php echo  ($product['zipcode']); ?>
                 <?php endif; ?><br>
                 <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
                     No Phone Number Available.
                 <?php else: ?>
                     <i class="fa fa-phone "></i>
-                    <a href="tel:<?php echo remove_junk($product['phone']); ?>">
-                            <?php echo remove_junk($product['phone']); ?></a>
+                    <a href="tel:<?php echo  ($product['phone']); ?>">
+                            <?php echo  ($product['phone']); ?></a>
                 <?php endif; ?>
                 </div>
                 <br>

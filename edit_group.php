@@ -17,9 +17,9 @@
    $req_fields = array('group-name','group-level');
    validate_fields($req_fields);
    if(empty($errors)){
-           $name = remove_junk($db->escape($_POST['group-name']));
-          $level = remove_junk($db->escape($_POST['group-level']));
-         $status = remove_junk($db->escape($_POST['status']));
+           $name =  ($db->escape($_POST['group-name']));
+          $level =  ($db->escape($_POST['group-level']));
+         $status =  ($db->escape($_POST['status']));
 
         $query  = "UPDATE user_groups SET ";
         $query .= "group_name='{$name}',group_level='{$level}',group_status='{$status}'";
@@ -50,7 +50,7 @@
         <div class="form-group">
             <label for="name" class="control-label">Group Name</label>
             <input type="name" class="form-control" name="group-name"
-                value="<?php echo remove_junk(ucwords($e_group['group_name'])); ?>">
+                value="<?php echo  (ucwords($e_group['group_name'])); ?>">
         </div>
         <div class="form-group">
             <label for="level" class="control-label">Group Level</label>

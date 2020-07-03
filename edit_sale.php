@@ -77,7 +77,7 @@ if(!$sale){
                             <form method="post" action="edit_sale.php?id=<?php echo (int)$sale['id']; ?>">
                                 <td id="s_name">
                                     <input type="text" class="form-control" id="sug_input" name="title"
-                                        value="<?php echo remove_junk($product['name']); ?>">
+                                        value="<?php echo  ($product['name']); ?>">
                                     <div id="result" class="list-group"></div>
                                 </td>
                                 <td id="s_qty">
@@ -86,15 +86,15 @@ if(!$sale){
                                 </td>
                                 <td id="s_price">
                                     <input type="text" class="form-control" name="price"
-                                        value="<?php echo remove_junk($product['sale_price']); ?>">
+                                        value="<?php echo  ($product['sale_price']); ?>">
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" name="total"
-                                        value="<?php echo remove_junk($sale['price']); ?>">
+                                        value="<?php echo  ($sale['price']); ?>">
                                 </td>
                                 <td id="s_date">
                                     <input type="date" class="form-control datepicker" name="date" data-date-format=""
-                                        value="<?php echo remove_junk($sale['date']); ?>">
+                                        value="<?php echo  ($sale['date']); ?>">
                                 </td>
                                 <td>
                                     <button type="submit" name="update_sale" class="btn btn-primary">Update

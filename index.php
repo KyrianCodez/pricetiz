@@ -58,7 +58,7 @@ ob_start();
     <meta charset="UTF-8">
     <title>
         <?php if (!empty($page_title)) {
-            echo remove_junk($page_title);
+            echo  ($page_title);
             } elseif (!empty($user)) {
                 echo ucfirst($user['name']);
             } else {
@@ -82,7 +82,7 @@ ob_start();
 </head>
 
 <body class="noscroll">
-    <div class="demopage">
+    <div class="demopage" id="noMessageSet">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -140,14 +140,14 @@ ob_start();
                                                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'" alt="">
                                                 <?php endif; ?>
                                             </td>
-                                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
-                                            <td> <?php echo remove_junk($product['name']); ?></td>
-                                            <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
+                                            <td> <?php echo  ($product['purchaseType']); ?></td>
+                                            <td> <?php echo  ($product['name']); ?></td>
+                                            <td class="text-center"> <?php echo  ($product['categorie']); ?>
                                             </td>
                                             <td class="text-center"> <?php echo $product['subType']; ?></td>
 
                                             <td class="text-center">
-                                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                                                <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
                                             </td>
 
 
@@ -162,9 +162,9 @@ ob_start();
 
                                                 <?php endif; ?>
                                             </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                                            <td class="text-center"> <?php echo  ($product['quantity']); ?>
                                             </td>
-                                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                                            <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
                                             </td>
                                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
@@ -198,14 +198,14 @@ ob_start();
                                                     href="<?php echo $product['website']; ?>">Website</a>
                                                 <?php endif; ?>
                                             </td>
-                                            <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
-                                            <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?>
+                                            <td class="text-center"> <?php echo  ($product['city']); ?></td>
+                                            <td class="text-center"> <?php echo  ($product['zipcode']); ?>
                                             </td>
                                             <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
                                               <td class="text-center">N/A </td>
                                               <?php else: ?>
-                                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
-                                            <?php echo remove_junk($product['phone']); ?></a> </td>
+                                            <td class="text-center"><a href="tel:<?php echo  ($product['phone']); ?>">
+                                            <?php echo  ($product['phone']); ?></a> </td>
                                             <?php endif; ?>
                                         </tr>
                                         <?php endforeach; ?>
@@ -232,6 +232,7 @@ ob_start();
 
             var chatClose = $('.chatClose');
 
+
             chatOpen.click(function() {
                 chatWindow.show();
                 resultsWindow.removeClass('col-md-12');
@@ -252,6 +253,13 @@ ob_start();
                 "paging": true
             } );
         });
+        function changeStyle() {
+            if(empty(display_notification($notifications))){
+                document.getElementById("noMessageSet").classList.add('notification');
+
+            }
+            
+        }
         var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
             "date",
             "description",

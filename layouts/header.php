@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>
       <?php if (!empty($page_title))
-           echo remove_junk($page_title);
+           echo  ($page_title);
             elseif(!empty($user))
            echo ucfirst($user['name']);
             else echo "Simple inventory System";?>
@@ -43,7 +43,7 @@
                         <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
                             <img src="uploads/users/<?php echo $user['image'];?>" alt="user-image"
                                 class="img-circle img-inline">
-                            <span><?php echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>
+                            <span><?php echo  (ucfirst($user['name'])); ?> <i class="caret"></i></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -100,7 +100,7 @@
                         <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
                             <img src="uploads/users/<?php echo $user['image'];?>" alt="user-image"
                                 class="img-circle img-inline">
-                            <span><?php echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>
+                            <span><?php echo  (ucfirst($user['name'])); ?> <i class="caret"></i></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li>

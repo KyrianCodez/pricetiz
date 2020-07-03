@@ -87,14 +87,14 @@
                                     this.src='uploads/products/new_no_image.jpg'" alt="">
                                 <?php endif; ?>
                             </td>
-                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
+                            <td> <?php echo  ($product['purchaseType']); ?></td>
                             <td id="prodname<?php echo (int)$product['id'];?>"> <a
                                     href="#<?php echo (int)$product['id'];?>"
                                     id="prod_id"></a><?php echo ($product['name']); ?></td>
-                            <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
+                            <td class="text-center"> <?php echo  ($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
-                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                                <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
                             </td>
 
 
@@ -107,9 +107,9 @@
 
                                 <?php endif; ?>
                             </td>
-                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                            <td class="text-center"> <?php echo  ($product['quantity']); ?>
                             </td>
-                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                            <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
                             </td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
@@ -142,13 +142,13 @@
                                 <?php endif; ?>
                             </td>
 
-                            <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
-                            <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
+                            <td class="text-center"> <?php echo  ($product['city']); ?></td>
+                            <td class="text-center"> <?php echo  ($product['zipcode']); ?></td>
                             <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
                             <td class="text-center">N/A </td>
                             <?php else: ?>
-                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
-                                    <?php echo remove_junk($product['phone']); ?></a> </td>
+                            <td class="text-center"><a href="tel:<?php echo  ($product['phone']); ?>">
+                                    <?php echo  ($product['phone']); ?></a> </td>
                             <?php endif; ?>
                             <td class="text-center">
                                 <?php if($user["user_level"] == 1) :?>

@@ -11,8 +11,8 @@ $results = '';
     validate_fields($req_dates);
 
     if(empty($errors)):
-      $start_date   = remove_junk($db->escape($_POST['start-date']));
-      $end_date     = remove_junk($db->escape($_POST['end-date']));
+      $start_date   =  ($db->escape($_POST['start-date']));
+      $end_date     =  ($db->escape($_POST['end-date']));
       $results      = find_sale_by_dates($start_date,$end_date);
     else:
       $session->msg("d", $errors);
@@ -96,14 +96,14 @@ $results = '';
         <tbody>
           <?php foreach($results as $result): ?>
            <tr>
-              <td class=""><?php echo remove_junk($result['date']);?></td>
+              <td class=""><?php echo  ($result['date']);?></td>
               <td class="desc">
-                <h6><?php echo remove_junk(ucfirst($result['name']));?></h6>
+                <h6><?php echo  (ucfirst($result['name']));?></h6>
               </td>
-              <td class="text-right"><?php echo remove_junk($result['buy_price']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['sale_price']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['total_sales']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['total_saleing_price']);?></td>
+              <td class="text-right"><?php echo  ($result['buy_price']);?></td>
+              <td class="text-right"><?php echo  ($result['sale_price']);?></td>
+              <td class="text-right"><?php echo  ($result['total_sales']);?></td>
+              <td class="text-right"><?php echo  ($result['total_saleing_price']);?></td>
           </tr>
         <?php endforeach; ?>
         </tbody>
