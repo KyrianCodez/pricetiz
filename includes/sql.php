@@ -253,7 +253,7 @@ function join_product_table_wstock(){
 
    function find_product_by_title($product_name){
      global $db;
-     $p_name = remove_junk($db->escape($product_name));
+     $p_name =  ($db->escape($product_name));
      $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
      $result = find_by_sql($sql);
      return $result;

@@ -112,7 +112,7 @@
           <tbody>
             <?php foreach ($products_sold as  $product_sold): ?>
               <tr>
-                <td><?php echo remove_junk(first_character($product_sold['name'])); ?></td>
+                <td><?php echo  (first_character($product_sold['name'])); ?></td>
                 <td><?php echo (int)$product_sold['totalSold']; ?></td>
                 <td><?php echo (int)$product_sold['totalQty']; ?></td>
               </tr>
@@ -146,11 +146,11 @@
            <td class="text-center"><?php echo count_id();?></td>
            <td>
             <a href="edit_sale.php?id=<?php echo (int)$recent_sale['id']; ?>">
-             <?php echo remove_junk(first_character($recent_sale['name'])); ?>
+             <?php echo  (first_character($recent_sale['name'])); ?>
            </a>
            </td>
-           <td><?php echo remove_junk(ucfirst($recent_sale['date'])); ?></td>
-           <td>$<?php echo remove_junk(first_character($recent_sale['price'])); ?></td>
+           <td><?php echo  (ucfirst($recent_sale['date'])); ?></td>
+           <td>$<?php echo  (first_character($recent_sale['price'])); ?></td>
         </tr>
 
        <?php endforeach; ?>
@@ -178,13 +178,13 @@
                   <?php else: ?>
                   <img class="img-avatar img-circle" src="uploads/products/<?php echo $recent_product['image'];?>" alt="" />
                 <?php endif;?>
-                <?php echo remove_junk(first_character($recent_product['name']));?>
+                <?php echo  (first_character($recent_product['name']));?>
                   <span class="label label-warning pull-right">
                  $<?php echo (int)$recent_product['sale_price']; ?>
                   </span>
                 </h4>
                 <span class="list-group-item-text pull-right">
-                <?php echo remove_junk(first_character($recent_product['categorie'])); ?>
+                <?php echo  (first_character($recent_product['categorie'])); ?>
               </span>
           </a>
       <?php endforeach; ?>

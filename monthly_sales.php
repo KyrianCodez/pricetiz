@@ -38,9 +38,9 @@
              <?php foreach ($sales as $sale):?>
              <tr>
                <td class="text-center"><?php echo count_id();?></td>
-               <td><?php echo remove_junk($sale['name']); ?></td>
+               <td><?php echo  ($sale['name']); ?></td>
                <td class="text-center"><?php echo (int)$sale['qty']; ?></td>
-               <td class="text-center"><?php echo remove_junk($sale['total_saleing_price']); ?></td>
+               <td class="text-center"><?php echo  ($sale['total_saleing_price']); ?></td>
                <td class="text-center"><?php echo $sale['date']; ?></td>
              </tr>
              <?php endforeach;?>

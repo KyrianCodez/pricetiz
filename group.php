@@ -36,9 +36,9 @@
                         <?php foreach($all_groups as $a_group): ?>
                         <tr>
                             <td class="text-center"><?php echo count_id();?></td>
-                            <td><?php echo remove_junk(ucwords($a_group['group_name']))?></td>
+                            <td><?php echo  (ucwords($a_group['group_name']))?></td>
                             <td class="text-center">
-                                <?php echo remove_junk(ucwords($a_group['group_level']))?>
+                                <?php echo  (ucwords($a_group['group_level']))?>
                             </td>
                             <td class="text-center">
                                 <?php if($a_group['group_status'] === '1'): ?>

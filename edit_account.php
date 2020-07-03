@@ -25,8 +25,8 @@
     validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$_SESSION['user_id'];
-           $name = remove_junk($db->escape($_POST['name']));
-       $username = remove_junk($db->escape($_POST['username']));
+           $name =  ($db->escape($_POST['name']));
+       $username =  ($db->escape($_POST['username']));
             $sql = "UPDATE users SET name ='{$name}', username ='{$username}' WHERE id='{$id}'";
     $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
@@ -85,11 +85,11 @@
           <form method="post" action="edit_account.php?id=<?php echo (int)$user['id'];?>" class="clearfix">
             <div class="form-group">
                   <label for="name" class="control-label">Name</label>
-                  <input type="name" class="form-control" name="name" value="<?php echo remove_junk(ucwords($user['name'])); ?>">
+                  <input type="name" class="form-control" name="name" value="<?php echo  (ucwords($user['name'])); ?>">
             </div>
             <div class="form-group">
                   <label for="username" class="control-label">Username</label>
-                  <input type="text" class="form-control" name="username" value="<?php echo remove_junk(ucwords($user['username'])); ?>">
+                  <input type="text" class="form-control" name="username" value="<?php echo  (ucwords($user['username'])); ?>">
             </div>
             <div class="form-group clearfix">
                     <a href="change_password.php" title="change password" class="btn btn-danger pull-right">Change Password</a>

@@ -31,7 +31,7 @@ $user = current_user();
                         <tr>
                             <td class="text-center"><?php echo count_id();?></td>
                             <td> <?php echo ($notification['messageContent']); ?></td>
-                            <td class="text-center"> <?php echo remove_junk($notification['type']); ?></td>
+                            <td class="text-center"> <?php echo  ($notification['type']); ?></td>
 
                             <td class="text-center">
                                 <?php if($user["user_level"] == 1) :?><div class="btn-group">

@@ -19,30 +19,30 @@ if(!$product){
     validate_fields($req_fields);
 
    if(empty($errors)){
-      $p_name  = remove_junk($db->escape($_POST['product-title']));
+      $p_name  =  ($db->escape($_POST['product-title']));
       $p_cat   = (int)$_POST['product-categorie'];
-      $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
-      $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-      $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
-      $singleUnit = remove_junk($db->escape($_POST['singleUnit']));
-      $singleUnits = remove_junk($db->escape($_POST['singleUnits']));
-      $singleValue = remove_junk($db->escape($_POST['singleValue']));
-      $itemLink = remove_junk($db->escape($_POST['itemLink']));
-      $reviewLink = remove_junk($db->escape($_POST['reviewLink']));
-      $city = remove_junk($db->escape($_POST['city']));
-      $zipcode = remove_junk($db->escape($_POST['zipcode']));
-      $phone = remove_junk($db->escape($_POST['phone']));
-      $email = remove_junk($db->escape($_POST['email']));
-      $delieveryTime = remove_junk($db->escape($_POST['delieveryTime']));
-      $freeShipping = remove_junk($db->escape($_POST['freeShipping']));
-      $company = remove_junk($db->escape($_POST['company']));
-      $website = remove_junk($db->escape($_POST['website']));
-      $description = remove_junk($db->escape($_POST['description']));
-      $purchaseType = remove_junk($db->escape($_POST['purchaseType']));
+      $p_qty   =  ($db->escape($_POST['product-quantity']));
+      $p_buy   =  ($db->escape($_POST['buying-price']));
+      $p_sale  =  ($db->escape($_POST['saleing-price']));
+      $singleUnit =  ($db->escape($_POST['singleUnit']));
+      $singleUnits =  ($db->escape($_POST['singleUnits']));
+      $singleValue =  ($db->escape($_POST['singleValue']));
+      $itemLink =  ($db->escape($_POST['itemLink']));
+      $reviewLink =  ($db->escape($_POST['reviewLink']));
+      $city =  ($db->escape($_POST['city']));
+      $zipcode =  ($db->escape($_POST['zipcode']));
+      $phone =  ($db->escape($_POST['phone']));
+      $email =  ($db->escape($_POST['email']));
+      $delieveryTime =  ($db->escape($_POST['delieveryTime']));
+      $freeShipping =  ($db->escape($_POST['freeShipping']));
+      $company =  ($db->escape($_POST['company']));
+      $website =  ($db->escape($_POST['website']));
+      $description =  ($db->escape($_POST['description']));
+      $purchaseType =  ($db->escape($_POST['purchaseType']));
        if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
          $media_id = '0';
        } else {
-         $media_id = remove_junk($db->escape($_POST['product-photo']));
+         $media_id =  ($db->escape($_POST['product-photo']));
        }
        $query   = "UPDATE products SET";
        $query  .=" name ='{$p_name}', quantity ='{$p_qty}', singleUnit='{$singleUnit}', singleUnits ='{$singleUnits}',singleValue='{$singleValue}', itemLink='{$itemLink}', reviewLink='{$reviewLink}', city='{$city}', zipcode='{$zipcode}', phone='{$phone}', email='{$email}', delieveryTime='{$delieveryTime}', freeShipping='{$freeShipping}', company='{$company}', website='{$website}', description='{$description}', purchaseType='{$purchaseType}',";
@@ -88,7 +88,7 @@ if(!$product){
                                 <i class="glyphicon glyphicon-th-large"></i>
                             </span>
                             <input type="text" class="form-control" name="product-title"
-                                value="<?php echo remove_junk($product['name']);?>">
+                                value="<?php echo  ($product['name']);?>">
                         </div>
                     </div>
                     <div class="form-group">
@@ -99,7 +99,7 @@ if(!$product){
                                     <?php  foreach ($all_categories as $cat): ?>
                                     <option value="<?php echo (int)$cat['id']; ?>"
                                         <?php if($product['categorie_id'] === $cat['id']): echo "selected"; endif; ?>>
-                                        <?php echo remove_junk($cat['name']); ?></option>
+                                        <?php echo  ($cat['name']); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -126,7 +126,7 @@ if(!$product){
                                             <i class="glyphicon glyphicon-pencil"></i>
                                         </span>
                                         <input type="number" class="form-control" name="product-quantity"
-                                            value="<?php echo remove_junk($product['quantity']); ?>">
+                                            value="<?php echo  ($product['quantity']); ?>">
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ if(!$product){
                                         </span>
                                         <input type="number" step="0.01" min="0" class="form-control"
                                             name="buying-price"
-                                            value="<?php echo remove_junk($product['buy_price']);?>">
+                                            value="<?php echo  ($product['buy_price']);?>">
                                         <!-- <span class="input-group-addon">.00</span> -->
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@ if(!$product){
                                         </span>
                                         <input type="number" step="0.01" min="0" class="form-control"
                                             name="saleing-price"
-                                            value="<?php echo remove_junk($product['sale_price']);?>">
+                                            value="<?php echo  ($product['sale_price']);?>">
                                         <!-- <span class="input-group-addon">.00</span> -->
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="fas fa-list"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['purchaseType']) ?>" type="text"
+                                    <input value="<?php echo  ($product['purchaseType']) ?>" type="text"
                                         class="form-control" name="purchaseType" placeholder="Product Type">
                                 </div>
                             </div>
@@ -178,7 +178,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-link"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['itemLink']) ?>" type="text"
+                                    <input value="<?php echo ($product['itemLink']) ?>" type="text"
                                         class="form-control" name="itemLink" placeholder="Item Link">
                                 </div>
                             </div>
@@ -193,7 +193,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="far fa-building"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['company']) ?>" type="text"
+                                    <input value="<?php echo  ($product['company']) ?>" type="text"
                                         class="form-control" name="company" placeholder="Company">
                                 </div>
                             </div>
@@ -202,7 +202,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-phone"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['phone']) ?>" type="text"
+                                    <input value="<?php echo  ($product['phone']) ?>" type="text"
                                         class="form-control" name="phone" placeholder="Phone">
                                 </div>
                             </div>
@@ -217,7 +217,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-send"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['email']) ?>" type="email"
+                                    <input value="<?php echo  ($product['email']) ?>" type="email"
                                         class="form-control" name="email" placeholder="Email">
                                 </div>
                             </div>
@@ -226,7 +226,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-link"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['website']) ?>" type="text"
+                                    <input value="<?php echo  ($product['website']) ?>" type="text"
                                         class="form-control" name="website" placeholder="Website">
                                 </div>
                             </div>
@@ -240,7 +240,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-road"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['city']) ?>" type="text"
+                                    <input value="<?php echo  ($product['city']) ?>" type="text"
                                         class="form-control" name="city" placeholder="City">
                                 </div>
                             </div>
@@ -249,7 +249,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-map-marker"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['zipcode']) ?>" type="text"
+                                    <input value="<?php echo  ($product['zipcode']) ?>" type="text"
                                         class="form-control" name="zipcode" placeholder="Zip Code">
                                 </div>
                             </div>
@@ -263,7 +263,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="glyphicon glyphicon-pencil"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['singleUnit']) ?>" type="text"
+                                    <input value="<?php echo  ($product['singleUnit']) ?>" type="text"
                                         class="form-control" name="singleUnit" placeholder="Single Unit">
                                 </div>
                             </div>
@@ -272,7 +272,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class="fas fa-envelope-open-text"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['description']) ?>" type="text"
+                                    <input value="<?php echo  ($product['description']) ?>" type="text"
                                         class="form-control" name="description" placeholder="Description">
                                 </div>
                             </div>
@@ -286,8 +286,8 @@ if(!$product){
                                     <span class="input-group-addon">
                                        <i class="far fa-clock"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['delieveryTime']) ?>" type="text"
-                                        class="form-control" name="deliveryTime" placeholder="Delivery Time">
+                                    <input value="<?php echo  ($product['delieveryTime']) ?>" type="text"
+                                        class="form-control" name="delieveryTime" placeholder="Delivery Time">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -295,7 +295,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                        <i class="fas fa-shipping-fast"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['freeShipping']) ?>" type="text"
+                                    <input value="<?php echo  ($product['freeShipping']) ?>" type="text"
                                         class="form-control" name="freeShipping" placeholder="Free Shipping">
                                 </div>
                             </div>
@@ -309,7 +309,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                        <i class="glyphicon glyphicon-pencil"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['singleValue']) ?>" type="text"
+                                    <input value="<?php echo  ($product['singleValue']) ?>" type="text"
                                         class="form-control" name="singleValue" placeholder="Pcs per product">
                                 </div>
                             </div>
@@ -318,7 +318,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                        <i class="glyphicon glyphicon-pencil"></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['singleUnits']) ?>" type="text"
+                                    <input value="<?php echo  ($product['singleUnits']) ?>" type="text"
                                         class="form-control" name="singleUnits" placeholder="Product Units Gallons kilos etc">
                                 </div>
                             </div>
@@ -332,7 +332,7 @@ if(!$product){
                                     <span class="input-group-addon">
                                         <i class=" fab fa-youtube "></i>
                                     </span>
-                                    <input value="<?php echo remove_junk($product['reviewLink']) ?>" type="text"
+                                    <input value="<?php echo  ($product['reviewLink']) ?>" type="text"
                                         class="form-control" name="reviewLink" placeholder="Youtube Review">
                                 </div>
                             </div>
