@@ -119,7 +119,6 @@ if(!$product){
 </div>
 <script>
 function changeAddress(id) {
-    alert(id);
     var link = document.getElementById("fb");
     var linkhref = "https://www.pricetize.com/view_product.php?id=" + id;
     link.setAttribute("data-href", linkhref);
