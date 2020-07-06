@@ -13,30 +13,30 @@
                       'zipcode','description','purchaseType' ,'singleUnits', 'singleValue');
    validate_fields($req_fields);
    if(empty($errors)){
-     $p_name  = remove_junk($db->escape($_POST['product-title']));
-     $p_cat   = remove_junk($db->escape($_POST['product-categorie']));
-     $p_qty   = remove_junk($db->escape($_POST['product-quantity']));
-     $p_buy   = remove_junk($db->escape($_POST['buying-price']));
-     $p_sale  = remove_junk($db->escape($_POST['saleing-price']));
-     $itemLink = remove_junk($db->escape($_POST['itemLink']));
-     $reviewLink = remove_junk($db->escape($_POST['reviewLink']));
-     $city = remove_junk($db->escape($_POST['city']));
-     $zipcode = remove_junk($db->escape($_POST['zipcode']));
-     $phone = remove_junk($db->escape($_POST['phone']));
-     $email = remove_junk($db->escape($_POST['email']));
-     $delieveryTime = remove_junk($db->escape($_POST['delieveryTime']));
-     $freeShipping = remove_junk($db->escape($_POST['freeShipping']));
-     $company = remove_junk($db->escape($_POST['company']));
-     $website = remove_junk($db->escape($_POST['website']));
-     $description = remove_junk($db->escape($_POST['description']));
-     $purchaseType = remove_junk($db->escape($_POST['purchaseType']));
-     $singleUnits= remove_junk($db->escape($_POST['singleUnits']));
-     $singleValue = remove_junk($db->escape($_POST['singleValue']));
+     $p_name  =  ($db->escape($_POST['product-title']));
+     $p_cat   =  ($db->escape($_POST['product-categorie']));
+     $p_qty   =  ($db->escape($_POST['product-quantity']));
+     $p_buy   =  ($db->escape($_POST['buying-price']));
+     $p_sale  =  ($db->escape($_POST['saleing-price']));
+     $itemLink =  ($db->escape($_POST['itemLink']));
+     $reviewLink =  ($db->escape($_POST['reviewLink']));
+     $city =  ($db->escape($_POST['city']));
+     $zipcode =  ($db->escape($_POST['zipcode']));
+     $phone =  ($db->escape($_POST['phone']));
+     $email =  ($db->escape($_POST['email']));
+     $delieveryTime =  ($db->escape($_POST['delieveryTime']));
+     $freeShipping =  ($db->escape($_POST['freeShipping']));
+     $company =  ($db->escape($_POST['company']));
+     $website =  ($db->escape($_POST['website']));
+     $description =  ($db->escape($_POST['description']));
+     $purchaseType =  ($db->escape($_POST['purchaseType']));
+     $singleUnits=  ($db->escape($_POST['singleUnits']));
+     $singleValue =  ($db->escape($_POST['singleValue']));
      
      if (is_null($_POST['product-photo']) || $_POST['product-photo'] === "") {
        $media_id = '0';
      } else {
-       $media_id = remove_junk($db->escape($_POST['product-photo']));
+       $media_id =  ($db->escape($_POST['product-photo']));
      }
      $date    = make_date();
      $query  = "INSERT INTO products (";

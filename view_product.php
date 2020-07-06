@@ -23,7 +23,9 @@ if(!$product){
 
 <?php include_once('layouts/header.php'); ?>
 
+<div id="fb-root"></div>
 
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="Im2GRDS6"></script>
 <div class="row">
     <div >
         <div class="flash-message js-flash-message viewp-flash" role="status" id="flashMessage1" data-duration="2000">
@@ -50,10 +52,10 @@ if(!$product){
                         </span>
                     </a>
                 <?php endif; ?>
-                Price: $<?php echo remove_junk($product['buy_price']); ?><br>
-                Pieces per product: <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?><br>
+                Price: $<?php echo  ($product['buy_price']); ?><br>
+                Pieces per product: <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?><br>
                 In stock quantity:
-                <?php echo remove_junk($product['quantity']); ?><br>
+                <?php echo  ($product['quantity']); ?><br>
                 Unit Price:
                 <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
                     Not Available.
@@ -62,7 +64,7 @@ if(!$product){
 
                 <?php endif; ?><br>
                 <br>
-                Available for <?php echo remove_junk($product['purchaseType']); ?> <br>
+                Available for <?php echo  ($product['purchaseType']); ?> <br>
                 Product Category: <?php echo $cat_name; ?> <br>
                 SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?> <br>
                 <br>
@@ -85,36 +87,50 @@ if(!$product){
                 <?php if($product["city"]=="NA"|| $product['zipcode']=="NA") :?>
                     No address provided.
                 <?php else: ?>
-                    <?php echo remove_junk($product['city']); ?>
-                    <?php echo remove_junk($product['zipcode']); ?>
+                    <?php echo  ($product['city']); ?>
+                    <?php echo  ($product['zipcode']); ?>
                 <?php endif; ?><br>
                 <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
                     No Phone Number Available.
                 <?php else: ?>
                     <i class="fa fa-phone "></i>
-                    <a href="tel:<?php echo remove_junk($product['phone']); ?>">
-                            <?php echo remove_junk($product['phone']); ?></a>
+                    <a href="tel:<?php echo  ($product['phone']); ?>">
+                            <?php echo  ($product['phone']); ?></a>
                 <?php endif; ?>
                 </div>
                 <br>
+                    <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
+                            aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
+                    </button>
+                <div id = "fb" title="Post to Facebook" class="fb-share-button btn card" data-href="https://www.pricetize.com/view_product.php?id=9"
+                     data-layout="button" data-size="large"><a id="fbh" target="_blank"
+                                                               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhttps://www.pricetize.com/view_product.php?id=9%2F&amp;src=sdkpreparse"
+                                                               class="fb-xfbml-parse-ignore">Share</a></div>
                 <?php if($user) :?>
-                    <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                            aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
-                    </button>
                     <a href="product.php" class="btn btn-danger card">Back to all Products</a>
-                <?php endif; ?>
-                <?php if(empty($user)):?>
-                    <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                            aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
-                    </button>
+                <?php elseif (empty($user)):?>
                     <a href="index.php" class="btn btn-danger card">Back to all Products</a>
                 <?php endif; ?>
+
             </div>
         </section>
         </div>
     </div>
 </div>
 <script>
+function changeAddress(id) {
+    var link = document.getElementById("fb");
+    var linkhref = "https://www.pricetize.com/view_product.php?id=" + id;
+    link.setAttribute("data-href", linkhref);
+    var link2 = document.getElementById("fbh");
+    linkhref = "https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhttps://www.pricetize.com/view_product.php?id="
+        + id + "%2F&amp;src=sdkpreparse";
+    link2.setAttribute("href", linkhref);
+    return false;
+
+}
+window.onload = changeAddress(<?php echo (int)$product['id'];?>);
+
 function copyToClipboard(text) {
     var dummy = document.createElement("textarea");
     document.body.appendChild(dummy);
@@ -200,7 +216,15 @@ function copyToClipboard(text) {
             });
         });
     }
+    document.getElementById("myLink").onclick = function() {
+        var link = document.getElementById("abc");
+        link.setAttribute("href", "xyz.php");
+        return false;
+    }
+
+
 }());
+
 </script>
 
 <?php include_once('layouts/footer.php'); ?>

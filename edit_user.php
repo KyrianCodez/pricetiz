@@ -20,10 +20,10 @@
     validate_fields($req_fields);
     if(empty($errors)){
              $id = (int)$e_user['id'];
-           $name = remove_junk($db->escape($_POST['name']));
-       $username = remove_junk($db->escape($_POST['username']));
+           $name =  ($db->escape($_POST['name']));
+       $username =  ($db->escape($_POST['username']));
           $level = (int)$db->escape($_POST['level']);
-       $status   = remove_junk($db->escape($_POST['status']));
+       $status   =  ($db->escape($_POST['status']));
             $sql = "UPDATE users SET name ='{$name}', username ='{$username}',user_level='{$level}',status='{$status}' WHERE id='{$db->escape($id)}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
@@ -46,7 +46,7 @@ if(isset($_POST['update-pass'])) {
   validate_fields($req_fields);
   if(empty($errors)){
            $id = (int)$e_user['id'];
-     $password = remove_junk($db->escape($_POST['password']));
+     $password =  ($db->escape($_POST['password']));
      $h_pass   = sha1($password);
           $sql = "UPDATE users SET password='{$h_pass}' WHERE id='{$db->escape($id)}'";
        $result = $db->query($sql);
@@ -72,7 +72,7 @@ if(isset($_POST['update-pass'])) {
             <div class="panel-heading">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
-                    Update <?php echo remove_junk(ucwords($e_user['name'])); ?> Account
+                    Update <?php echo  (ucwords($e_user['name'])); ?> Account
                 </strong>
             </div>
             <div class="panel-body">
@@ -80,12 +80,12 @@ if(isset($_POST['update-pass'])) {
                     <div class="form-group">
                         <label for="name" class="control-label">Name</label>
                         <input type="name" class="form-control" name="name"
-                            value="<?php echo remove_junk(ucwords($e_user['name'])); ?>">
+                            value="<?php echo  (ucwords($e_user['name'])); ?>">
                     </div>
                     <div class="form-group">
                         <label for="username" class="control-label">Username</label>
                         <input type="text" class="form-control" name="username"
-                            value="<?php echo remove_junk(ucwords($e_user['username'])); ?>">
+                            value="<?php echo  (ucwords($e_user['username'])); ?>">
                     </div>
                     <div class="form-group">
                         <label for="level">User Role</label>
@@ -120,7 +120,7 @@ if(isset($_POST['update-pass'])) {
             <div class="panel-heading">
                 <strong>
                     <span class="glyphicon glyphicon-th"></span>
-                    Change <?php echo remove_junk(ucwords($e_user['name'])); ?> password
+                    Change <?php echo  (ucwords($e_user['name'])); ?> password
                 </strong>
             </div>
             <div class="panel-body">

@@ -10,7 +10,7 @@
  if(isset($_POST['add_cat'])){
    $req_field = array('categorie-name');
    validate_fields($req_field);
-   $cat_name = remove_junk($db->escape($_POST['categorie-name']));
+   $cat_name =  ($db->escape($_POST['categorie-name']));
    if(empty($errors)){
       $sql  = "INSERT INTO categories (name)";
       $sql .= " VALUES ('{$cat_name}')";
@@ -74,7 +74,7 @@
               <?php foreach ($all_categories as $cat):?>
                 <tr>
                     <td class="text-center"><?php echo count_id();?></td>
-                    <td><?php echo remove_junk(ucfirst($cat['name'])); ?></td>
+                    <td><?php echo  (ucfirst($cat['name'])); ?></td>
                     <td class="text-center">
                       <div class="btn-group">
                         <a href="edit_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">

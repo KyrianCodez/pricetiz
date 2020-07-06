@@ -14,8 +14,8 @@ if (isset($_POST['add_notice'])) {
     validate_fields($req_fields);
 
     if (empty($errors)) {
-        $m_content = remove_junk($db->escape($_POST['message-content']));
-        $m_type = remove_junk($db->escape($_POST['message-type']));
+        $m_content =  ($db->escape($_POST['message-content']));
+        $m_type =  ($db->escape($_POST['message-type']));
         $date = make_date();
         $query = "INSERT INTO notifications (";
         $query .= "messageContent,messageType";
@@ -65,7 +65,7 @@ if (isset($_POST['add_notice'])) {
                                 <option value=""> Select Message Type</option>
                                 <?php foreach ($all_messagetype as $cat): ?>
                                 <option value="<?php echo (int) $cat['id']?>"> 
-                                    <?php echo remove_junk($cat['name']); ?></option>
+                                    <?php echo  ($cat['name']); ?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>

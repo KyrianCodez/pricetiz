@@ -2,8 +2,8 @@
 <?php
 $req_fields = array('username','password' );
 validate_fields($req_fields);
-$username = remove_junk($_POST['username']);
-$password = remove_junk($_POST['password']);
+$username =  ($_POST['username']);
+$password =  ($_POST['password']);
 
 if(empty($errors)){
   $user_id = authenticate($username, $password);

@@ -102,7 +102,7 @@
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
                             <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
-                                <?php echo remove_junk($product['singleValue']."  ". $product['singleUnits']); ?>
+                                <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
                             </td>
 
 
@@ -115,9 +115,9 @@
 
                                 <?php endif; ?>
                             </td>
-                            <td class="text-center"> <?php echo remove_junk($product['quantity']); ?>
+                            <td class="text-center"> <?php echo  ($product['quantity']); ?>
                             </td>
-                            <td class="text-center"> $<?php echo remove_junk($product['buy_price']); ?>
+                            <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
                             </td>
                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
@@ -150,13 +150,13 @@
                                 <?php endif; ?>
                             </td>
 
-                            <td class="text-center"> <?php echo remove_junk($product['city']); ?></td>
-                            <td class="text-center"> <?php echo remove_junk($product['zipcode']); ?></td>
+                            <td class="text-center"> <?php echo  ($product['city']); ?></td>
+                            <td class="text-center"> <?php echo  ($product['zipcode']); ?></td>
                             <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
                             <td class="text-center">N/A </td>
                             <?php else: ?>
-                            <td class="text-center"><a href="tel:<?php echo remove_junk($product['phone']); ?>">
-                                    <?php echo remove_junk($product['phone']); ?></a> </td>
+                            <td class="text-center"><a href="tel:<?php echo  ($product['phone']); ?>">
+                                    <?php echo  ($product['phone']); ?></a> </td>
                             <?php endif; ?>
                             <td class="text-center">
                                 <?php if($user["user_level"] == 1) :?>
@@ -359,6 +359,7 @@ if (search_input) {
     search_input.addEventListener("input", filterProduct);
 }
 
+
 function copyToClipboard(text) {
     var dummy = document.createElement("textarea");
     document.body.appendChild(dummy);
@@ -450,6 +451,7 @@ function copyToClipboard(text) {
         });
     }
 }());
+
 
 /*
 $('input[name=hide]').change(async function(){

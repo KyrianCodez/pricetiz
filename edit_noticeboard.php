@@ -20,8 +20,8 @@ if(isset($_POST['edit_notice'])){
     validate_fields($req_fields);
     
     if(empty($errors)){
-    $m_content = remove_junk($db->escape($_POST['message-content']));
-    $m_type = remove_junk($db->escape($_POST['message-type']));
+    $m_content =  ($db->escape($_POST['message-content']));
+    $m_type =  ($db->escape($_POST['message-type']));
     
     $query = "UPDATE notifications SET";
     $query .= " messageContent = '{$m_content}', messageType = '{$m_type}'";
@@ -71,7 +71,7 @@ if(isset($_POST['edit_notice'])){
                                 <?php foreach ($all_messagetype as $cat): ?>
                                 <option value="<?php echo (int) $cat['id'];?>" <?php if($notifications['messageType'] === $cat['id']): echo "selected";endif;
 ?>>
-                                    <?php echo remove_junk($cat['name']); ?></option>
+                                    <?php echo  ($cat['name']); ?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
