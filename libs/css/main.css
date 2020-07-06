@@ -543,9 +543,9 @@ img.img-size-2 {
 
 .flash-message {
   position: fixed;
-  bottom: 82%;
-  left: 65%;
-  z-index: 1;
+  bottom: 95%;
+  left: 51%;
+  z-index: 100;
 
   background-color: #2ecc71b5;
   padding: 10px 10px 0px 10px;
@@ -564,6 +564,11 @@ img.img-size-2 {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+}
+
+.index-flash{
+  bottom: 90%;
+  left: 34%;
 }
 
 .viewp-flash{
