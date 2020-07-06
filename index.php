@@ -83,13 +83,16 @@ ob_start();
             <div class="row">
                 <div class="col-md-12">
                  <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
-            </div>
+                     <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
+                         <p class="short">Product Link Copied.</p>
+                     </div>
+                 </div>
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
+                        <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
                             <p class="short">Product Link Copied.</p>
                         </div>
                         <div class="panel-heading clearfix">
