@@ -32,20 +32,6 @@ ob_start();
 //   echo "Number of visits: " . $stats["0"]["visits"];
 ?>
 
-<?php
-/*
-  define("SEARCH_FORM_NAME", "searchText");
-  
-  if($_POST){
-    $searchText = $_POST[SEARCH_FORM_NAME];
-    if(!empty($searchText)){
-      
-    }
-    echo json_encode($products);
-  }
-*/
-?>
-
 <?php if(!$_POST): ?>
 
 <!DOCTYPE html>
@@ -85,24 +71,16 @@ ob_start();
             <div class="row">
                 <div class="col-md-12">
                  <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
-                     <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
-                         <p class="short">Product Link Copied.</p>
-                     </div>
+                 <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
+                     <p class="short">Product Link Copied.</p>
+                 </div>
                  </div>
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
-                            <p class="short">Product Link Copied.</p>
-                        </div>
                         <div class="panel-heading clearfix">
-                            <!-- <div class="header-product-search-container">
-                                    <input type="text" id="product-search-input" class="form-control header-product-search"
-                                        placeholder="Search" />
-                                </div>
-                            </div> -->
                             <div class="panel-body containerishere">
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
@@ -261,13 +239,7 @@ ob_start();
                 "paging": true
             } );
         });
-        // function changeStyle() {
-//     if(empty(display_notification($notifications))){
-//         document.getElementById("noMessageSet").classList.add('notification');
 
-//     }
-
-// }
           function copyToClipboard(text) {
             var dummy = document.createElement("textarea");
             document.body.appendChild(dummy);

@@ -3,23 +3,11 @@
   require_once('includes/load.php');
 
 
-  // Checkin What level user has permission to view this page
+  // Checkin what level user has permission to view this page
    page_require_level(false);
     //$products = join_product_table();
     $products = join_product_table_wstock();
     $user = current_user();
-?>
-
-<?php
-  define("SEARCH_FORM_NAME", "searchText");
-  
-  if($_POST){
-    $searchText = $_POST[SEARCH_FORM_NAME];
-    if(!empty($searchText)){
-      
-    }
-    echo json_encode($products);
-  }
 ?>
 
 <?php if(!$_POST): ?>
@@ -27,29 +15,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <?php echo display_msg($msg); ?>
-
-    </div>
-    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
                 <p class="short">Product Link Copied.</p>
             </div>
-            <!-- <div class="panel-heading clearfix">
-                <div class="header-product-search-container">
-                    <input type="text" id="product-search-input" class="form-control header-product-search"
-                        placeholder="Search" />
-                </div>
-                <?php if($user["user_level"] == '1'): ?><div class="pull-right">
-                    <a href="add_product.php" class="btn btn-primary">Add New</a>
-                </div><?php endif; ?>
-            </div> -->
             <div class="panel-body product-panel">
-                <!--
-                <form>
-                    <input type="checkbox" id="something" name="hide" autocomplete="on">
-                    <label for="something">Hide Out of Stock Products </label>
-                </form> -->
                 <table class="table table-bordered" id="productTable">
                     <thead>
                         <tr>
