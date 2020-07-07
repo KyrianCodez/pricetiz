@@ -20,6 +20,7 @@ ob_start();
 
 $count = 0;
   $user_ip = $_SERVER["REMOTE_ADDR"];
+  echo $user_ip;
   if(!$is_tracked){
     if(trackVisit($session_id, $user_ip)){
         $_SESSION["TRACKED"] = true;
