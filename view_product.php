@@ -116,7 +116,7 @@ if(!$product){
         </section>
         </div>
     </div>
-</div>
+
 <script>
 function changeAddress(id) {
     var link = document.getElementById("fb");

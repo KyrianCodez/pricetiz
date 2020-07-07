@@ -37,7 +37,7 @@ function suggetion() {
 
            $("#result").hide();
 
-         };
+         }
 
          e.preventDefault();
      });
