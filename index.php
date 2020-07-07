@@ -12,26 +12,21 @@ ob_start();
 
 //  session_start();
   
-  //$is_tracked = $_SESSION["TRACKED"];
-  //$is_tracked_txt = $is_tracked?"yes":"not yet";
+  $is_tracked = $_SESSION["TRACKED"];
+  $is_tracked_txt = $is_tracked?"yes":"not yet";
   $session_id = session_id();
 //  echo "is tracked? $is_tracked_txt<br>";
 //  echo "session id: $session_id<br>";
 
 $count = 0;
   $user_ip = $_SERVER["REMOTE_ADDR"];
-  //if(!$is_tracked){
+  if(!$is_tracked){
     if(trackVisit($session_id, $user_ip)){
         $_SESSION["TRACKED"] = true;
-        // echo "visit tracked<br>";
-        $count++;
-    }
-  //}else{
-    //   echo "visit tracked previously<br>";
-  //}
 
-  //$stats = getVisitCount();
-//   echo "Number of visits: " . $stats["0"]["visits"];
+    }
+  }
+
 ?>
 
 <?php if(!$_POST): ?>
