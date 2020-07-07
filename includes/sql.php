@@ -397,4 +397,10 @@ function getVisitCount($fromDate = null, $toDate = null){
   return find_by_sql($sql);
 }
 
+function getunVisitCount(){
+    global $db;
+    $sql = "SELECT COUNT(DISTINCT visit_id) AS visits FROM site_visits;";
+    return find_by_sql($sql);
+}
+
 ?>

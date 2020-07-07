@@ -3,23 +3,11 @@
   require_once('includes/load.php');
 
 
-  // Checkin What level user has permission to view this page
+  // Checkin what level user has permission to view this page
    page_require_level(false);
     //$products = join_product_table();
     $products = join_product_table_wstock();
     $user = current_user();
-?>
-
-<?php
-  define("SEARCH_FORM_NAME", "searchText");
-  
-  if($_POST){
-    $searchText = $_POST[SEARCH_FORM_NAME];
-    if(!empty($searchText)){
-      
-    }
-    echo json_encode($products);
-  }
 ?>
 
 <?php if(!$_POST): ?>
@@ -27,29 +15,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <?php echo display_msg($msg); ?>
-
-    </div>
-    <div class="col-md-12">
         <div class="panel panel-default">
             <div class="flash-message js-flash-message" role="status" id="flashMessage1" data-duration="2000">
                 <p class="short">Product Link Copied.</p>
             </div>
-            <!-- <div class="panel-heading clearfix">
-                <div class="header-product-search-container">
-                    <input type="text" id="product-search-input" class="form-control header-product-search"
-                        placeholder="Search" />
-                </div>
-                <?php if($user["user_level"] == '1'): ?><div class="pull-right">
-                    <a href="add_product.php" class="btn btn-primary">Add New</a>
-                </div><?php endif; ?>
-            </div> -->
             <div class="panel-body product-panel">
-                <!--
-                <form>
-                    <input type="checkbox" id="something" name="hide" autocomplete="on">
-                    <label for="something">Hide Out of Stock Products </label>
-                </form> -->
                 <table class="table table-bordered" id="productTable">
                     <thead>
                         <tr>
@@ -197,169 +167,6 @@ $(document).ready(function() {
     });
 });
 
-var productColumns = ["id", "subType", "name", "quantity", "buy_price", "sale_price", "media_id",
-    "date",
-    "description",
-    "singleUnit", "singleUnits", "singleValue", "itemLink", "reviewLink", "city", "email", "phone", "zipcode",
-    "freeShipping",
-    "company",
-    "website",
-    "purchaseType", "categorie", "image,"
-];
-
-var tableColumns = ["#", "Photo", "ProductType", "Product Title", "Type", "SubType", "Pcs. per case", "Price per case",
-    "No. of cases in stock", "Price",
-    "Product Added", "Item Link", "Review Link", "Company", "Website", "City", "ZipCode", "Phone"
-];
-
-var tableProductColMap = new Map();
-tableProductColMap.set("#", false);
-tableProductColMap.set("Photo", "image");
-tableProductColMap.set("ProductType", "purchaseType");
-tableProductColMap.set("Product Title", "name");
-tableProductColMap.set("Type", "categorie");
-tableProductColMap.set("SubType", "subType");
-tableProductColMap.set("Pcs. per product", "singleValue . singleUnits");
-tableProductColMap.set("Price per product", "singleValue / buy_price");
-tableProductColMap.set("No. of products in stock", "quantity");
-tableProductColMap.set("Price", "sale_price");
-tableProductColMap.set("Product Added", "date");
-tableProductColMap.set("Item Link", "itemLink");
-tableProductColMap.set("Review Link", "reviewLink");
-tableProductColMap.set("Company", "company");
-tableProductColMap.set("Website", "website");
-tableProductColMap.set("City", "city");
-tableProductColMap.set("ZipCode", "zipcode");
-tableProductColMap.set("Phone", "phone");
-tableProductColMap.set("Actions", false);
-
-window.productColumns = productColumns;
-
-let hideOutStock = false;
-
-function generateTableData(products) {
-    let productTableBody = document.getElementById("product-table-body");
-    if (productTableBody && Array.isArray(products)) {
-        productTableBody.innerHTML = "";
-
-        let tableRows = ``;
-        products.forEach((p, index, arr) => {
-            console.log(p[productColumns.findIndex((c) => c === "name")]);
-
-            let row = `<tr>`;
-
-            tableColumns.forEach((tCol, i) => {
-
-                const productCol = tableProductColMap.get(tCol);
-                console.log()
-                if (productCol) {
-                    if (productCol === "itemLink") {
-                        row +=
-                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Item Link</a></td>`;
-                    } else if (productCol === "website") {
-                        row +=
-                            `<td> <i class="fas fa-external-link-alt link"></i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Website</a></td>`;
-                    } else if (productCol ===
-                        "reviewLink") {
-                        row +=
-                            `<td> <i class="rlink fab fa-youtube "> </i> <a target = '_blank' href="${p[productColumns.findIndex((c) => c === productCol)]}">Review Link</a></td>`;
-                    } else if (productCol === "image") {
-                        let image_url = p[productColumns.findIndex((c) => c === "image")];
-
-                        if (image_url) {
-                            row +=
-                                `<td><img class="img-avatar img-circle" src="uploads/products/${image_url}" alt=""></td>`;
-                        } else {
-                            row +=
-                                `<td><img class="img-avatar img-circle" src="uploads/products/no_image.jpg" alt=""></td>`;
-                        }
-                    } else {
-                        row += `<td>${p[productColumns.findIndex((c) => c === productCol)] || ""}</td>`
-                    }
-
-                } else if (tCol === "#") {
-                    row += `<td>${index + 1}</td>`
-                } else if (tCol === "Pcs. per product") {
-                    row += `<td>pcs per product</td>`
-                } else if (tCol === "Actions") {
-                    row += `<td> <?php if($user["user_level"] == 1) :?><div class="btn-group">
-                    <a href="edit_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-info btn-xs"  title="Edit" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-                    <a href="delete_product.php?id=${p[productColumns.findIndex((c) => c === "id")]}" class="btn btn-danger btn-xs"  title="Delete" data-toggle="tooltip">
-                      <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-              </div><?php endif; ?></td>`
-                }
-            });
-
-            row += `</tr>`;
-            // console.log(`col`, col);
-            tableRows += row;
-        }, window);
-        productTableBody.innerHTML += tableRows;
-
-    }
-}
-
-async function filterProduct(e) {
-    let text = e.target.value;
-    var http = new XMLHttpRequest();
-    var data = "searchText=" + text;
-
-    http.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            try {
-                let products = JSON.parse(this.responseText);
-
-                if (Array.isArray(products)) {
-
-                    products = products.filter((p) => {
-
-                        try {
-                            const regex = new RegExp(`${text}`, "gi");
-                            for (let tCol of tableColumns) {
-                                let pCol = tableProductColMap.get(tCol);
-                                if (pCol) {
-                                    console.log(p[productColumns.findIndex((c) => c === pCol)]);
-                                    let matches = (p[productColumns.findIndex((c) => c === pCol)] || "")
-                                        .toString().match(regex);
-
-                                    if (matches) {
-                                        return true;
-                                    }
-                                }
-                            }
-                        } catch (e) {
-                            console.log(e);
-                            return true;
-                        }
-
-
-
-                        return false;
-                    })
-                    generateTableData(products);
-                }
-            } catch (e) {
-                console.log(e)
-            }
-        }
-    }
-    console.log(window.location);
-    http.open('POST', window.location.href, true);
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    http.send(data);
-
-}
-
-
-var search_input = document.getElementById("product-search-input");
-if (search_input) {
-    search_input.addEventListener("input", filterProduct);
-}
-
-
 function copyToClipboard(text) {
     var dummy = document.createElement("textarea");
     document.body.appendChild(dummy);
@@ -452,31 +259,6 @@ function copyToClipboard(text) {
     }
 }());
 
-
-/*
-$('input[name=hide]').change(async function(){
-    if($(this).is(':checked')) {
-       hideOutStock =true;
-       <?php $hide = true; ?>
-       console.log("What??")
-        var jArray = <?php echo json_encode($products); ?>;
-        var f =[];
-        for(var i=225; i<jArray.length; i++){
-            let n = parseInt(jArray[i].quantity);
-        if (n===0){
-                f.push(jArray[i]);
-            }
-
-        generateTableData(f);
-
-    }}
-        else {
-        hideOutStock =false;
-        jArray = <?php echo json_encode($products); ?>;
-        generateTableData(jArray);
-    }
-});
- */
 </script>
 
 <?php include_once('layouts/footer.php'); ?>

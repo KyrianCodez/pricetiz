@@ -5,6 +5,7 @@
   // Checkin What level user has permission to view this page
    page_require_level(1);
    $visits = getVisitCount()[0]["visits"];
+   $unvisits = getunVisitCount()[0]["visits"];
 ?>
 <?php
  $c_categorie     = count_by_id('categories');
@@ -18,9 +19,6 @@
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
-   <div class="col-md-6">
-     <?php echo display_msg($msg); ?>
-   </div>
 </div>
   <div class="row">
     <div class="col-md-3">
@@ -78,6 +76,17 @@
         </div>
        </div>
     </div>
+      <div class="col-md-3">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-red">
+          <i class="glyphicon glyphicon-fire"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $unvisits ?></h2>
+          <p class="text-muted">Unique Users</p>
+        </div>
+       </div>
+    </div>
 </div>
   <div class="row">
    <div class="col-md-12">
@@ -85,7 +94,7 @@
         <div class="jumbotron text-center">
            <h1>Thank You! for your support and love.</h1>
            <p> <strong>OSWA-INV v2</strong> way more better then <strong> v1 </strong>.
-           </br>If you have a question regarding the usage of this applications, please ask on <a href="https://www.facebook.com/oswapp" title="Facebook" target="_blank">Facebook</a> OSWA Fan page.</p>
+           <br>If you have a question regarding the usage of this applications, please ask on <a href="https://www.facebook.com/oswapp" title="Facebook" target="_blank">Facebook</a> OSWA Fan page.</p>
 
         </div>
       </div>
