@@ -21,7 +21,7 @@
 <div class="row">
 </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-green">
           <i class="glyphicon glyphicon-user"></i>
@@ -32,7 +32,7 @@
         </div>
        </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-red">
           <i class="glyphicon glyphicon-list"></i>
@@ -43,7 +43,7 @@
         </div>
        </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-blue">
           <i class="glyphicon glyphicon-shopping-cart"></i>
@@ -65,7 +65,7 @@
         </div>
        </div>
     </div> -->
-    <div class="col-md-3">
+    <div class="col-md-6">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-yellow">
           <i class="glyphicon glyphicon-equalizer"></i>
@@ -76,14 +76,14 @@
         </div>
        </div>
     </div>
-      <div class="col-md-3">
+      <div class="col-md-6">
        <div class="panel panel-box clearfix">
          <div class="panel-icon pull-left bg-red">
           <i class="glyphicon glyphicon-fire"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $unvisits ?></h2>
-          <p class="text-muted">Unique Users</p>
+          <p class="text-muted">Visitors</p>
         </div>
        </div>
     </div>
