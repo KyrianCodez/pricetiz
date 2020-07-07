@@ -19,12 +19,20 @@ if(!$product){
   $session->msg("d","Missing product id.");
   redirect('product.php');
 }
+
+$is_tracked = $_SESSION["TRACKED"];
+$session_id = session_id();
+$user_ip = $_SERVER["REMOTE_ADDR"];
+if(!$is_tracked){
+    if(trackVisit($session_id, $user_ip)){
+        $_SESSION["TRACKED"] = true;
+    }
+}
 ?>
 
 <?php include_once('layouts/header.php'); ?>
-<!--
+
 <div id="fb-root"></div>
--->
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
         nonce="Im2GRDS6"></script>
 <div class="row">
