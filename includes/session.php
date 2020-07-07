@@ -11,7 +11,6 @@ class Session {
  function __construct(){
    $this->flash_msg();
    $this->userLoginSetup();
-   $_SESSION["TRACKED"] = false;
 
  }
 
