@@ -13,19 +13,16 @@ ob_start();
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
-  $is_tracked_txt = $is_tracked?"yes":"not yet";
+  //$is_tracked_txt = $is_tracked?"yes":"not yet";
   $session_id = session_id();
-//  echo "is tracked? $is_tracked_txt<br>";
+  //echo "is tracked? $is_tracked_txt<br>";
 //  echo "session id: $session_id<br>";
 
-$count = 0;
   $user_ip = $_SERVER["REMOTE_ADDR"];
-  echo $user_ip;
   if(!$is_tracked){
     if(trackVisit($session_id, $user_ip)){
         $_SESSION["TRACKED"] = true;
-
-    }
+   }
   }
 
 ?>
@@ -73,7 +70,7 @@ $count = 0;
                      <p class="short">Product Link Copied.</p>
                  </div>
                  </div>
-                    <button class="btn btn-chat chatOpen">Chat <?php echo $count ?> </button>
+                    <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 
                 <div id="resultsWindow" class="col-md-12">
