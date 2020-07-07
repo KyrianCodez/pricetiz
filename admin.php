@@ -5,6 +5,7 @@
   // Checkin What level user has permission to view this page
    page_require_level(1);
    $visits = getVisitCount()[0]["visits"];
+   $unvisits = getunVisitCount()[0]["visits"];
 ?>
 <?php
  $c_categorie     = count_by_id('categories');
@@ -18,9 +19,6 @@
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
-   <div class="col-md-6">
-     <?php echo display_msg($msg); ?>
-   </div>
 </div>
   <div class="row">
     <div class="col-md-3">
@@ -75,6 +73,17 @@
         <div class="panel-value pull-right">
           <h2 class="margin-top"> <?php  echo $visits ?></h2>
           <p class="text-muted">Visits</p>
+        </div>
+       </div>
+    </div>
+      <div class="col-md-3">
+       <div class="panel panel-box clearfix">
+         <div class="panel-icon pull-left bg-red">
+          <i class="glyphicon glyphicon-fire"></i>
+        </div>
+        <div class="panel-value pull-right">
+          <h2 class="margin-top"> <?php  echo $unvisits ?></h2>
+          <p class="text-muted">Unique Users</p>
         </div>
        </div>
     </div>

@@ -22,12 +22,13 @@ if(!$product){
 ?>
 
 <?php include_once('layouts/header.php'); ?>
-
+<!--
 <div id="fb-root"></div>
-
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0" nonce="Im2GRDS6"></script>
+-->
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
+        nonce="Im2GRDS6"></script>
 <div class="row">
-    <div >
+    <div>
         <div class="flash-message js-flash-message viewp-flash" role="status" id="flashMessage1" data-duration="2000">
             <p class="short">Product Link Copied.</p>
         </div>
@@ -37,7 +38,8 @@ if(!$product){
                 <?php if($product['media_id'] === '0'): ?>
                     <img src="uploads/products/new_no_image.jpg" class='prodp' alt="">
                 <?php else: ?>
-                    <img src="uploads/products/<?php echo $image['file_name']; ?>" class='prodp' onerror="this.onerror=null;
+                    <img src="uploads/products/<?php echo $image['file_name']; ?>" class='prodp'
+                         onerror="this.onerror=null;
                         this.src='uploads/products/new_no_image.jpg'" alt="">
                 <?php endif; ?>
             </div>
@@ -66,7 +68,8 @@ if(!$product){
                 <br>
                 Available for <?php echo  ($product['purchaseType']); ?> <br>
                 Product Category: <?php echo $cat_name; ?> <br>
-                SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?> <br>
+                SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?>
+                <br>
                 <br>
                 Watch a Product Review:
                 <?php if(empty ($product["reviewLink"])|| $product['reviewLink']=="N/A") :?>
@@ -82,7 +85,8 @@ if(!$product){
                 <?php if(empty ($product["website"])|| $product['website']=="N/A") :?>
                     <?php echo $product['company']; ?>
                 <?php else: ?>
-                    <a target='_blank' title="Company Website" href="<?php echo $product['website']; ?>"><?php echo $product['company']; ?></a>
+                    <a target='_blank' title="Company Website" href="<?php echo $product['website']; ?>">
+                        <?php echo $product['company']; ?></a>
                 <?php endif; ?><br>
                 <?php if($product["city"]=="NA"|| $product['zipcode']=="NA") :?>
                     No address provided.
@@ -100,11 +104,13 @@ if(!$product){
                 </div>
                 <br>
                     <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                            aria-controls="flashMessage1" class="btn btn-success card" title="Share" data-toggle="tooltip">Copy Product Link
+                            aria-controls="flashMessage1" class="btn btn-success card" title="Share"
+                            data-toggle="tooltip">Copy Product Link
                     </button>
-                <div id = "fb" title="Post to Facebook" class="fb-share-button btn card" data-href="https://www.pricetize.com/view_product.php?id=9"
+                <div id = "fb" title="Post to Facebook" class="fb-share-button btn card"
+                     data-href="https://www.pricetize.com/view_product.php?id=9"
                      data-layout="button" data-size="large"><a id="fbh" target="_blank"
-                                                               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhttps://www.pricetize.com/view_product.php?id=9%2F&amp;src=sdkpreparse"
+                     href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhttps://www.pricetize.com/view_product.php?id=9%2F&amp;src=sdkpreparse"
                                                                class="fb-xfbml-parse-ignore">Share</a></div>
                 <?php if($user) :?>
                     <a href="product.php" class="btn btn-danger card">Back to all Products</a>
