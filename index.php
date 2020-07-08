@@ -43,6 +43,7 @@ ob_start();
                 echo "Simple inventory System";
             }
         ?>
+
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
@@ -65,8 +66,13 @@ ob_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                 <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
-                 <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
+                 <?php if(display_notification($notifications)==='false'): ?>
+                 <div class="notification alert alert-success" style="display: none">
+                     <?php else: ?>
+                     <div class="notification alert alert-success" >
+                     <a href="#" class="close" data-dismiss="alert">&times;</a> <?php echo display_notification($notifications);?>
+                <?php endif;?>
+                     <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
                      <p class="short">Product Link Copied.</p>
                  </div>
                  </div>
@@ -329,4 +335,5 @@ ob_start();
 
     </script>
     <?php include_once('layouts/footer.php'); ?>
-<?php endif ?>
+<?php endif; ?>
+
