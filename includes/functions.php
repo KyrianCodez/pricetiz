@@ -83,7 +83,33 @@ function display_notification($notifications)
 }
 
 }
+/*--------------------------------------------------------------*/
+/* Function for calculating Price
+/*--------------------------------------------------------------*/
 
+function calculatePrice($product, $all_categories){
+  if (empty($product['singleValue'] && $product['buy_price'])) {
+    echo "N/A";
+}else{
+
+$price=bcdiv($product['buy_price'] / $product['singleValue'],1,2);
+     
+  echo $price;
+
+  
+ 
+  $i = 0;
+  foreach($all_categories as $cat){
+    // $catID = $cat['id'];
+    // $array{$i} = array($i => assignArray())
+    //                                       <img class="img-avatar img-circle blink-img"
+    //                                             src    ="uploads/products/great value.png">
+  }                                       
+}                                    
+                                              
+
+                                            
+}
 /*--------------------------------------------------------------*/
 /* Function for redirect
 /*--------------------------------------------------------------*/

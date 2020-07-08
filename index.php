@@ -9,7 +9,7 @@ ob_start();
   //$products = join_product_table();
   $products = join_product_table_wstock();
   $notifications = join_notification_table();
-
+  $all_categories = find_all('categories');
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -156,15 +156,7 @@ ob_start();
 
 
                                             <td class="text-center">
-                                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
-                                                N/A
-                                                <?php else: ?>
-                                                    <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
-                                                $<?php echo $price; ?>
-                                                <!-- <img class="img-avatar img-circle blink-img"
-                                                src="uploads/products/great value.png">  -->
-
-                                                <?php endif; ?>
+                                               $<?php calculatePrice($product, $all_categories);?>
                                             </td>
                                             <td class="text-center"> <?php echo  ($product['quantity']); ?>
                                             </td>
