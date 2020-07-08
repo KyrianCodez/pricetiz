@@ -72,9 +72,7 @@ function display_notification($notifications)
     if ($notifications[0]['type'] === 'PSA') {
       $value = $notifications[0]['messageContent'];
       //echo $value;
-      //return $value;
-        return 'false';
-        
+      return $value;
     }
     }
     return 'false';
