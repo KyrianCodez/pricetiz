@@ -86,11 +86,11 @@ ob_start();
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
                             <?php if(display_notification($notifications)==='false'): ?>
-                                <div class="panel-body containerishere">
+                                <div class="panel-body1 containerishere">
                             <?php else: ?>
-                                <div id="paneljr" class="panel-body panel-bodyjr containerishere">
+                                <div id="paneljr" class="panel-body1 panel-bodyjr containerishere">
                             <?php endif;?>
-                            <div class="panel-body containerishere">
+                            <!--<div class="panel-body containerishere">-->
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">

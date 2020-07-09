@@ -524,6 +524,10 @@ img.img-size-2 {
 
 .panel-body {
   overflow-x: auto;
+}
+
+.panel-body1 {
+  overflow-x: auto;
   overflow-y: hidden;
   height: 96vh;
 }
