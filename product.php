@@ -5,8 +5,8 @@
 
   // Checkin what level user has permission to view this page
    page_require_level(false);
-    //$products = join_product_table();
-    $products = join_product_table_wstock();
+    $products = join_product_table();
+    //$products = join_product_table_wstock();
     $user = current_user();
 ?>
 
