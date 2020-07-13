@@ -11,6 +11,8 @@ ob_start();
   $products = join_product_table_wstock();
   $notifications = join_notification_table();
   $all_categories = find_all('categories');
+  $best_deal_arr = setBestInClassFlag($all_categories);
+  print_r($best_deal_arr);
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -159,19 +161,18 @@ ob_start();
 
 
                                             <td class="text-center">
-                                               $<?php calculatePrice($product, $all_categories); 
-                                        
-
-?>
+                                               $<?php calculatePrice($product, $all_categories); ?>
                                             </td>
                                             <td>
-                                            <?php 
-                                            setBestInClassFlag($all_categories, $product);
-
+                                            <?php
+                                            echo "pid= ".$product['id'];
+                                            echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
+                                            if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
+                                            echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";}
+                                            else{
+                                            echo "Nah";}
                                             ?>
-
                                              </td>
-
                                             <td class="text-center"> <?php echo  ($product['quantity']); ?>
                                             </td>
                                             <td class="text-center"> $<?php echo  ($product['buy_price']); ?>

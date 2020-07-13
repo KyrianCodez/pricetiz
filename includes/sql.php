@@ -212,7 +212,7 @@ function tableExists($table){
    /*--------------------------------------------------------------*/
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
+     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
     $sql  .=" ,c.name AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
@@ -222,8 +222,7 @@ function tableExists($table){
    }
 function assignArray($catID)
 {
-    $sql = " SELECT p.id,p.name,p.price_per_piece,";
-    $sql .= " p.categorie_id";
+    $sql = " SELECT p.id";
     $sql .= " FROM products p";
     $sql .= " WHERE p.categorie_id={$catID} ";
     $sql .= " ORDER BY p.price_per_piece ASC";
@@ -237,7 +236,7 @@ function assignArray($catID)
 /*--------------------------------------------------------------*/
 function join_product_table_wstock(){
     global $db;
-    $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType, p.price_per_piece";
+    $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price, categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType, p.price_per_piece";
     $sql  .=" ,c.name AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";

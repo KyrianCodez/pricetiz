@@ -106,34 +106,17 @@ insertPrice($price, $product);
 }
 
 function setBestInClassFlag($all_categories){
-  $i = 0;
-foreach ($all_categories as $cat) {
-    $catID = $cat['id'];
-    $countID = count($cat);
-    $catArray = array_fill($countID,$countID,$catID);
-    $bestinClass{$i} = array_fill(0,4,assignArray($catID));
-    print_r($catArray);
 
-    $i++;
-
-    
- if ($product['id'] === $bestinClass{$catID}[0][0]) {
-    echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";
-} else {
-   
-    print_r($bestinClass{$catID}[0][0]);
+    $best_cat_arr=array();
+    foreach ($all_categories as $cat) {
+        $catID = $cat['id'];
+        $best_arr = assignArray($catID);
+        $best_prod = $best_arr[0][0];
+        $best_cat_arr[$catID] = $best_prod;
+    }
+    return $best_cat_arr;
 }
 
-
-
-}
-
-
-
-
-
-
-}
 /*--------------------------------------------------------------*/
 /* Function for redirect
 /*--------------------------------------------------------------*/
