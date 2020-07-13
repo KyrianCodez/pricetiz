@@ -95,20 +95,44 @@ function calculatePrice($product, $all_categories){
 $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2);
      
   echo $price;
-
   
- 
-  $i = 0;
-  foreach($all_categories as $cat){
-    // $catID = $cat['id'];
-    // $array{$i} = array($i => assignArray())
-    //                                       <img class="img-avatar img-circle blink-img"
-    //                                             src    ="uploads/products/great value.png">
-  }                                       
+  
+                                      
 }                                    
-                                              
+ //inserts price calculation into database for retrieval 
+insertPrice($price, $product);
 
-                                            
+                                         
+}
+
+function setBestInClassFlag($all_categories){
+  $i = 0;
+foreach ($all_categories as $cat) {
+    $catID = $cat['id'];
+    $countID = count($cat);
+    $catArray = array_fill($countID,$countID,$catID);
+    $bestinClass{$i} = array_fill(0,4,assignArray($catID));
+    print_r($catArray);
+
+    $i++;
+
+    
+ if ($product['id'] === $bestinClass{$catID}[0][0]) {
+    echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";
+} else {
+   
+    print_r($bestinClass{$catID}[0][0]);
+}
+
+
+
+}
+
+
+
+
+
+
 }
 /*--------------------------------------------------------------*/
 /* Function for redirect

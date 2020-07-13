@@ -1,8 +1,9 @@
 <?php
 ob_start();
-
+ 
   $page_title = 'All Products - Pricetize';
   require_once('includes/load.php');
+
 
   // Checkin What level user has permission to view this page
    page_require_level(false);
@@ -30,6 +31,7 @@ ob_start();
 
   $stats = getVisitCount();
 //   echo "Number of visits: " . $stats["0"]["visits"];
+
 ?>
 
 <?php
@@ -110,6 +112,7 @@ ob_start();
                                             <th class="text-center" style="width: 20%;"> SubType </th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
                                             <th class="text-center" style="width: 20%;"> Price per piece</th>
+                                            <th class="text-center" style="width: 20%;"> Best Deal in Type</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -156,8 +159,19 @@ ob_start();
 
 
                                             <td class="text-center">
-                                               $<?php calculatePrice($product, $all_categories);?>
+                                               $<?php calculatePrice($product, $all_categories); 
+                                        
+
+?>
                                             </td>
+                                            <td>
+                                            <?php 
+                                            setBestInClassFlag($all_categories, $product);
+
+                                            ?>
+
+                                             </td>
+
                                             <td class="text-center"> <?php echo  ($product['quantity']); ?>
                                             </td>
                                             <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
