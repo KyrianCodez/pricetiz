@@ -1,15 +1,18 @@
 <?php
 ob_start();
-
+ 
   $page_title = 'All Products - Pricetize';
   require_once('includes/load.php');
+
 
   // Checkin What level user has permission to view this page
    page_require_level(false);
   //$products = join_product_table();
   $products = join_product_table_wstock();
   $notifications = join_notification_table();
-
+  $all_categories = find_all('categories');
+  $best_deal_arr = setBestInClassFlag($all_categories);
+  print_r($best_deal_arr);
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -102,6 +105,7 @@ ob_start();
                                             <th class="text-center" style="width: 20%;"> SubType </th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
                                             <th class="text-center" style="width: 20%;"> Price per piece</th>
+                                            <th class="text-center" style="width: 20%;"> Best Deal in Type</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -148,16 +152,18 @@ ob_start();
 
 
                                             <td class="text-center">
-                                                <?php if(empty($product['singleValue'] && $product['buy_price'])) :?>
-                                                N/A
-                                                <?php else: ?>
-                                                    <?php $price=bcdiv($product['buy_price'] / $product['singleValue'],1,2)?>
-                                                $<?php echo $price; ?>
-                                                <!-- <img class="img-avatar img-circle blink-img"
-                                                src="uploads/products/great value.png">  -->
-
-                                                <?php endif; ?>
+                                               $<?php calculatePrice($product, $all_categories); ?>
                                             </td>
+                                            <td>
+                                            <?php
+                                            echo "pid= ".$product['id'];
+                                            echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
+                                            if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
+                                            echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";}
+                                            else{
+                                            echo "Nah";}
+                                            ?>
+                                             </td>
                                             <td class="text-center"> <?php echo  ($product['quantity']); ?>
                                             </td>
                                             <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
