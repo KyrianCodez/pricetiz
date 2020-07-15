@@ -63,7 +63,7 @@ ob_start();
     <link rel="stylesheet" href="libs/css/main.css?<?php echo time(); ?>" />
 </head>
 
-<body class="noscroll">
+<body class="noscroll" onload="check_browser()">
     <div class="demopage" id="noMessageSet">
         <div class="container-fluid">
             <div class="row">
@@ -82,6 +82,9 @@ ob_start();
                         </div>
                     </div>
                     <button class="btn btn-chat chatOpen">Chat</button>
+
+
+
                 </div>
 
                 <div id="resultsWindow" class="col-md-12">
@@ -225,6 +228,33 @@ ob_start();
                         style="width: 100%; height: 100%;">
                     </iframe>
                 </div>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <img class="dino_pic"
+                                 src="libs/images/dinosaur.png"
+                                 title="That's some old tech!" alt="It's a dinosaur" >
+                            <p>
+                            <h3>Try using one of these to access Pricetize:</h3>
+                                <a href="https://www.microsoft.com/en-us/edge" >
+                                    <img src="https://img.icons8.com/fluent/48/000000/ms-edge-new.png"/>
+                                    Microsoft Edge
+                                </a>
+                                <a href="https://www.opera.com/download" >
+                                    <img src="https://img.icons8.com/color/48/000000/opera--v1.png"/>
+                                    Opera
+                                </a>
+                                <a href="https://www.mozilla.org/en-US/firefox/new/" >
+                                    <img src="https://img.icons8.com/color/48/000000/firefox.png"/>
+                                    Mozilla Firefox
+                                </a>
+                                <a href="https://www.google.com/chrome/" >
+                                    <img src="https://img.icons8.com/fluent/48/000000/chrome.png"/>
+                                    Google Chrome
+                                </a>
+                            </p>
+
+                        </div>
+                    </div>
             </div>
 
     <script type="text/javascript">
@@ -355,6 +385,33 @@ ob_start();
                 });
             }
         }());
+
+        function check_browser(){
+            var rv = -1; // Return value assumes failure.
+
+            if (navigator.appName == 'Microsoft Internet Explorer'){
+
+                var ua = navigator.userAgent,
+                    re  = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
+
+                if (re.exec(ua) !== null){
+                    rv = parseFloat( RegExp.$1 );
+                }
+            }
+            else if(navigator.appName == "Netscape"){
+                /// in IE 11 the navigator.appVersion says 'trident'
+                /// in Edge the navigator.appVersion does not say trident
+                if(navigator.appVersion.indexOf('Trident') === -1) rv = 12;
+                else rv = 11;
+            }
+
+            //alert(rv);
+            if (rv==11){
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+            }
+
+        }
 
     </script>
     <?php include_once('layouts/footer.php'); ?>
