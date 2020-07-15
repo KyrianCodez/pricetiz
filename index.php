@@ -43,6 +43,7 @@ ob_start();
                 echo "Simple inventory System";
             }
         ?>
+
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
@@ -65,18 +66,31 @@ ob_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                 <div class="notification alert alert-success"> <a href="#" class="close" data-dismiss="alert">&times;</a> <?php display_notification($notifications);?>
-                 <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
+                    <?php if(display_notification($notifications)==='false'): ?>
+                    <div class="notification alert alert-success" style="display: none">
+                    <?php else: ?>
+                        <div class="notification alert alert-success">
+                    <?php endif; ?>
+                            <a id ="x" title="Click to Close" href="#" class="close red"
+                               data-dismiss="alert" data-toggle="tooltip" data-placement="bottom">&times;</a>
+                            <?php echo display_notification($notifications);?>
+                        </div>
+                            <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
                      <p class="short">Product Link Copied.</p>
-                 </div>
-                 </div>
+                        </div>
+                    </div>
                     <button class="btn btn-chat chatOpen">Chat</button>
                 </div>
 
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
-                            <div class="panel-body containerishere">
+                            <?php if(display_notification($notifications)==='false'): ?>
+                                <div class="panel-body1 containerishere">
+                            <?php else: ?>
+                                <div id="paneljr" class="panel-body1 panel-bodyjr containerishere">
+                            <?php endif;?>
+                            <!--<div class="panel-body containerishere">-->
                                 <table class="table table-bordered" id="productTable">
                                     <thead>
                                         <tr class="sticky-header">
@@ -229,11 +243,19 @@ ob_start();
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
                 "scrollX": true,
-                "scrollY": '55vh',
+                "scrollY": '65vh',
                 "scrollCollapse": false,
                 "paging": true
             } );
         });
+
+        var close_notif = document.getElementById('x');
+
+        close_notif.style.cursor = 'pointer';
+        close_notif.onclick = function() {
+            var panel = document.getElementById("paneljr");
+            panel.setAttribute("class", "panel-body containerishere");
+        };
 
           function copyToClipboard(text) {
             var dummy = document.createElement("textarea");
@@ -329,4 +351,5 @@ ob_start();
 
     </script>
     <?php include_once('layouts/footer.php'); ?>
-<?php endif ?>
+<?php endif; ?>
+

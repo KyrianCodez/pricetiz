@@ -526,6 +526,17 @@ img.img-size-2 {
   overflow-x: auto;
 }
 
+.panel-body1 {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 96vh;
+}
+
+.panel-bodyjr {
+  overflow-y: auto;
+  height: 77vh;
+}
+
 .header-product-search-container {
   display: inline-block;
 }
@@ -620,4 +631,9 @@ img.img-size-2 {
 
 .pad-below{
   margin-bottom: 10px;
+}
+
+.red{
+  color: red;
+  font-size: 30px;
 }

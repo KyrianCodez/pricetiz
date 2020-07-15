@@ -391,7 +391,7 @@ function trackVisit($visit_id, $ip){
   return $db->query($sql);
 }
 
-function getVisitCount($fromDate = null, $toDate = null){
+function getVisitCount(){
   global $db;
   $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
   return find_by_sql($sql);
@@ -401,6 +401,18 @@ function getunVisitCount(){
     global $db;
     $sql = "SELECT COUNT(DISTINCT ip) AS visits FROM site_visits;";
     return find_by_sql($sql);
+}
+
+function getVisitsBetween($fromDate, $toDate){
+
+      //$sql.= "WHERE time >= 2020-07-01T00:00:00.000 AND
+      //`time` <= '2020-07-08T03:53:04.000
+      global $db;
+      $fromDate  = date("Y-m-d", strtotime($fromDate));
+      $toDate    = date("Y-m-d", strtotime($toDate));
+      $sql = "SELECT COUNT(*) AS datedvisits FROM site_visits";
+      $sql .= " WHERE time >= '{$fromDate}' AND <= '{$toDate}'";
+      return $db->query($sql);
 }
 
 ?>
