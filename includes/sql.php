@@ -10,7 +10,9 @@ function find_all($table) {
    {
      return find_by_sql("SELECT * FROM ".$db->escape($table));
    }
+   return NULL;
 }
+
 /*--------------------------------------------------------------*/
 /* Function for Perform queries
 /*--------------------------------------------------------------*/
@@ -18,9 +20,9 @@ function find_by_sql($sql)
 {
   global $db;
   $result = $db->query($sql);
-  $result_set = $db->while_loop($result);
- return $result_set;
+  return $db->while_loop($result);
 }
+
 /*--------------------------------------------------------------*/
 /*  Function for Find data from table by id
 /*--------------------------------------------------------------*/
@@ -32,10 +34,10 @@ function find_by_id($table,$id)
           $sql = $db->query("SELECT * FROM {$db->escape($table)} WHERE id='{$db->escape($id)}' LIMIT 1");
           if($result = $db->fetch_assoc($sql))
             return $result;
-          else
-            return null;
      }
+    return null;
 }
+
 /*--------------------------------------------------------------*/
 /* Function for Delete data from table by id
 /*--------------------------------------------------------------*/
@@ -48,9 +50,11 @@ function delete_by_id($table,$id)
     $sql .= " WHERE id=". $db->escape($id);
     $sql .= " LIMIT 1";
     $db->query($sql);
-    return ($db->affected_rows() === 1) ? true : false;
+    return $db->affected_rows() === 1;
    }
+  return false;
 }
+
 /*--------------------------------------------------------------*/
 /* Function for Count id  By table name
 /*--------------------------------------------------------------*/
@@ -63,20 +67,22 @@ function count_by_id($table){
     $result = $db->query($sql);
      return($db->fetch_assoc($result));
   }
+  return -1;
 }
+
 /*--------------------------------------------------------------*/
 /* Determine if database table exists
 /*--------------------------------------------------------------*/
 function tableExists($table){
   global $db;
-  $table_exit = $db->query('SHOW TABLES FROM '.DB_NAME.' LIKE "'.$db->escape($table).'"');
-      if($table_exit) {
-        if($db->num_rows($table_exit) > 0)
+  $table_exist = $db->query('SHOW TABLES FROM '.DB_NAME.' LIKE "'.$db->escape($table).'"');
+      if($table_exist) {
+        if($db->num_rows($table_exist) > 0)
               return true;
-         else
-              return false;
       }
+      return false;
   }
+
  /*--------------------------------------------------------------*/
  /* Login with the data provided in $_POST,
  /* coming from the login form.
@@ -96,6 +102,7 @@ function tableExists($table){
     }
    return false;
   }
+
   /*--------------------------------------------------------------*/
   /* Login with the data provided in $_POST,
   /* coming from the login_v2.php form.
@@ -123,7 +130,6 @@ function tableExists($table){
   /*--------------------------------------------------------------*/
   function current_user(){
       static $current_user;
-      global $db;
       if(!$current_user){
          if(isset($_SESSION['user_id'])):
              $user_id = intval($_SESSION['user_id']);
@@ -132,71 +138,82 @@ function tableExists($table){
       }
     return $current_user;
   }
+
   /*--------------------------------------------------------------*/
   /* Find all user by
   /* Joining users table and user gropus table
   /*--------------------------------------------------------------*/
   function find_all_user(){
-      global $db;
-      $results = array();
+
       $sql = "SELECT u.id,u.name,u.username,u.user_level,u.status,u.last_login,";
       $sql .="g.group_name ";
       $sql .="FROM users u ";
       $sql .="LEFT JOIN user_groups g ";
       $sql .="ON g.group_level=u.user_level ORDER BY u.name ASC";
-      $result = find_by_sql($sql);
-      return $result;
+      return find_by_sql($sql);
   }
+
   /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
   /*--------------------------------------------------------------*/
 
  function updateLastLogIn($user_id)
 	{
-		global $db;
+	global $db;
     $date = make_date();
     $sql = "UPDATE users SET last_login='{$date}' WHERE id ='{$user_id}' LIMIT 1";
     $result = $db->query($sql);
-    return ($result && $db->affected_rows() === 1 ? true : false);
+    return $result && $db->affected_rows() === 1;
 	}
 
   /*--------------------------------------------------------------*/
-  /* Find all Group name
+  /* Find if group name exists
   /*--------------------------------------------------------------*/
   function find_by_groupName($val)
   {
     global $db;
     $sql = "SELECT group_name FROM user_groups WHERE group_name = '{$db->escape($val)}' LIMIT 1 ";
     $result = $db->query($sql);
-    return($db->num_rows($result) === 0 ? true : false);
+    return $db->num_rows($result) === 0;
   }
+
   /*--------------------------------------------------------------*/
-  /* Find group level
+  /* Find whether or not the group level exists
   /*--------------------------------------------------------------*/
   function find_by_groupLevel($level)
   {
     global $db;
     $sql = "SELECT group_level FROM user_groups WHERE group_level = '{$db->escape($level)}' LIMIT 1 ";
     $result = $db->query($sql);
-    return($db->num_rows($result) === 0 ? true : false);
+    return $db->num_rows($result) === 0;
   }
+
+/*--------------------------------------------------------------*/
+/* Find whether or not the group level is active
+ /*--------------------------------------------------------------*/
+function get_Group_status($level)
+{
+    global $db;
+    $sql = "SELECT group_status FROM user_groups WHERE group_level = '{$db->escape($level)}' LIMIT 1 ";
+    return $db->query($sql);
+}
+
   /*--------------------------------------------------------------*/
-  /* Function for cheaking which user level has access to page
+  /* Function for checking which user level has access to page
   /*--------------------------------------------------------------*/
    function page_require_level($require_level){
      if($require_level){
        global $session;
        $current_user = current_user();
-       $login_level = find_by_groupLevel($current_user['user_level']);
-       //if user not login
-       if (!$session->isUserLoggedIn(true)):
+       //if user not logged in
+       if (!$session->isUserLoggedIn()):
               $session->msg('d','Please login...');
               redirect('login.php', false);
-        //if Group status Deactive
-       elseif($login_level['group_status'] === '0'):
+        //if Group status is inactive
+       elseif(get_Group_status($current_user['user_level']) === '0'):
              $session->msg('d','This level user has been banned!');
              redirect('home.php',false);
-        //cheackin log in User level and Require level is Less than or equal to
+        //checking log in User level and Require level is Less than or equal to
        elseif($current_user['user_level'] <= (int)$require_level):
                 return true;
         else:
@@ -204,15 +221,15 @@ function tableExists($table){
               redirect('home.php', false);
           endif;
      }
-
+    return false;
    }
+
    /*--------------------------------------------------------------*/
    /* Function for Finding all product name
    /* JOIN with categorie  and media database table
    /*--------------------------------------------------------------*/
   function join_product_table(){
-     global $db;
-     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
+    $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price,categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType";
     $sql  .=" ,c.name AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
@@ -220,22 +237,26 @@ function tableExists($table){
     $sql  .=" ORDER BY p.id ASC";
     return find_by_sql($sql);
    }
+
+/*--------------------------------------------------------------*/
+/* Returns an array of product ids sorted from
+/* smallest to largest by price per piece
+/*--------------------------------------------------------------*/
 function assignArray($catID)
 {
     $sql = " SELECT p.id";
     $sql .= " FROM products p";
-    $sql .= " WHERE p.categorie_id={$catID} ";
+    $sql .= " WHERE p.categorie_id={$catID} AND p.quantity > 0 ";
     $sql .= " ORDER BY p.price_per_piece ASC";
-
     return find_by_sql($sql);
 }
 
 /*--------------------------------------------------------------*/
 /* Function for Finding all products with stock
-/* JOIN with categorie  and media database table
+/* JOIN with 'categorie' and media database table
 /*--------------------------------------------------------------*/
 function join_product_table_wstock(){
-    global $db;
+
     $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price, categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType, p.price_per_piece";
     $sql  .=" ,c.name AS categorie,m.file_name AS image";
     $sql  .=" FROM products p";
@@ -245,24 +266,27 @@ function join_product_table_wstock(){
     $sql  .=" ORDER BY p.id ASC";
     return find_by_sql($sql);
 }
-  function insertPrice($price, $product){
-    
+
+/*--------------------------------------------------------------*/
+/* Function for setting the price per piece for each product
+/*--------------------------------------------------------------*/
+    function insertPrice($price, $product){
+
     global $db;
+    $sql = "UPDATE products SET price_per_piece='{$price}' WHERE id ='{$product['id']}'";
+    return $db->query($sql);
+    }
 
-$sql = "UPDATE products SET price_per_piece='{$price}' WHERE id ='{$product['id']}'";
-return $db->query($sql);
-
-
-  }
    function join_notification_table(){
-      global $db;
-     $sql  =" SELECT n.id,n.messageContent";
+
+    $sql  =" SELECT n.id,n.messageContent";
     $sql  .=" ,m.name AS type";
     $sql  .=" FROM notifications n";
     $sql  .=" LEFT JOIN messagetype m ON m.id = n.messageType";
     $sql  .=" ORDER BY n.id ASC";
     return find_by_sql($sql);
    }
+
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest
@@ -272,8 +296,7 @@ return $db->query($sql);
      global $db;
      $p_name =  ($db->escape($product_name));
      $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
-     $result = find_by_sql($sql);
-     return $result;
+     return find_by_sql($sql);
    }
 
   /*--------------------------------------------------------------*/
@@ -281,20 +304,21 @@ return $db->query($sql);
   /* Request coming from ajax.php
   /*--------------------------------------------------------------*/
   function find_all_product_info_by_title($title){
-    global $db;
     $sql  = "SELECT * FROM products ";
     $sql .= " WHERE name ='{$title}'";
     $sql .=" LIMIT 1";
     return find_by_sql($sql);
   }
+
   function get_messageContent($type){
-    global $db;
+
   $sql = "SELECT messageContent FROM notifications"; 
   $sql .= "WHERE messageType = '{$type}'";
   $sql .= "LIMIT 1";
   return  find_by_sql($sql);
 
   }
+
   /*--------------------------------------------------------------*/
   /* Function for Update product quantity
   /*--------------------------------------------------------------*/
@@ -304,7 +328,7 @@ return $db->query($sql);
     $id  = (int)$p_id;
     $sql = "UPDATE products SET quantity=quantity -'{$qty}' WHERE id = '{$id}'";
     $result = $db->query($sql);
-    return($db->affected_rows() === 1 ? true : false);
+    return $db->affected_rows() === 1;
 
   }
   /*--------------------------------------------------------------*/
@@ -335,13 +359,13 @@ return $db->query($sql);
  /* Function for find all sales
  /*--------------------------------------------------------------*/
  function find_all_sale(){
-   global $db;
    $sql  = "SELECT s.id,s.qty,s.price,s.date,p.name";
    $sql .= " FROM sales s";
    $sql .= " LEFT JOIN products p ON s.product_id = p.id";
    $sql .= " ORDER BY s.date DESC";
    return find_by_sql($sql);
  }
+
  /*--------------------------------------------------------------*/
  /* Function for Display Recent sale
  /*--------------------------------------------------------------*/
@@ -353,6 +377,7 @@ function find_recent_sale_added($limit){
   $sql .= " ORDER BY s.date DESC LIMIT ".$db->escape((int)$limit);
   return find_by_sql($sql);
 }
+
 /*--------------------------------------------------------------*/
 /* Function for Generate sales report by two dates
 /*--------------------------------------------------------------*/
@@ -372,11 +397,11 @@ function find_sale_by_dates($start_date,$end_date){
   $sql .= " ORDER BY DATE(s.date) DESC";
   return $db->query($sql);
 }
+
 /*--------------------------------------------------------------*/
 /* Function for Generate Daily sales report
 /*--------------------------------------------------------------*/
 function  dailySales($year,$month){
-  global $db;
   $sql  = "SELECT s.qty,";
   $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
@@ -390,7 +415,6 @@ function  dailySales($year,$month){
 /* Function for Generate Monthly sales report
 /*--------------------------------------------------------------*/
 function  monthlySales($year){
-  global $db;
   $sql  = "SELECT s.qty,";
   $sql .= " DATE_FORMAT(s.date, '%Y-%m-%e') AS date,p.name,";
   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price";
@@ -409,21 +433,18 @@ function trackVisit($visit_id, $ip){
 }
 
 function getVisitCount(){
-  global $db;
   $sql = "SELECT COUNT(*) AS visits FROM site_visits;";
   return find_by_sql($sql);
 }
 
 function getunVisitCount(){
-    global $db;
     $sql = "SELECT COUNT(DISTINCT ip) AS visits FROM site_visits;";
     return find_by_sql($sql);
 }
 
+/*
 function getVisitsBetween($fromDate, $toDate){
 
-      //$sql.= "WHERE time >= 2020-07-01T00:00:00.000 AND
-      //`time` <= '2020-07-08T03:53:04.000
       global $db;
       $fromDate  = date("Y-m-d", strtotime($fromDate));
       $toDate    = date("Y-m-d", strtotime($toDate));
@@ -431,5 +452,6 @@ function getVisitsBetween($fromDate, $toDate){
       $sql .= " WHERE time >= '{$fromDate}' AND <= '{$toDate}'";
       return $db->query($sql);
 }
+*/
 
 ?>

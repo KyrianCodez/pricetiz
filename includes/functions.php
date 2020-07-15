@@ -66,7 +66,7 @@ function display_msg($msg =''){
 
 function display_notification($notifications)
 {
-    $output; 
+
     if (isset($notifications[0]['type'])) {
      
     if ($notifications[0]['type'] === 'PSA') {
@@ -76,7 +76,6 @@ function display_notification($notifications)
     }
     }
     return 'false';
-}
 
 }
 /*--------------------------------------------------------------*/
@@ -102,7 +101,6 @@ insertPrice($price, $product);
 }
 
 function setBestInClassFlag($all_categories){
-
     $best_cat_arr=array();
     foreach ($all_categories as $cat) {
         $catID = $cat['id'];

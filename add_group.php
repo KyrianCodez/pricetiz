@@ -47,7 +47,7 @@
     <div class="text-center">
        <h3>Add new user Group</h3>
      </div>
-     <?php echo display_msg($msg); ?>
+
       <form method="post" action="add_group.php" class="clearfix">
         <div class="form-group">
               <label for="name" class="control-label">Group Name</label>

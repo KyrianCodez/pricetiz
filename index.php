@@ -12,7 +12,6 @@ ob_start();
   $notifications = join_notification_table();
   $all_categories = find_all('categories');
   $best_deal_arr = setBestInClassFlag($all_categories);
-  print_r($best_deal_arr);
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -102,10 +101,10 @@ ob_start();
                                             <th> ProductType</th>
                                             <th> Product Title </th>
                                             <th class="text-center" style="width: 20%;">Type</th>
-                                            <th class="text-center" style="width: 20%;"> SubType </th>
+                                            <!--<th class="text-center" style="width: 20%;"> SubType </th>-->
+                                            <th class="text-center" style="width: 20%;"> Best Deal in Type</th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
                                             <th class="text-center" style="width: 20%;"> Price per piece</th>
-                                            <th class="text-center" style="width: 20%;"> Best Deal in Type</th>
                                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
                                             <th class="text-center" style="width: 50%;"> Product Added </th>
@@ -135,7 +134,8 @@ ob_start();
                                                 <?php endif; ?>
                                                 </a>
                                             </td>
-                                            <td> <?php echo remove_junk($product['purchaseType']); ?></td>
+                                            <td> <?php echo remove_junk($product['purchaseType']); ?>
+                                            </td>
                                             <td> <?php echo remove_junk($product['name']); ?>
                                                 <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
                                                         aria-controls="flashMessage1" class="btn btn-xs btn-chat" title="Share"
@@ -144,8 +144,18 @@ ob_start();
                                                 </button></td>
                                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?>
                                             </td>
-                                            <td class="text-center"> <?php echo $product['subType']; ?></td>
-
+                                            <td>
+                                                <?php
+                                                //echo "pid= ".$product['id'];
+                                                //echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
+                                                if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
+                                                    echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";}
+                                                else{
+                                                    //echo "Nah";
+                                                }
+                                                ?>
+                                            </td>
+                                            <!--<td class="text-center"> <?php echo $product['subType']; ?></td>-->
                                             <td class="text-center">
                                                 <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
                                             </td>
@@ -154,16 +164,7 @@ ob_start();
                                             <td class="text-center">
                                                $<?php calculatePrice($product, $all_categories); ?>
                                             </td>
-                                            <td>
-                                            <?php
-                                            echo "pid= ".$product['id'];
-                                            echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
-                                            if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-                                            echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";}
-                                            else{
-                                            echo "Nah";}
-                                            ?>
-                                             </td>
+
                                             <td class="text-center"> <?php echo  ($product['quantity']); ?>
                                             </td>
                                             <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
