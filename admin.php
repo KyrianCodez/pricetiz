@@ -88,21 +88,6 @@
        </div>
     </div>
 </div>
-<div class="panel-body">
-    <form class="clearfix" method="post" action="view_stats.php">
-        <div class="form-group">
-            <label class="form-label">Date Range</label>
-            <div class="input-group">
-                <input type="text" class="datepicker form-control" name="start-date" placeholder="From">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-menu-right"></i></span>
-                <input type="text" class="datepicker form-control" name="end-date" placeholder="To">
-            </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" name="submit" class="btn btn-primary">Get Visit Stats</button>
-        </div>
-    </form>
-</div>
   <div class="row">
    <div class="col-md-12">
       <div class="panel">

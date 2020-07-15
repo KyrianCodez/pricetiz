@@ -66,7 +66,7 @@ function display_msg($msg =''){
 
 function display_notification($notifications)
 {
-    $output; 
+
     if (isset($notifications[0]['type'])) {
      
     if ($notifications[0]['type'] === 'PSA') {
@@ -76,9 +76,40 @@ function display_notification($notifications)
     }
     }
     return 'false';
+
+}
+/*--------------------------------------------------------------*/
+/* Function for calculating Price
+/*--------------------------------------------------------------*/
+
+function calculatePrice($product, $all_categories){
+  if (empty($product['singleValue'] && $product['buy_price'])) {
+    echo "N/A";
+}else{
+
+$price=bcdiv($product['buy_price'] / $product['singleValue'],1,2);
+     
+  echo $price;
+  
+  
+                                      
+}                                    
+ //inserts price calculation into database for retrieval 
+insertPrice($price, $product);
+
+                                         
 }
 
-
+function setBestInClassFlag($all_categories){
+    $best_cat_arr=array();
+    foreach ($all_categories as $cat) {
+        $catID = $cat['id'];
+        $best_arr = assignArray($catID);
+        $best_prod = $best_arr[0][0];
+        $best_cat_arr[$catID] = $best_prod;
+    }
+    return $best_cat_arr;
+}
 
 /*--------------------------------------------------------------*/
 /* Function for redirect
