@@ -6,8 +6,8 @@
    page_require_level(1);
    $visits = getVisitCount()[0]["visits"];
    $unvisits = getunVisitCount()[0]["visits"];
-   $dailyVisits = getDailyVisits();
-   $dailyVisitors = getDailyVisitors();
+   $dailyVisits = getDailyVisits()[0]["visits"];
+   $dailyVisitors = getDailyVisitors()[0]["visits"];
 ?>
 <?php
  $c_categorie     = count_by_id('categories');
