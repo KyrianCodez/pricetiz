@@ -441,6 +441,13 @@ function getunVisitCount(){
     $sql = "SELECT COUNT(DISTINCT ip) AS visits FROM site_visits;";
     return find_by_sql($sql);
 }
+function getDailyVisits(){
+  $sql ="SELECT COUNT(`ip`) FROM `site_visits` where DATE_FORMAT(time, '%Y-%m-%e') = CURRENT_DATE";
+}
+function getDailyVisitors()
+{
+    $sql = "SELECT COUNT(DISTINCT ip) FROM `site_visits` where DATE_FORMAT(time, '%Y-%m-%e') = CURRENT_DATE";
+}
 
 /*
 function getVisitsBetween($fromDate, $toDate){
