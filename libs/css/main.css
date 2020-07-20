@@ -181,7 +181,20 @@ header>.logo {
   line-height: 60px;
   padding: 0 15px;
 }
-
+.blinking{
+animation: blink normal 2s infinite ease-in-out;;
+}
+@keyframes blink{
+	 0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
 .info-menu li.profile {
   position: relative;
 }

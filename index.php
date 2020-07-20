@@ -152,7 +152,7 @@ ob_start();
                                                 //echo "pid= ".$product['id'];
                                                 //echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
                                                 if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-                                                    echo "<img class='img-avatar img-circle' src = './uploads/products/great_value.png'>";}
+                                                    echo "<img class='img-avatar img-circle blinking' src = './uploads/products/great_value.png'>";}
                                                 else{
                                                     //echo "Nah";
                                                 }
@@ -280,7 +280,7 @@ ob_start();
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
                 "scrollX": true,
-                "scrollY": '65vh',
+                "scrollY": false,
                 "scrollCollapse": false,
                 "paging": true
             } );
