@@ -152,7 +152,7 @@ ob_start();
                                                 //echo "pid= ".$product['id'];
                                                 //echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
                                                 if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-                                                    echo "<img class='img-avatar img-circle' src = '/uploads/products/great value.png'>";}
+                                                    echo "<img class='img-avatar img-circle' src = '/uploads/products/greatvalue.png'>";}
                                                 else{
                                                     //echo "Nah";
                                                 }
