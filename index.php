@@ -280,7 +280,8 @@ ob_start();
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
                 "scrollX": true,
-                "scrollY":  '55vh',
+                "height":  '55vh',
+                "scrollY": false,
                 "scrollCollapse": false,
                 "paging": true
             } );

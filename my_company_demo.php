@@ -85,7 +85,7 @@ if (!$is_tracked) {
 
 
                 </div>
-<div class="jumbotron jumbotron-fluid banner blinking">
+<div class="jumbotron jumbotron-fluid banner">
   <div class="container">
   
     
@@ -283,8 +283,9 @@ else{
 
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
-                "scrollX": true,
-                "scrollY": '55vh',
+                 "scrollX": true,
+                "height":  '55vh',
+                "scrollY": false,
                 "scrollCollapse": false,
                 "paging": true
             } );
