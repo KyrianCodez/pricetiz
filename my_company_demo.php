@@ -1,35 +1,34 @@
 <?php
 ob_start();
- 
-  $page_title = 'All Products - Pricetize';
-  require_once('includes/load.php');
 
+$page_title = 'All Products - Pricetize';
+require_once('includes/load.php');
 
-  // Checkin What level user has permission to view this page
-   page_require_level(false);
-  //$products = join_product_table();
-  $products = join_product_table_wstock();
-  $notifications = join_notification_table();
-  $all_categories = find_all('categories');
-//   $best_deal_arr = setBestInClassFlag($all_categories);
+// Checkin What level user has permission to view this page
+page_require_level(false);
+//$products = join_product_table();
+$products = join_product_table_wstock();
+$notifications = join_notification_table();
+$all_categories = find_all('categories');
+  $best_deal_arr = setBestInClassFlag($all_categories);
 //  session_start();
-  
-  $is_tracked = $_SESSION["TRACKED"];
-  //$is_tracked_txt = $is_tracked?"yes":"not yet";
-  $session_id = session_id();
-  //echo "is tracked? $is_tracked_txt<br>";
+
+$is_tracked = $_SESSION["TRACKED"];
+//$is_tracked_txt = $is_tracked?"yes":"not yet";
+$session_id = session_id();
+//echo "is tracked? $is_tracked_txt<br>";
 //  echo "session id: $session_id<br>";
 
-  $user_ip = $_SERVER["REMOTE_ADDR"];
-  if(!$is_tracked){
-    if(trackVisit($session_id, $user_ip)){
+$user_ip = $_SERVER["REMOTE_ADDR"];
+if (!$is_tracked) {
+    if (trackVisit($session_id, $user_ip)) {
         $_SESSION["TRACKED"] = true;
-   }
-  }
+    }
+}
 
 ?>
 
-<?php if(!$_POST): ?>
+<?php if (!$_POST): ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,13 +37,13 @@ ob_start();
     <meta charset="UTF-8">
     <title>
         <?php if (!empty($page_title)) {
-            echo  ($page_title);
-            } elseif (!empty($user)) {
-                echo ucfirst($user['name']);
-            } else {
-                echo "Simple inventory System";
-            }
-        ?>
+    echo ($page_title);
+} elseif (!empty($user)) {
+    echo ucfirst($user['name']);
+} else {
+    echo "Simple inventory System";
+}
+?>
 
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
@@ -68,14 +67,14 @@ ob_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <?php if(display_notification($notifications)==='false'): ?>
+                    <?php if (display_notification($notifications) === 'false'): ?>
                     <div class="notification alert alert-success" style="display: none">
                     <?php else: ?>
                         <div class="notification alert alert-success">
-                    <?php endif; ?>
+                    <?php endif;?>
                             <a id ="x" title="Click to Close" href="#" class="close red"
                                data-dismiss="alert" data-toggle="tooltip" data-placement="bottom">&times;</a>
-                            <?php echo display_notification($notifications);?>
+                            <?php echo display_notification($notifications); ?>
                         </div>
                             <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
                      <p class="short">Product Link Copied.</p>
@@ -86,11 +85,16 @@ ob_start();
 
 
                 </div>
-
+<div class="jumbotron jumbotron-fluid banner blinking">
+  <div class="container">
+  
+    
+  </div>
+</div>
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
-                            <?php if(display_notification($notifications)==='false'): ?>
+                            <?php if (display_notification($notifications) === 'false'): ?>
                                 <div class="panel-body1 containerishere">
                             <?php else: ?>
                                 <div id="paneljr" class="panel-body1 panel-bodyjr containerishere">
@@ -121,12 +125,12 @@ ob_start();
                                         </tr>
                                     </thead>
                                     <tbody id="product-table-body">
-                                        <?php foreach ($products as $product):?>
+                                        <?php foreach ($products as $product): ?>
                                         <tr>
-                                            <td class="text-center"><?php echo count_id();?></td>
+                                            <td class="text-center"><?php echo count_id(); ?></td>
                                             <td class="details">
-                                                <a href="view_product.php?id=<?php echo (int)$product['id'];?>">
-                                                <?php if($product['media_id'] === '0'): ?>
+                                                <a href="view_product.php?id=<?php echo (int) $product['id']; ?>">
+                                                <?php if ($product['media_id'] === '0'): ?>
                                                 <img class="img-avatar img-circle" src="uploads/products/new_no_image.jpg"
                                                      title="Click for details" alt="Image unavailable.">
                                                 <?php else: ?>
@@ -134,13 +138,13 @@ ob_start();
                                                     src="uploads/products/<?php echo $product['image']; ?>"
                                                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"
                                                      title="Click for details" alt="Product Image.">
-                                                <?php endif; ?>
+                                                <?php endif;?>
                                                 </a>
                                             </td>
                                             <td> <?php echo remove_junk($product['purchaseType']); ?>
                                             </td>
                                             <td> <?php echo remove_junk($product['name']); ?>
-                                                <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
+                                                <button onclick="copyToClipboard(<?php echo (int) $product['id']; ?>); return false;"
                                                         aria-controls="flashMessage1" class="btn btn-xs btn-chat" title="Share"
                                                         data-toggle="tooltip">
                                                     <span class="glyphicon glyphicon-share"></span>Share
@@ -149,72 +153,72 @@ ob_start();
                                             </td>
                                             <td>
                                                 <?php
-                                                //echo "pid= ".$product['id'];
-                                                //echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
-                                                if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-                                                    echo "<img class='img-avatar img-circle blinking' src = './uploads/products/great_value.png'>";}
-                                                else{
-                                                    //echo "Nah";
-                                                }
-                                                ?>
+// echo "pid= ".$product['id'];
+// echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
+if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
+    echo "<img class='img-avatar img-circle blinking' src = './uploads/products/great_value.png'>";}
+else{
+    //echo "Nah";
+}
+?>
                                             </td>
                                             <!--<td class="text-center"> <?php echo $product['subType']; ?></td>-->
                                             <td class="text-center">
-                                                <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
+                                                <?php echo ($product['singleValue'] . "  " . $product['singleUnits']); ?>
                                             </td>
 
 
                                             <td class="text-center">
-                                               $<?php calculatePrice($product, $all_categories); ?>
+                                               $<?php calculatePrice($product, $all_categories);?>
                                             </td>
 
-                                            <td class="text-center"> <?php echo  ($product['quantity']); ?>
+                                            <td class="text-center"> <?php echo ($product['quantity']); ?>
                                             </td>
-                                            <td class="text-center"> $<?php echo  ($product['buy_price']); ?>
+                                            <td class="text-center"> $<?php echo ($product['buy_price']); ?>
                                             </td>
                                             <td class="text-center"> <?php echo read_date($product['date']); ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["itemLink"])|| $product['itemLink']==="N/A") :?>
+                                                <?php if (empty($product["itemLink"]) || $product['itemLink'] === "N/A"): ?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i>
                                                 <a target='_blank' href="<?php echo $product['itemLink']; ?>">Item
                                                     Link</a>
-                                                <?php endif; ?>
+                                                <?php endif;?>
                                             </td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["reviewLink"])|| $product['reviewLink']==="N/A") :?>
+                                                <?php if (empty($product["reviewLink"]) || $product['reviewLink'] === "N/A"): ?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="rlink fab fa-youtube "></i>
-                                                <a target='_blank' href="<?php echo  $product['reviewLink']; ?>">Review
+                                                <a target='_blank' href="<?php echo $product['reviewLink']; ?>">Review
                                                     Link</a>
-                                                <?php endif; ?>
+                                                <?php endif;?>
                                             </td>
 
                                             <td class="text-center"> <?php echo $product['company']; ?></td>
 
                                             <td class="text-center">
-                                                <?php if(empty ($product["website"])|| $product['website']==="N/A") :?>
+                                                <?php if (empty($product["website"]) || $product['website'] === "N/A"): ?>
                                                 No Link
                                                 <?php else: ?>
                                                 <i class="fas fa-external-link-alt link"></i><a target='_blank'
                                                     href="<?php echo $product['website']; ?>">Website</a>
-                                                <?php endif; ?>
+                                                <?php endif;?>
                                             </td>
-                                            <td class="text-center"> <?php echo  ($product['city']); ?></td>
-                                            <td class="text-center"> <?php echo  ($product['zipcode']); ?>
+                                            <td class="text-center"> <?php echo ($product['city']); ?></td>
+                                            <td class="text-center"> <?php echo ($product['zipcode']); ?>
                                             </td>
-                                            <?php if(empty ($product["phone"])||strpos($product['phone'], 'N') !== false):?>
+                                            <?php if (empty($product["phone"]) || strpos($product['phone'], 'N') !== false): ?>
                                               <td class="text-center">N/A </td>
                                               <?php else: ?>
-                                            <td class="text-center"><a href="tel:<?php echo  ($product['phone']); ?>">
-                                            <?php echo  ($product['phone']); ?></a> </td>
-                                            <?php endif; ?>
+                                            <td class="text-center"><a href="tel:<?php echo ($product['phone']); ?>">
+                                            <?php echo ($product['phone']); ?></a> </td>
+                                            <?php endif;?>
                                         </tr>
-                                        <?php endforeach; ?>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
@@ -280,7 +284,7 @@ ob_start();
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
                 "scrollX": true,
-                "scrollY":  '55vh',
+                "scrollY": '55vh',
                 "scrollCollapse": false,
                 "paging": true
             } );
@@ -414,6 +418,6 @@ ob_start();
         }
 
     </script>
-    <?php include_once('layouts/footer.php'); ?>
-<?php endif; ?>
+    <?php include_once 'layouts/footer.php';?>
+<?php endif;?>
 

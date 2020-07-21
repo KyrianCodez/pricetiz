@@ -9,7 +9,7 @@ body {
 }
 
 .noscroll{
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 .notification{
   
@@ -198,7 +198,19 @@ animation: blink normal 2s infinite ease-in-out;;
 .info-menu li.profile {
   position: relative;
 }
-
+ 
+.banner{
+   
+    background-image: url("../../uploads/products/banner1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 768px;
+    height: 90px;
+    border-radius: 6px;
+    left: 50%;
+    margin: 0 auto;
+   
+}
 .profile a.toggle {
   text-decoration: none;
   text-align: center;
@@ -603,7 +615,7 @@ img.img-size-2 {
 .container {
   /*width: 800px;*/
   width: fit-content;
-  background: #0000000f;
+ 
   margin: 10px;
   padding: 30px;
   border-radius: 10px;
