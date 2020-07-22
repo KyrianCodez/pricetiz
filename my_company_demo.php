@@ -1,6 +1,6 @@
 <?php
 ob_start();
-
+error_reporting(0);
 $page_title = 'All Products - Pricetize';
 require_once('includes/load.php');
 
@@ -85,12 +85,15 @@ if (!$is_tracked) {
 
 
                 </div>
+                <a href ="https://getbootstrap.com/docs/4.0/examples/jumbotron/" target="_blank">
 <div class="jumbotron jumbotron-fluid banner">
+                    
   <div class="container">
   
     
   </div>
 </div>
+</a>
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
@@ -145,7 +148,7 @@ if (!$is_tracked) {
                                             </td>
                                             <td> <?php echo remove_junk($product['name']); ?>
                                                 <button onclick="copyToClipboard(<?php echo (int) $product['id']; ?>); return false;"
-                                                        aria-controls="flashMessage1" class="btn btn-xs btn-chat" title="Share"
+                                                        aria-controls="flashMessage1" class="btn btn-xs btn-share" title="Share"
                                                         data-toggle="tooltip">
                                                     <span class="glyphicon glyphicon-share"></span>Share
                                                 </button></td>
@@ -283,8 +286,7 @@ else{
 
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
-                 "scrollX": true,
-                "height":  '55vh',
+                "scrollX": true,
                 "scrollY": false,
                 "scrollCollapse": false,
                 "paging": true

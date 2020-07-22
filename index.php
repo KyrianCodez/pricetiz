@@ -1,6 +1,7 @@
 <?php
 ob_start();
- 
+ error_reporting(0);
+
   $page_title = 'All Products - Pricetize';
   require_once('includes/load.php');
 
@@ -141,7 +142,7 @@ ob_start();
                                             </td>
                                             <td> <?php echo remove_junk($product['name']); ?>
                                                 <button onclick="copyToClipboard(<?php echo (int)$product['id'];?>); return false;"
-                                                        aria-controls="flashMessage1" class="btn btn-xs btn-chat" title="Share"
+                                                        aria-controls="flashMessage1" class="btn btn-xs btn-share" title="Share"
                                                         data-toggle="tooltip">
                                                     <span class="glyphicon glyphicon-share"></span>Share
                                                 </button></td>
