@@ -268,6 +268,22 @@ function join_product_table_wstock(){
 }
 
 /*--------------------------------------------------------------*/
+/* Function for Finding all products with stock
+/* JOIN with 'categorie' and media database table
+/*--------------------------------------------------------------*/
+function get_products_by_category($cat){
+
+    $sql  =" SELECT p.id,c.subType,p.name,p.quantity,p.buy_price,p.sale_price, categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType, p.price_per_piece";
+    $sql  .=" ,c.name AS categorie,m.file_name AS image";
+    $sql  .=" FROM products p";
+    $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
+    $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
+    $sql  .=" WHERE (p.quantity > 0) AND categorie_id = '{$cat}'" ;
+    $sql  .=" ORDER BY p.id ASC";
+    return find_by_sql($sql);
+}
+
+/*--------------------------------------------------------------*/
 /* Function for setting the price per piece for each product
 /*--------------------------------------------------------------*/
     function insertPrice($price, $product){
