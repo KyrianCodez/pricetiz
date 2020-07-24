@@ -533,8 +533,12 @@ td img.img-thumbnail {
     }
 }
 .img-avatar {
-  width: 50px;
-  height: 50px;
+  width: 7.125rem;
+  height: 7.125rem;
+}
+.bestClass{
+  width: 8.125rem;
+  height: 7.125rem;
 }
 
 .jumbotron {

@@ -12,7 +12,7 @@ ob_start();
   $products = join_product_table_wstock();
   $notifications = join_notification_table();
   $all_categories = find_all('categories');
-//   $best_deal_arr = setBestInClassFlag($all_categories);
+  $best_deal_arr = setBestInClassFlag($all_categories);
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -153,7 +153,7 @@ ob_start();
                                                 //echo "pid= ".$product['id'];
                                                 //echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
                                                 if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-                                                    echo "<img class='img-avatar img-circle blinking' src = './uploads/products/great_value.png'>";}
+                                                    echo "<img class='bestClass img-circle blinking' src = './uploads/products/bestClass.png'>";}
                                                 else{
                                                     //echo "Nah";
                                                 }

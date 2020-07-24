@@ -110,14 +110,14 @@ if (!$is_tracked) {
                                             <th> Photo</th>
                                             <th> ProductType</th>
                                             <th> Product Title </th>
-                                            <th class="text-center" style="width: 20%;">Type</th>
+                                            <th class="text-center" style="width: 20%;">Class</th>
                                             <!--<th class="text-center" style="width: 20%;"> SubType </th>-->
-                                            <th class="text-center" style="width: 20%;"> Best Deal in Type</th>
+                                            <th class="text-center" style="width: 20%;"> Best in Class</th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
                                             <th class="text-center" style="width: 20%;"> Price per piece</th>
-                                            <th class="text-center" style="width: 20%;"> No. of products in stock </th>
                                             <th class="text-center" style="width: 20%;"> Price </th>
-                                            <th class="text-center" style="width: 50%;"> Product Added </th>
+                                            <th class="text-center" style="width: 20%;"> No. of products in stock </th>
+                                            <!-- <th class="text-center" style="width: 50%;"> Product Added </th> -->
                                             <th class="text-center" style="width: 20%;"> Item Link </th>
                                             <th class="text-center" style="width: 20%;"> Review Link </th>
                                             <th class="text-center" style="width: 20%;"> Company </th>
@@ -159,13 +159,13 @@ if (!$is_tracked) {
 // echo "pid= ".$product['id'];
 // echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
 if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-    echo "<img class='img-avatar img-circle blinking' src = './uploads/products/great_value.png'>";}
+    echo "<img class='bestClass img-circle blinking' src = './uploads/products/bestClass.png'>";}
 else{
     //echo "Nah";
 }
 ?>
                                             </td>
-                                            <!--<td class="text-center"> <?php echo $product['subType']; ?></td>-->
+                                            <!--<td class="text-center"> <?php /* echo $product['subType']; */ ?></td>-->
                                             <td class="text-center">
                                                 <?php echo ($product['singleValue'] . "  " . $product['singleUnits']); ?>
                                             </td>
@@ -175,11 +175,11 @@ else{
                                                $<?php calculatePrice($product, $all_categories);?>
                                             </td>
 
-                                            <td class="text-center"> <?php echo ($product['quantity']); ?>
-                                            </td>
                                             <td class="text-center"> $<?php echo ($product['buy_price']); ?>
                                             </td>
-                                            <td class="text-center"> <?php echo read_date($product['date']); ?></td>
+                                            <td class="text-center"> <?php echo ($product['quantity']); ?>
+                                            </td>
+                                           <!--  <td class="text-center">  --><?php /* echo read_date($product['date']); */ ?><!-- </td> -->
 
                                             <td class="text-center">
                                                 <?php if (empty($product["itemLink"]) || $product['itemLink'] === "N/A"): ?>
