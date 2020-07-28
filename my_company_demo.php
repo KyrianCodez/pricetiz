@@ -85,15 +85,16 @@ if (!$is_tracked) {
 
 
                 </div>
+                <div id="banner-wrapper">
                 <a href ="https://getbootstrap.com/docs/4.0/examples/jumbotron/" target="_blank">
-<div class="jumbotron jumbotron-fluid banner">
+<div id="banner-slide" class="jumbotron jumbotron-fluid banner">
                     
-  <div class="container">
-  
+
     
   </div>
-</div>
+
 </a>
+</div>
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
