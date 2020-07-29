@@ -84,7 +84,7 @@ if(!$is_tracked){
         <div class="col">
             <a href="view_product.php?id=<?php echo (int)$p['id'];?>">
             <div class="card" >
-                <img img-size-2 src="uploads/products/<?php echo $p['image']; ?>"
+                <img class="card-img-top" src="uploads/products/<?php echo $p['image']; ?>"
                 onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
                      title="Click for details" alt="Product Image.">
                 <div class="card-body">
