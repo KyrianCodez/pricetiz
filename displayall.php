@@ -71,7 +71,7 @@ if(!$is_tracked){
 <body  onload="check_browser()">
 <div>
     <span> <h1> Pricetize Products by Catergory </h1>
-        <a href="display.php" class="btn btn-danger">Back to all Categories</a>
+        <a href="display.php" class="btn btn-back">Back to all Categories</a>
 
 </span>
 </div>
@@ -84,9 +84,9 @@ if(!$is_tracked){
         <div class="col">
             <a href="view_product.php?id=<?php echo (int)$p['id'];?>">
             <div class="card" >
-                <img class="card-img-top" src="uploads/products/<?php echo $p['image']; ?>"
+                <img src="uploads/products/<?php echo $p['image']; ?>"
                 onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
-                     title="Click for details" alt="Product Image.">
+                     title="Click for details" alt="Product Image." width="100%" height="100%">
                 <div class="card-body">
                     <p class="card-text"><?php echo $p['name'] ; ?></p>
                 </div>
@@ -101,14 +101,6 @@ if(!$is_tracked){
 
 
 <script type="text/javascript">
-
-    var close_notif = document.getElementById('x');
-
-    close_notif.style.cursor = 'pointer';
-    close_notif.onclick = function() {
-        var panel = document.getElementById("paneljr");
-        panel.setAttribute("class", "panel-body containerishere");
-    };
 
     function copyToClipboard(text) {
         var dummy = document.createElement("textarea");

@@ -18,33 +18,8 @@ body {
 
 }
 
-
-.update {
-  margin-top: 20px;
-}
-
-.cancel{
-  margin-left: 30px;
-}
-
 .card{
   margin-top: 20px;
-}
-
-.bg-green {
-  background-color: #A3C86D;
-}
-
-.bg-blue {
-  background-color: #7ACBEE;
-}
-
-.bg-yellow {
-  background-color: #FDD761;
-}
-
-.bg-red {
-  background-color: #FF7857;
 }
 
 
@@ -294,24 +269,6 @@ ul.submenu li a:before {
   padding: 15px 0;
 }
 
-table td h6 {
-  margin: 0 0 0.2em 0;
-}
-
-table tfoot tr td:first-child {
-  border: 0;
-}
-
-table tfoot tr td:last-child {
-  border-top: 1px solid #ccc;
-}
-
-table td h6,
-table tfoot tr td:last-child {
-  color: #000;
-  _font-size: 1.2em;
-  font-weight: normal;
-}
 
 .form-control {
   color: #646464;
@@ -343,87 +300,26 @@ table tfoot tr td:last-child {
   float: left;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #51aded;
-  border-color: #3d8fd8
+.btn-back{
+  color: white;
+  background-color: #929aff;
+  border-color: #929aff
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:active,
-.btn-primary.active {
-  color: #fff;
-  background-color: #3175b8;
-  border-color: #3d8fd8
+.btn-back:hover,
+.btn-back:focus,
+.btn-back.focus,
+.btn-back:active,
+.btn-back.active {
+  color: white;
+  background-color: #636df1
 }
 
-.btn-success {
-  background-color: #2ecc71
-}
-
-.btn-success:hover,
-.btn-success:focus,
-.btn-success.focus,
-.btn-success:active,
-.btn-success.active {
-  background-color: #27ae60
-}
-
-.btn-warning {
-  background-color: #e7c13e;
-  border-color: #dfba3c;
-}
-
-.btn-warning:hover,
-.btn-warning:focus,
-.btn-warning.focus,
-.btn-warning:active,
-.btn-warning.active {
-  background-color: #d0ac2c;
-  border-color: #dfba3c;
-}
-
-.btn-danger {
-  background-color: #ed5153
-
-}
-
-.btn-danger:hover,
-.btn-danger:focus,
-.btn-danger.focus,
-.btn-danger:active,
-.btn-danger.active {
-  background-color: #bb282a
-}
-
-.btn-chat {
-  color: #ffffff;
-  background-color: #b8cede;
-  border-color: #b8cede;
-}
-
-.btn-chat:hover,
-.btn-chat:active {
-  color: #ffffff;
-  background-color: #36a4f6;
-  border-color: #36a4f6;
-}
 
 .input-group-addon {
   background-color: #fcfcfc;
   border: 1px solid #dbdbdb;
   border-radius: 0;
-}
-
-input[type="search"] {
-  appearance: textfield;
-  -webkit-appearance: textfield;
-}
-
-input[type=file] {
-  text-indent: -99999px;
 }
 
 td img.img-thumbnail {
@@ -483,19 +379,7 @@ img.img-size-2 {
 .no_color{
   border-color: transparent;
 }
-.wide{
-  max-width: fit-content;
-}
 
-.item-table{
-  width:95vh;
-}
-
-
-.red{
-  color: red;
-  font-size: 30px;
-}
 
 /* The Modal (background) */
 .modal {
