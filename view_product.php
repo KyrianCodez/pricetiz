@@ -8,8 +8,8 @@
 $last_page = 0;
 if (isset($_GET["page"])){
     $last_page =(int) $_GET['page'];
-    echo $last_page;
 }
+
 $product = find_by_id('products',(int)$_GET['id']);
 $image = find_by_id('media', (int)$product['media_id']);
 $all_categories = find_all('categories');
