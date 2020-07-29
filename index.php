@@ -90,7 +90,7 @@ ob_start();
                         </div>
                     </div>
                     <button class="btn btn-chat chatOpen">Chat</button>
-                    <button id = "clear" class="btn btn-chat " style="display: none" ><a href="index.php">
+                    <button id = "clear" class="btn btn-chat " style="display: none" ><a href="/">
                             Clear results</a></button>
 
 
