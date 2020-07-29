@@ -150,14 +150,14 @@ ob_start();
                                             </td>
                                             <td>
                                                 <?php
-// echo "pid= ".$product['id'];
-// echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
-if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
-    echo "<img class='bestClass img-circle blinking' src = './uploads/products/bestClass.png'>";}
-else{
-    //echo "Nah";
-}
-?>
+                                            // echo "pid= ".$product['id'];
+                                            // echo "pidarr= ".$best_deal_arr[$product['categorie_id']];
+                                            if ($product['id'] === $best_deal_arr[$product['categorie_id']]){
+                                                echo "<img class='bestClass img-circle blinking' src = './uploads/products/bestClass.png'>";}
+                                            else{
+                                                //echo "Nah";
+                                            }
+                                            ?>
                                             </td>
                                             <!--<td class="text-center"> <?php /* echo $product['subType']; */ ?></td>-->
                                             <td class="text-center">

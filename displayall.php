@@ -82,7 +82,7 @@ if(!$is_tracked){
 
 
         <div class="col">
-            <a href="view_product.php?id=<?php echo (int)$p['id'];?>">
+            <a href="view_product.php?id=<?php echo (int)$p['id'];?>&page=<?php echo (int)$_GET['id']; ?>">
             <div class="card" >
                 <img class="display" src="uploads/products/<?php echo $p['image']; ?>"
                 onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
