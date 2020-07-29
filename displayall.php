@@ -13,7 +13,6 @@ $notifications = join_notification_table();
 $all_categories = find_all('categories');
 $best_deal_arr = setBestInClassFlag($all_categories);
 
-$linecount =0;
 //  session_start();
 
 $is_tracked = $_SESSION["TRACKED"];

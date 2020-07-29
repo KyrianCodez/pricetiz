@@ -13,6 +13,13 @@ ob_start();
   $notifications = join_notification_table();
   $all_categories = find_all('categories');
   $best_deal_arr = setBestInClassFlag($all_categories);
+  $key = "none";
+  if (isset($_GET['key'])) {
+      $key = $_GET['key'];
+      $key = remove_junk($key);
+      unset($_GET['key']);
+  }
+
 //  session_start();
   
   $is_tracked = $_SESSION["TRACKED"];
@@ -83,6 +90,8 @@ ob_start();
                         </div>
                     </div>
                     <button class="btn btn-chat chatOpen">Chat</button>
+                    <button id = "clear" class="btn btn-chat " style="display: none" ><a href="index.php">
+                            Clear results</a></button>
 
 
 
@@ -263,7 +272,6 @@ ob_start();
             var chatOpen = $('.chatOpen');
             var chatWindow = $('#chatWindow');
             var resultsWindow = $('#resultsWindow');
-
             var chatClose = $('.chatClose');
 
             chatOpen.click(function() {
@@ -279,14 +287,31 @@ ob_start();
             });
 
             // $('#productTable').DataTable();
-            $('#productTable').DataTable( {
+            var table = $('#productTable').DataTable( {
                 "scrollX": true,
                 "height":  '55vh',
                 "scrollY": false,
                 "scrollCollapse": false,
                 "paging": true
             } );
+
+            function s() {
+                var results = document.getElementById("clear");
+                if ("<?php echo $key ?>" !=="none" ) {
+                    table.search("<?php echo $key ?>").draw();
+
+                    if (results.style.display === "none") {
+                        results.style.display = "inline";
+                    }
+                }
+                else {
+                    results.style.display = "none";
+                }
+
+            }
+            s();
         });
+
 
         var close_notif = document.getElementById('x');
 
@@ -296,15 +321,7 @@ ob_start();
             panel.setAttribute("class", "panel-body containerishere");
         };
 
-          function copyToClipboard(text) {
-            var dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            var res = window.location.href.split('/');
-            dummy.value = res[2] + "/view_product.php?id=" + text;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-        }
+
 
         (function() {
             var FlashMessage = function(element) {
@@ -389,6 +406,7 @@ ob_start();
         }());
 
         function check_browser(){
+            table.search( "<?php echo $key ?>" ).draw();
             var rv = -1; // Return value assumes failure.
 
             if (navigator.appName == 'Microsoft Internet Explorer'){
