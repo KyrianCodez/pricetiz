@@ -70,8 +70,8 @@ if(!$is_tracked){
 
 <body  onload="check_browser()">
 <div>
-    <a href="product.php" class="btn btn-danger ">Back to all Categories</a>
     <span> <h1> Pricetize Products by Catergory </h1>
+        <a href="display.php" class="btn btn-danger">Back to all Categories</a>
 
 </span>
 </div>
@@ -84,7 +84,7 @@ if(!$is_tracked){
         <div class="col">
             <a href="view_product.php?id=<?php echo (int)$p['id'];?>">
             <div class="card" >
-                <img src="uploads/products/<?php echo $p['image']; ?>"
+                <img img-size-2 src="uploads/products/<?php echo $p['image']; ?>"
                 onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
                      title="Click for details" alt="Product Image.">
                 <div class="card-body">
@@ -100,42 +100,7 @@ if(!$is_tracked){
 
 
 
-
-
-
-
-
-
-
 <script type="text/javascript">
-
-    $(document).ready(function() {
-        var chatOpen = $('.chatOpen');
-        var chatWindow = $('#chatWindow');
-        var resultsWindow = $('#resultsWindow');
-
-        var chatClose = $('.chatClose');
-
-        chatOpen.click(function() {
-            chatWindow.show();
-            resultsWindow.removeClass('col-md-12');
-            resultsWindow.addClass('col-md-8');
-        });
-
-        chatClose.click(function() {
-            chatWindow.hide();
-            resultsWindow.removeClass('col-md-8');
-            resultsWindow.addClass('col-md-12');
-        });
-
-        // $('#productTable').DataTable();
-        $('#productTable').DataTable( {
-            "scrollX": true,
-            "scrollY": '65vh',
-            "scrollCollapse": false,
-            "paging": true
-        } );
-    });
 
     var close_notif = document.getElementById('x');
 

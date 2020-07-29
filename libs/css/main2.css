@@ -10,12 +10,14 @@ body {
 
 .cards {
 
+  margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: auto;
   grid-gap: 1rem;
 
 }
+
 
 .update {
   margin-top: 20px;
@@ -338,7 +340,7 @@ table tfoot tr td:last-child {
   -moz-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
   width: 200px;
-  float: right;
+  float: left;
 }
 
 .btn-primary {
