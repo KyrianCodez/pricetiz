@@ -82,7 +82,7 @@ if(!$is_tracked){
         <div class="col">
             <a href="displayall.php?id=<?php echo (int)$cat['id']; ?>">
                 <div class="card" >
-                    <img src="libs/images/catimage.png" class="card-img-top" alt="..." >
+                    <img class="display" src="libs/images/catimage.png" class="card-img-top" alt="..." >
                     <div class="card-body">
                         <p class="card-text"><?php echo $cat['name'] ; ?></p>
                     </div>
