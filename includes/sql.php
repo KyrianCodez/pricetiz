@@ -268,7 +268,7 @@ function join_product_table_wstock(){
 }
 
 /*--------------------------------------------------------------*/
-/* Function for Finding all products with stock
+/* Function for Finding all products of a category with stock
 /* JOIN with 'categorie' and media database table
 /*--------------------------------------------------------------*/
 function get_products_by_category($cat){
@@ -282,6 +282,7 @@ function get_products_by_category($cat){
     $sql  .=" ORDER BY p.id ASC";
     return find_by_sql($sql);
 }
+
 
 /*--------------------------------------------------------------*/
 /* Function for setting the price per piece for each product

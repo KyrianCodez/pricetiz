@@ -69,37 +69,39 @@ if(!$is_tracked){
 </head>
 
 <body  onload="check_browser()">
+<div>
+    <a href="product.php" class="btn btn-danger ">Back to all Categories</a>
+    <span> <h1> Pricetize Products by Catergory </h1>
 
-<div class=".container-fluid pad-left">
+</span>
+</div>
+<!--                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"-->
+<div class="cards">
 
-    <?php foreach ($products as $cat):?>
-    <?php if ($linecount % 4 === 0): ?>
-    <div class="row" >
-    <?php endif; ?>
+    <?php foreach ($products as $p):?>
+
 
         <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="uploads/products/<?php echo $image['file_name']; ?>" class='prodp'
-                     onerror="this.onerror=null;
-                        this.src='uploads/products/new_no_image.jpg'" alt="">
+            <a href="view_product.php?id=<?php echo (int)$p['id'];?>">
+            <div class="card" >
+                <img src="uploads/products/<?php echo $p['image']; ?>"
+                onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
+                     title="Click for details" alt="Product Image.">
                 <div class="card-body">
-                    <a href=""
-                    <p class="card-text"><?php echo $cat['name'] ; ?></p>
+                    <p class="card-text"><?php echo $p['name'] ; ?></p>
                 </div>
             </div>
+            </a>
         </div>
 
-    <?php if ($linecount % 4 ==3): ?>
-    </div>
-    <?php endif; ?>
-    <?php $linecount++; ?>
+
     <?php endforeach; ?>
         </div>
 
 
 
 
-</div>
+
 
 
 

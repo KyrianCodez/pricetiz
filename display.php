@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-$page_title = 'All Products - Pricetize';
+$page_title = 'Product Display - Pricetize';
 require_once('includes/load.php');
 
 
@@ -68,70 +68,35 @@ if(!$is_tracked){
 </head>
 
 <body  onload="check_browser()">
+<div>
+<span> <h1> Pricetize Products by Catergory </h1>
+</span>
+</div>
 
-<div class=".container-fluid pad-left">
+<!--<div class=".container-fluid pad-left">-->
+<div class = "cards">
 
     <?php foreach ($all_categories as $cat):?>
-    <?php if ($linecount % 4 === 0): ?>
-    <div class="row" >
-    <?php endif; ?>
+
 
         <div class="col">
-            <div class="card" style="width: 18rem;">
-                <img src="libs/images/catimage.png" class="card-img-top" alt="..." height="250" width="200">
-                <div class="card-body">
-                    <a href="displayall.php?id=<?php echo (int)$cat['id']; ?>">
-                    <p class="card-text"><?php echo $cat['name'] ; ?></p>
-                    </a>
+            <a href="displayall.php?id=<?php echo (int)$cat['id']; ?>">
+                <div class="card" >
+                    <img src="libs/images/catimage.png" class="card-img-top" alt="..." >
+                    <div class="card-body">
+                        <p class="card-text"><?php echo $cat['name'] ; ?></p>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
-    <?php if ($linecount % 4 ==3): ?>
-    </div>
-    <?php endif; ?>
-    <?php $linecount++; ?>
+
     <?php endforeach; ?>
-        </div>
-
-
-
-
+<!--        </div>-->
 </div>
 
 
-
-
-
 <script type="text/javascript">
-
-    $(document).ready(function() {
-        var chatOpen = $('.chatOpen');
-        var chatWindow = $('#chatWindow');
-        var resultsWindow = $('#resultsWindow');
-
-        var chatClose = $('.chatClose');
-
-        chatOpen.click(function() {
-            chatWindow.show();
-            resultsWindow.removeClass('col-md-12');
-            resultsWindow.addClass('col-md-8');
-        });
-
-        chatClose.click(function() {
-            chatWindow.hide();
-            resultsWindow.removeClass('col-md-8');
-            resultsWindow.addClass('col-md-12');
-        });
-
-        // $('#productTable').DataTable();
-        $('#productTable').DataTable( {
-            "scrollX": true,
-            "scrollY": '65vh',
-            "scrollCollapse": false,
-            "paging": true
-        } );
-    });
 
     var close_notif = document.getElementById('x');
 
