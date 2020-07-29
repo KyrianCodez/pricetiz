@@ -1,36 +1,34 @@
 <?php
 ob_start();
- error_reporting(0);
+error_reporting(0);
+$page_title = 'All Products - Pricetize';
+require_once('includes/load.php');
 
-  $page_title = 'All Products - Pricetize';
-  require_once('includes/load.php');
-
-
-  // Checkin What level user has permission to view this page
-   page_require_level(false);
-  //$products = join_product_table();
-  $products = join_product_table_wstock();
-  $notifications = join_notification_table();
-  $all_categories = find_all('categories');
+// Checkin What level user has permission to view this page
+page_require_level(false);
+//$products = join_product_table();
+$products = join_product_table_wstock();
+$notifications = join_notification_table();
+$all_categories = find_all('categories');
   $best_deal_arr = setBestInClassFlag($all_categories);
 //  session_start();
-  
-  $is_tracked = $_SESSION["TRACKED"];
-  //$is_tracked_txt = $is_tracked?"yes":"not yet";
-  $session_id = session_id();
-  //echo "is tracked? $is_tracked_txt<br>";
+
+$is_tracked = $_SESSION["TRACKED"];
+//$is_tracked_txt = $is_tracked?"yes":"not yet";
+$session_id = session_id();
+//echo "is tracked? $is_tracked_txt<br>";
 //  echo "session id: $session_id<br>";
 
-  $user_ip = $_SERVER["REMOTE_ADDR"];
-  if(!$is_tracked){
-    if(trackVisit($session_id, $user_ip)){
+$user_ip = $_SERVER["REMOTE_ADDR"];
+if (!$is_tracked) {
+    if (trackVisit($session_id, $user_ip)) {
         $_SESSION["TRACKED"] = true;
-   }
-  }
+    }
+}
 
 ?>
 
-<?php if(!$_POST): ?>
+<?php if (!$_POST): ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,13 +37,13 @@ ob_start();
     <meta charset="UTF-8">
     <title>
         <?php if (!empty($page_title)) {
-            echo  ($page_title);
-            } elseif (!empty($user)) {
-                echo ucfirst($user['name']);
-            } else {
-                echo "Simple inventory System";
-            }
-        ?>
+    echo ($page_title);
+} elseif (!empty($user)) {
+    echo ucfirst($user['name']);
+} else {
+    echo "Simple inventory System";
+}
+?>
 
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
@@ -69,14 +67,14 @@ ob_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <?php if(display_notification($notifications)==='false'): ?>
+                    <?php if (display_notification($notifications) === 'false'): ?>
                     <div class="notification alert alert-success" style="display: none">
                     <?php else: ?>
                         <div class="notification alert alert-success">
-                    <?php endif; ?>
+                    <?php endif;?>
                             <a id ="x" title="Click to Close" href="#" class="close red"
                                data-dismiss="alert" data-toggle="tooltip" data-placement="bottom">&times;</a>
-                            <?php echo display_notification($notifications);?>
+                            <?php echo display_notification($notifications); ?>
                         </div>
                             <div class="flash-message js-flash-message index-flash" role="status" id="flashMessage1" data-duration="2000">
                      <p class="short">Product Link Copied.</p>
@@ -87,7 +85,16 @@ ob_start();
 
 
                 </div>
+                <div id="banner-wrapper">
+                <a href ="https://getbootstrap.com/docs/4.0/examples/jumbotron/" target="_blank">
+<div id="banner-slide" class="jumbotron jumbotron-fluid banner">
+                    
 
+    
+  </div>
+
+</a>
+</div>
                 <div id="resultsWindow" class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading clearfix">
@@ -281,7 +288,6 @@ else{
             // $('#productTable').DataTable();
             $('#productTable').DataTable( {
                 "scrollX": true,
-                "height":  '55vh',
                 "scrollY": false,
                 "scrollCollapse": false,
                 "paging": true
@@ -416,6 +422,6 @@ else{
         }
 
     </script>
-    <?php include_once('layouts/footer.php'); ?>
-<?php endif; ?>
+    <?php include_once 'layouts/footer.php';?>
+<?php endif;?>
 

@@ -9,10 +9,10 @@ body {
 }
 
 .noscroll{
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 .notification{
-  
+  margin-top: 0.7rem;
 }
 .link {
   margin-right: 0.225rem;
@@ -181,11 +181,67 @@ header>.logo {
   line-height: 60px;
   padding: 0 15px;
 }
-
+.blinking{
+animation: blink normal 2s infinite ease-in-out;;
+}
+@keyframes blink{
+	 0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
 .info-menu li.profile {
   position: relative;
 }
+ 
+.banner{
+   
+    background-image: url("../../uploads/products/banner1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 80rem;
+    height: 5.625rem;
+    left: -100%;
+    /* left: 50%; */
+    /* margin: 0 auto; */
+    -webkit-animation: banner-slide 1s forwards;
+    -webkit-animation-delay: 0.7s;
+    animation: banner-slide 1s forwards;
+    animation-delay: 0.7s;
+    position: absolute;
+    
+  
+   
+   
+}
+#banner-wrapper{
+  width: 80rem;
+  height: 9.63rem;
+  position: relative;
+ 
+  margin: 0 auto;
+  margin-bottom: 1.25rem;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+#banner-wrapper:hover{
+  cursor: pointer;
+  transform: scale(1.07);
+  z-index: 1;
+}
 
+@keyframes banner-slide {
+   100% { left: 0; }
+}
+
+@-webkit-keyframes banner-slide {
+    100% { left: 0; }
+}
 .profile a.toggle {
   text-decoration: none;
   text-align: center;
@@ -448,6 +504,13 @@ table tfoot tr td:last-child {
   color: #ffffff;
   background-color: #b8cede;
   border-color: #b8cede;
+  margin-left: 1.25rem;
+}
+.btn-share {
+  color: #ffffff;
+  background-color: #b8cede;
+  border-color: #b8cede;
+ 
 }
 
 .btn-chat:hover,
@@ -496,12 +559,16 @@ td img.img-thumbnail {
     }
 }
 .img-avatar {
-  width: 50px;
-  height: 50px;
+  width: 7.125rem;
+  height: 7.125rem;
+}
+.bestClass{
+  width: 8.125rem;
+  height: 7.125rem;
 }
 
 .jumbotron {
-  margin-bottom: 0;
+  /* margin-bottom: 0; */
 }
 
 .list-group-item:first-child,
@@ -590,7 +657,7 @@ img.img-size-2 {
 .container {
   /*width: 800px;*/
   width: fit-content;
-  background: #0000000f;
+ 
   margin: 10px;
   padding: 30px;
   border-radius: 10px;
