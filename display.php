@@ -1,7 +1,7 @@
 <?php
 ob_start();
 
-$page_title = 'Product Display - Pricetize';
+$page_title = 'Products by Category - Pricetize';
 require_once('includes/load.php');
 
 
@@ -10,8 +10,9 @@ page_require_level(false);
 //$products = join_product_table();
 $products = join_product_table_wstock();
 $notifications = join_notification_table();
-$all_categories = find_all('categories');
-$best_deal_arr = setBestInClassFlag($all_categories);
+$categories = combineCats();
+
+
 
 //  session_start();
 
@@ -69,29 +70,26 @@ if(!$is_tracked){
 
 <body  onload="check_browser()">
 <div>
-<span> <h1> Pricetize Products by Catergory </h1>
+<span> <h1> Pricetize Products by Category </h1>
 </span>
 </div>
 
 <!--<div class=".container-fluid pad-left">-->
 <div class = "cards">
 
-    <?php foreach ($all_categories as $cat):?>
-
-
+    <?php foreach ($categories as $cat):?>
         <div class="col">
+            <?php if ($cat['has_subcat']):?>
+            <a href="displayall.php?key=<?php echo $cat['name']; ?>">
+            <?php else: ?>
             <a href="index.php?key=<?php echo $cat['name']; ?>">
+            <?php endif ?>
                 <div class="card" >
-                    <img class="display" src="libs/images/catimage.png" class="card-img-top" alt="..." >
-                    <div class="card-body">
-                        <p class="card-text"><?php echo $cat['name'] ; ?></p>
-                    </div>
+                    <img class="display card-img-top" src="libs/images/<?php echo $cat['image'] ?>" alt="..." >
                 </div>
             </a>
         </div>
-
-
-    <?php endforeach; ?>
+   <?php endforeach; ?>
 <!-- </div>-->
 </div>
 

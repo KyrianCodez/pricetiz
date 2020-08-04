@@ -81,7 +81,6 @@ if(!$is_tracked){
                 <br>
                 Available for <?php echo  ($product['purchaseType']); ?> <br>
                 Product Category: <?php echo $cat_name; ?> <br>
-                SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?>
                 <br>
                 <br>
                 Watch a Product Review:

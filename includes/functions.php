@@ -172,5 +172,53 @@ function randString($length = 5)
   return $str;
 }
 
+/*--------------------------------------------------------------*/
+/* Function for combining product categories
+/*--------------------------------------------------------------*/
+function combineCats()
+{
+    $all_categories = find_all('categories');
+    $comcat = array();
+    $i =0;
+    foreach ($all_categories as $cat) {
+        $pieces = explode("/", $cat['name']);
+        if (!searchArray($pieces[0], "name", $comcat)){
+            $has_subcat = FALSE;
+            if (count($pieces)>1){
+                $has_subcat = TRUE;
+            }
+            $comcat[$i] = array("name" => $pieces[0], "image" =>$cat['image'], "has_subcat"=>$has_subcat);
+            $i++;
+
+        }
+    }
+    return $comcat;
+}
+
+function searchArray($value, $field, $arr){
+
+    foreach ($arr as $data)
+    {
+        if ($data[$field] == $value)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+function get_subCats($key)
+{
+    $all_categories = find_all('categories');
+    $subcats = array();
+    $i =0;
+    foreach ($all_categories as $cat) {
+        $pieces = explode("/", $cat['name']);
+        if ($pieces[0]==$key){
+            array_push($subcats, $cat);
+        }
+    }
+    return $subcats;
+}
+
+
 
 ?>

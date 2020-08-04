@@ -7,11 +7,7 @@ require_once('includes/load.php');
 
 // Checkin What level user has permission to view this page
 page_require_level(false);
-//$products = join_product_table();
-$products = get_products_by_category((int)$_GET['id']);
 $notifications = join_notification_table();
-$all_categories = find_all('categories');
-$best_deal_arr = setBestInClassFlag($all_categories);
 
 //  session_start();
 
@@ -20,6 +16,9 @@ $is_tracked = $_SESSION["TRACKED"];
 $session_id = session_id();
 //echo "is tracked? $is_tracked_txt<br>";
 //  echo "session id: $session_id<br>";
+$key = $_GET['key'];
+$key = remove_junk($key);
+$subs = get_subCats($key);
 
 $user_ip = $_SERVER["REMOTE_ADDR"];
 if(!$is_tracked){
@@ -69,7 +68,7 @@ if(!$is_tracked){
 
 <body  onload="check_browser()">
 <div>
-    <span> <h1> Pricetize Products by Catergory </h1>
+    <span> <h1> <?php echo $key ?> </h1>
         <a href="display.php" class="btn btn-back">Back to all Categories</a>
 
 </span>
@@ -77,19 +76,19 @@ if(!$is_tracked){
 <!--                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"-->
 <div class="cards">
 
-    <?php foreach ($products as $p):?>
-
+    <?php foreach ($subs as $sub):?>
 
         <div class="col">
-            <a href="view_product.php?id=<?php echo (int)$p['id'];?>&page=<?php echo (int)$_GET['id']; ?>">
+            <a href="index.php?key=<?php echo $sub['name']; ?>">
             <div class="card" >
-                <img class="display" src="uploads/products/<?php echo $p['image']; ?>"
+                <img class="display" src="libs/images/<?php echo $sub['image']; ?>"
                 onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
                      title="Click for details" alt="Product Image." >
                 <div class="card-body">
-                    <p class="card-text"><?php echo $p['name'] ; ?></p>
+                    <p class="card-text"> <?php echo $sub['name']; ?></p>
                 </div>
             </div>
+
             </a>
         </div>
 

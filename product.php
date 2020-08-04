@@ -23,12 +23,12 @@
                 <table class="table table-bordered" id="productTable">
                     <thead>
                         <tr>
+
                             <th class="text-center" style="width: 3%;">#</th>
                             <th> Photo</th>
                             <th> ProductType</th>
                             <th class="text-center"> Product Title </th>
                             <th class="text-center" style="width: 20%;">Type</th>
-                            <th class="text-center" style="width: 20%;"> SubType </th>
                             <th class="text-center" style="width: 20%;"> Pcs. per product </th>
                             <th class="text-center" style="width: 20%;"> Price Per piece</th>
                             <th class="text-center" style="width: 20%;"> No. of products in stock </th>
@@ -70,7 +70,6 @@
                                 </button>
                             </td>
                             <td class="text-center"> <?php echo remove_junk($product['categorie']); ?></td>
-                            <td class="text-center"> <?php echo $product['subType']; ?></td>
                             <td class="text-center">
                                 <?php echo  ($product['singleValue']."  ". $product['singleUnits']); ?>
                             </td>

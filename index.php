@@ -114,7 +114,6 @@ ob_start();
                                             <th> ProductType</th>
                                             <th> Product Title </th>
                                             <th class="text-center" style="width: 20%;">Class</th>
-                                            <!--<th class="text-center" style="width: 20%;"> SubType </th>-->
                                             <th class="text-center" style="width: 20%;"> Best in Class</th>
                                             <th class="text-center" style="width: 20%;">Pcs. per product </th>
                                             <th class="text-center" style="width: 20%;"> Price per piece</th>
@@ -321,7 +320,15 @@ ob_start();
             panel.setAttribute("class", "panel-body containerishere");
         };
 
-
+        function copyToClipboard(text) {
+            var dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            var res = window.location.href.split('/');
+            dummy.value = res[2] + "/view_product.php?id=" + text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+        }
 
         (function() {
             var FlashMessage = function(element) {
