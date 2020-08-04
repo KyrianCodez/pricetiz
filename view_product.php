@@ -127,7 +127,7 @@ if(!$is_tracked){
                 <?php if($user && $last_page===0) :?>
                     <a href="product.php" class="btn btn-danger card">Back to all Products</a>
                 <?php elseif (empty($user) && $last_page===0):?>
-                    <a href="index.php" class="btn btn-danger card">Back to all Products</a>
+                    <a href="display.php" class="btn btn-danger card">Back to all Products</a>
                 <?php elseif ($last_page > 0):?>
                     <a href="displayall.php?id=<?php echo $last_page; ?>" class="btn btn-danger card">Back to all Products</a>
                 <?php endif; ?>
@@ -236,11 +236,7 @@ function copyToClipboard(text) {
             });
         });
     }
-    document.getElementById("myLink").onclick = function() {
-        var link = document.getElementById("abc");
-        link.setAttribute("href", "xyz.php");
-        return false;
-    }
+
 
 
 }());

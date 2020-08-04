@@ -19,6 +19,7 @@ $session_id = session_id();
 $key = $_GET['key'];
 $key = remove_junk($key);
 $subs = get_subCats($key);
+$one = $subs[0];
 
 $user_ip = $_SERVER["REMOTE_ADDR"];
 if(!$is_tracked){
@@ -66,160 +67,45 @@ if(!$is_tracked){
     <link rel="stylesheet" href="libs/css/main2.css?<?php echo time(); ?>" />
 </head>
 
-<body  onload="check_browser()">
-<div>
-    <span> <h1> <?php echo $key ?> </h1>
-        <a href="display.php" class="btn btn-back">Back to all Categories</a>
+<body >
 
-</span>
-</div>
 <!--                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"-->
 <div class="cards">
 
     <?php foreach ($subs as $sub):?>
-
         <div class="col">
-            <a href="index.php?key=<?php echo $sub['name']; ?>">
+            <a href="display.php?key=<?php echo $sub['name']; ?>">
             <div class="card" >
                 <img class="display" src="libs/images/<?php echo $sub['image']; ?>"
-                onerror="this.onerror=null; this.src='libs/images/dinosaur.png'"
-                     title="Click for details" alt="Product Image." >
+                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"
+                     title="<?php echo $sub['name']; ?>" alt="Category Image" >
                 <div class="card-body">
                     <p class="card-text"> <?php echo $sub['name']; ?></p>
                 </div>
             </div>
-
             </a>
         </div>
-
-
     <?php endforeach; ?>
+    <div class="col">
+        <a href="display.php?key=<?php echo $key; ?>">
+            <div class="card" >
+                <img class="display" src="libs/images/<?php echo $one['image']; ?>"
+                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"
+                     title="<?php echo $key; ?>" alt="Category Image" >
+                <div class="card-body">
+                    <p class="card-text"> <?php echo $key."  -  Assorted"; ?></p>
+                </div>
+            </div>
+        </a>
+    </div>
         </div>
+<div>
+
+        <a href="index.php" class="btn btn-back" style="margin-top: 30px; margin-left: 15px;">Back to all Categories</a>
 
 
+</div>
 
-<script type="text/javascript">
-
-    function copyToClipboard(text) {
-        var dummy = document.createElement("textarea");
-        document.body.appendChild(dummy);
-        var res = window.location.href.split('/');
-        dummy.value = res[2] + "/view_product.php?id=" + text;
-        dummy.select();
-        document.execCommand("copy");
-        document.body.removeChild(dummy);
-    }
-
-    (function() {
-        var FlashMessage = function(element) {
-            this.element = element;
-            this.showClass = "flash-message--is-visible";
-            this.messageDuration = parseInt(this.element.getAttribute('data-duration')) || 3000;
-            this.triggers = document.querySelectorAll('[aria-controls="' + this.element.getAttribute('id') + '"]');
-            this.temeoutId = null;
-            this.isVisible = false;
-            this.initFlashMessage();
-        };
-
-        FlashMessage.prototype.initFlashMessage = function() {
-            var self = this;
-            //open modal when clicking on trigger buttons
-            if (self.triggers) {
-                for (var i = 0; i < self.triggers.length; i++) {
-                    self.triggers[i].addEventListener('click', function(event) {
-                        event.preventDefault();
-                        self.showFlashMessage();
-                    });
-                }
-            }
-            //listen to the event that triggers the opening of a flash message
-            self.element.addEventListener('showFlashMessage', function() {
-                self.showFlashMessage();
-            });
-        };
-
-        FlashMessage.prototype.showFlashMessage = function() {
-            var self = this;
-            Util.addClass(self.element, self.showClass);
-            self.isVisible = true;
-            //hide other flash messages
-            self.hideOtherFlashMessages();
-            if (self.messageDuration > 0) {
-                //hide the message after an interveal (this.messageDuration)
-                self.temeoutId = setTimeout(function() {
-                    self.hideFlashMessage();
-                }, self.messageDuration);
-            }
-        };
-
-        FlashMessage.prototype.hideFlashMessage = function() {
-            Util.removeClass(this.element, this.showClass);
-            this.isVisible = false;
-            //reset timeout
-            clearTimeout(this.temeoutId);
-            this.temeoutId = null;
-        };
-
-        FlashMessage.prototype.hideOtherFlashMessages = function() {
-            var event = new CustomEvent('flashMessageShown', {
-                detail: this.element
-            });
-            window.dispatchEvent(event);
-        };
-
-        FlashMessage.prototype.checkFlashMessage = function(message) {
-            if (!this.isVisible) return;
-            if (this.element === message) return;
-            this.hideFlashMessage();
-        };
-
-        //initialize the FlashMessage objects
-        var flashMessages = document.getElementsByClassName('js-flash-message');
-        if (flashMessages.length > 0) {
-            var flashMessagesArray = [];
-            for (var i = 0; i < flashMessages.length; i++) {
-                (function(i) {
-                    flashMessagesArray.push(new FlashMessage(flashMessages[i]));
-                })(i);
-            }
-
-            //listen for a flash message to be shown -> close the others
-            window.addEventListener('flashMessageShown', function(event) {
-                flashMessagesArray.forEach(function(element) {
-                    element.checkFlashMessage(event.detail);
-                });
-            });
-        }
-    }());
-
-    function check_browser(){
-        var rv = -1; // Return value assumes failure.
-
-        if (navigator.appName == 'Microsoft Internet Explorer'){
-
-            var ua = navigator.userAgent,
-                re  = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
-
-            if (re.exec(ua) !== null){
-                rv = parseFloat( RegExp.$1 );
-            }
-        }
-        else if(navigator.appName == "Netscape"){
-            /// in IE 11 the navigator.appVersion says 'trident'
-            /// in Edge the navigator.appVersion does not say trident
-            if(navigator.appVersion.indexOf('Trident') === -1) rv = 12;
-            else rv = 11;
-        }
-
-        //alert(rv);
-        if (rv==11){
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block";
-        }
-
-    }
-
-</script>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif; ?>
 
