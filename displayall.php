@@ -1,18 +1,13 @@
 <?php
 ob_start();
 
-$page_title = 'Products by Category - Pricetize';
+$page_title = 'All Products - Pricetize';
 require_once('includes/load.php');
 
 
 // Checkin What level user has permission to view this page
 page_require_level(false);
-//$products = join_product_table();
-$products = join_product_table_wstock();
 $notifications = join_notification_table();
-$categories = combineCats();
-
-
 
 //  session_start();
 
@@ -21,6 +16,10 @@ $is_tracked = $_SESSION["TRACKED"];
 $session_id = session_id();
 //echo "is tracked? $is_tracked_txt<br>";
 //  echo "session id: $session_id<br>";
+$key = $_GET['key'];
+$key = remove_junk($key);
+$subs = get_subCats($key);
+$one = $subs[0];
 
 $user_ip = $_SERVER["REMOTE_ADDR"];
 if(!$is_tracked){
@@ -68,29 +67,44 @@ if(!$is_tracked){
     <link rel="stylesheet" href="libs/css/main2.css?<?php echo time(); ?>" />
 </head>
 
-<body/>
+<body >
 
-<div class = "cards">
+<!--                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"-->
+<div class="cards">
 
-    <?php foreach ($categories as $cat):?>
+    <?php foreach ($subs as $sub):?>
         <div class="col">
-            <?php if ($cat['has_subcat']):?>
-            <a href="displayall.php?key=<?php echo $cat['name']; ?>">
-                <?php else: ?>
-                <a href="display.php?key=<?php echo $cat['name']; ?>">
-                    <?php endif ?>
-                    <div class="card" >
-                        <img class="display card-img-top" src="libs/images/<?php echo $cat['image'] ?>" alt="..." >
-                    </div>
-                </a>
+            <a href="display.php?key=<?php echo $sub['name']; ?>">
+            <div class="card" >
+                <img class="display" src="libs/images/<?php echo $sub['image']; ?>"
+                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"
+                     title="<?php echo $sub['name']; ?>" alt="Category Image" >
+                <div class="card-body">
+                    <p class="card-text"> <?php echo $sub['name']; ?></p>
+                </div>
+            </div>
+            </a>
         </div>
     <?php endforeach; ?>
-</div>
+    <div class="col">
+        <a href="display.php?key=<?php echo $key; ?>">
+            <div class="card" >
+                <img class="display" src="libs/images/<?php echo $one['image']; ?>"
+                     onerror="this.onerror=null; this.src='uploads/products/new_no_image.jpg'"
+                     title="<?php echo $key; ?>" alt="Category Image" >
+                <div class="card-body">
+                    <p class="card-text"> <?php echo $key."  -  Assorted"; ?></p>
+                </div>
+            </div>
+        </a>
+    </div>
+        </div>
 <div>
-    <a href="/display.php" class="btn btn-back " style="float: right; margin: 30px; ">
-        View All Products</a>
-</div>
 
+        <a href="index.php" class="btn btn-back" style="margin-top: 30px; margin-left: 15px;">Back to all Categories</a>
+
+
+</div>
 
 <?php include_once('layouts/footer.php'); ?>
 <?php endif; ?>

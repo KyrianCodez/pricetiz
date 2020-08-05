@@ -5,6 +5,11 @@
    page_require_level(false);
 ?>
 <?php
+$last_page = 0;
+if (isset($_GET["page"])){
+    $last_page =(int) $_GET['page'];
+}
+
 $product = find_by_id('products',(int)$_GET['id']);
 $image = find_by_id('media', (int)$product['media_id']);
 $all_categories = find_all('categories');
@@ -76,7 +81,6 @@ if(!$is_tracked){
                 <br>
                 Available for <?php echo  ($product['purchaseType']); ?> <br>
                 Product Category: <?php echo $cat_name; ?> <br>
-                SubType: <?php if (!empty($product['subType'])): echo $product['subType']; else: echo"None"; endif;?>
                 <br>
                 <br>
                 Watch a Product Review:
@@ -120,10 +124,12 @@ if(!$is_tracked){
                      data-layout="button" data-size="large"><a id="fbh" target="_blank"
                      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhttps://www.pricetize.com/view_product.php?id=9%2F&amp;src=sdkpreparse"
                                                                class="fb-xfbml-parse-ignore">Share</a></div>
-                <?php if($user) :?>
+                <?php if($user && $last_page===0) :?>
                     <a href="product.php" class="btn btn-danger card">Back to all Products</a>
-                <?php elseif (empty($user)):?>
-                    <a href="index.php" class="btn btn-danger card">Back to all Products</a>
+                <?php elseif (empty($user) && $last_page===0):?>
+                    <a href="display.php" class="btn btn-danger card">Back to all Products</a>
+                <?php elseif ($last_page > 0):?>
+                    <a href="displayall.php?id=<?php echo $last_page; ?>" class="btn btn-danger card">Back to all Products</a>
                 <?php endif; ?>
 
             </div>
@@ -230,11 +236,7 @@ function copyToClipboard(text) {
             });
         });
     }
-    document.getElementById("myLink").onclick = function() {
-        var link = document.getElementById("abc");
-        link.setAttribute("href", "xyz.php");
-        return false;
-    }
+
 
 
 }());
