@@ -255,7 +255,7 @@ if(!$is_tracked){
                             table.search("<?php echo $key ?>").draw();
 
                             if (results.style.display === "none") {
-                                results.style.display = "inline";
+                                results.style.display = "inline-block";
                             }
                         }
                         else {
