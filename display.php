@@ -245,6 +245,7 @@ if(!$is_tracked){
                         "height":  '55vh',
                         "scrollY": false,
                         "scrollCollapse": false,
+                        "order": [[ 5, "desc" ]],
                         "paging": true
                     } );
 
