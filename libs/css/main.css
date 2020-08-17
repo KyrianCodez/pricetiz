@@ -77,6 +77,7 @@ a {
 
 .card{
   margin-top: 20px;
+
 }
 
 .bg-green {
@@ -165,15 +166,61 @@ header>.logo {
   text-transform: uppercase;
   letter-spacing: 1px;
   display: inline-block;
-  width: 250px;
+ 
+  width: 12.5rem;
   background-color: #3498DB;
 }
+.navbar-brand.logo{
+  color: #24C6DA !important;
+  text-align: center;
+  font-size: 2.5rem;
+  letter-spacing: 0.0625rem;
+  display: inline-block;
+   margin: 0 3rem;
+  font-family: 'Poiret One', cursive;
+  font-weight: 700;
+}
 
+.right{
+  position: absolute;
+  right: 4.6875rem;
+}
+.nav-li{
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0px;
+  color: #000000 !important;
+  opacity: 1;
+  margin-right: 1.5625rem;
+
+  }
+.nav-link.active, .nav-link:hover{
+  border-style: solid;
+ border-color: #24C6DA;
+ border-width: 0 0 0.075rem 0;
+}
 .header-date {
   color: #9b9b9b;
   margin-left: 20px;
 }
+.title{
+  font-size: 1.5rem;
+  text-align: left;
+  letter-spacing: 0rem;
+  color: #465071;
+ margin: 3.125rem 0 0 3.9375rem;
+ padding-bottom: 3.125rem;
+ display: inline-block;
 
+}
+h2>span{
+color: #24C6DA;
+}
+.product-card{
+  
+  margin: 1.25rem 3.9375rem;
+  border-radius: 0.5rem;
+}
 .info-menu {
   height: 60px;
   margin: 0;
@@ -559,14 +606,100 @@ td img.img-thumbnail {
     }
 }
 .img-avatar {
-  width: 7.125rem;
-  height: 7.125rem;
+  width: 6.25rem;
+  height: 6.25rem;
+  background: transparent;
+  border: 0.0625rem solid #F0F0F0;
+  border-radius: 0.5rem;
+  vertical-align: bottom;
+  
 }
-.bestClass{
-  width: 8.125rem;
-  height: 7.125rem;
+.category{
+ color: #24C6DA;
+  position: relative;
+  font-size: 0.75rem;
+  display: inline-block;
+}
+.name{
+  font-size: 0.875rem;
+  display: inline-block;
+  line-height: 1.6;
+}
+.type{
+  color: #DA2424;
+  display: inline-block;
+  font-size: 0.75rem;
+  margin-top: 0.3125rem;
+}
+.bestClass-wrapper{
+    display: inline-block;
+    position: relative;
+    height: 6.25rem;
+    width: 6.25rem;
+    text-align: left;
+   
+    vertical-align: bottom;
+
+
+}
+.cat-container{
+  display: inline-block;
+  position: relative;
+  width: 18.75rem;
+  height: 6.25rem;
+  text-align: left;
+  margin-left: 0.625rem;
+  text-transform: uppercase;
+
 }
 
+.card-body{
+  padding: 10px;
+}
+.bestClass{
+  width: 3.4375rem;
+  height: 2.875rem;
+}
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.product-details-wrapper{
+  height: 100px;
+  width: 300px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.purchase-details-wrapper{
+  height: 100px;
+  width: 543px;
+  display: inline-block;
+  vertical-align: bottom;
+  
+}
+.inner-wrapper{
+height:50px;
+width: 143px;
+text-transform: uppercase;
+display: inline-block;
+}
+ .values{
+  font-size: 14px;
+    display: inline-block;
+}
+.units{
+  font-size: 12px;
+    display: inline-block;
+    color: #999999;
+
+}
+p{
+  margin: 0;
+}
 .jumbotron {
   /* margin-bottom: 0; */
 }

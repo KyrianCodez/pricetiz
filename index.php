@@ -68,7 +68,7 @@ if(!$is_tracked){
     <link rel="stylesheet" href="libs/css/main2.css?<?php echo time(); ?>" />
 </head>
 
-<body/>
+<body>
 
 <div class = "cards">
 
@@ -87,10 +87,9 @@ if(!$is_tracked){
     <?php endforeach; ?>
 </div>
 <div>
-    <a href="/display.php" class="btn btn-back " style="float: right; margin: 30px; ">
+    <a href="./display.php" class="btn btn-back " style="float: right; margin: 30px; ">
         View All Products</a>
 </div>
-
 
 <?php include_once('layouts/footer.php'); ?>
 <?php endif; ?>

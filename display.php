@@ -92,7 +92,7 @@ if(!$is_tracked){
                 <button class="btn btn-chat chatOpen" style="margin-bottom:5px; margin-left: 30px">Chat</button>
                 <a href="/display.php" id = "clear" class="btn btn-chat " style="display: none; margin-bottom: 5px;">
                         Clear results</a>
-                <a href="/" class="btn btn-chat " style="float: right; margin-bottom: 5px; margin-right: 30px">
+                <a href="./index.php" class="btn btn-chat " style="float: right; margin-bottom: 5px; margin-right: 30px">
                         View by Product Categories</a>
             </div>
             <div id="resultsWindow" class="col-md-12">
