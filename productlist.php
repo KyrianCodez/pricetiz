@@ -73,7 +73,7 @@ if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
             </div>
         </div>
 <div class="product-details-wrapper"> 
-    <div class="inner-wrapper">
+    <div class="inner-wrapper num-per">
     <?php
     echo "<div class='values'>";
      echo ($product['singleValue']);
@@ -86,25 +86,87 @@ if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
 ?>
      
      </div>
-     <div class="inner-wrapper">
+     <div class="inner-wrapper price-per">
          <div class="values">
      $<?php calculatePrice($product, $all_categories);?>
 </div>
 </br>
      <p class = "units">PER PIECE</p>
 </div>
-<!-- <div class="inner-wrapper">
+<div class="inner-wrapper quan-per">
     <div class="values">
-        <?php /* echo ($product['quantity']) */; ?>
+        <?php echo ($product['quantity']); ?>
 </div>
 </br>
 <p class = "units">IN STOCK</p>
 
-</div> -->
+</div>
+<div class="inner-wrapper buyprice-per">
+    <p class = "units">PRICE</p>
+    </br>
+    <div class="values buyPrice">
+        $<?php echo ($product['buy_price']); ?>
+</div>
 
+
+
+</div>
 </div>
 
 <div class="purchase-details-wrapper"> 
+    <div class="company-details"> 
+        <div>
+        <?php echo $product['company']; ?>
+</div>
+
+  <div class="units"> 
+        <?php if(empty($product['city']) || $product['city'] === "NA" ):
+        echo "No Address found";
+        else:
+
+        echo ($product['city'] . "  " . $product['zipcode']); 
+        endif;?>
+</div> 
+    </br>
+<div class="units"> 
+    <?php if(empty($product['phone']) || $product['phone'] === "N/A"):
+    echo "No contact found";
+    elseif($product['phone'] === "NA"):
+        echo "No contact found";
+    else:
+    echo $product['phone']; 
+    endif;?>
+    </div> 
+    </div> 
+    <div class="product-panel"> 
+        <div class="spacing top">
+        <?php if (empty($product["website"]) || $product['website'] === "N/A"): ?>
+                                                    No Link
+                                                <?php else: ?>
+                                                        <a target='_blank' class="website-details" href="<?php echo $product['website']; ?>">Company Website</a>
+                                                <?php endif;?>
+                                                </div>
+<div class="review-details spacing">
+    <?php if (empty($product["reviewLink"]) || $product['reviewLink'] === "N/A"): ?>
+                                                    No Link Added
+                                                <?php else: ?>
+                                                    
+                                                    <a target='_blank' class="review-details"  href="<?php echo $product['reviewLink']; ?>">Review
+                                                        Link</a>
+                                                <?php endif;?>
+                                                </div>
+
+                                                <div class="spacing">
+                                                    <?php if (empty($product["itemLink"]) || $product['itemLink'] === "N/A"): ?>
+                                                    No Link Added
+                                                <?php else: ?>
+                                                
+                                                 
+                                                        
+                                                    <a target='_blank' class="purchase-button" href="<?php echo $product['itemLink']; ?>">Purchase</a>
+                                                <?php endif;?>
+                                                </div>
+                                                </div>
 </div>
 
 
