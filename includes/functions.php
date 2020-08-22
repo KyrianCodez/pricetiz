@@ -219,6 +219,4 @@ function get_subCats($key)
     return $subcats;
 }
 
-
-
 ?>

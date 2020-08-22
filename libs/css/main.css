@@ -77,6 +77,7 @@ a {
 
 .card{
   margin-top: 20px;
+  border: none;
 
 }
 
@@ -769,6 +770,97 @@ text-transform: none !important;
 }
 p{
   margin: 0;
+}
+.pagination-bar-segment{
+
+}
+.pagination-card{
+   margin: 1.25rem 3.9375rem;
+  border-radius: 0.5rem;
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+ margin-left: 70rem;
+ 
+}
+.card-wrapper{
+display: flex;
+align-items: center;
+justify-items: center;
+}
+.page-spacer{
+      
+    color: #A9A9A9;
+    font-size: 24px;
+    width: 50px;
+    padding: 10px;
+    
+  
+    
+    /* font-weight: 500; */
+  
+}
+.page-spacer:hover{
+  background-color: #DCDCDC;
+    /* height: 100%; */
+    color: #A9A9A9;
+    text-decoration: none;
+
+}
+.page-space-active{
+  color:green;
+ 
+    font-size: 24px;
+    width: 50px;
+    padding: 10px;
+  
+}
+.arrow-stretcher{
+  
+}
+.box-spacer{
+
+width: 60%;
+height: 45px;
+text-transform: uppercase;
+display: inline-block;
+background-color: white;
+
+}
+.pagination-wrapper{
+
+ }
+ .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.table-options{
+  height: 45px;
+
+ 
 }
 .jumbotron {
   /* margin-bottom: 0; */

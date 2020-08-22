@@ -8,7 +8,66 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(false);
 //$products = join_product_table();
-$products = join_product_table_wstock();
+
+
+function setFiltertag($option)
+{
+     $filter_results = $option;
+    return  array($filter_results);
+}
+
+
+
+
+function pagination($filter_results)
+{
+    
+if(isset($filter_results)){
+
+
+    $results_per_page = $filter_results;
+    
+    $results = count_active_products();
+    // echo $results['total'];
+    // echo "</br>";
+    $number_of_pages = ceil($results['total'] / $results_per_page);
+    if (!isset($_GET['page'])) {
+        $page = 1;
+    } else {
+        $page = $_GET['page'];
+    }
+    $this_page_fresult = ($page - 1) * $results_per_page;
+// echo $this_page_fresult;
+    // echo "</br>";
+    
+    return array($results_per_page, $this_page_fresult, $page, $number_of_pages, $number_of_pages);
+}else{
+    $results_per_page = 25;
+
+$results = count_active_products();
+// echo $results['total'];
+// echo "</br>";
+$number_of_pages = ceil($results['total'] / $results_per_page);
+if (!isset($_GET['page'])) {
+    $page = 1;
+} else {
+    $page = $_GET['page'];
+}
+$this_page_fresult = ($page - 1) * $results_per_page;
+// echo $this_page_fresult;
+// echo "</br>";
+
+return array($results_per_page, $this_page_fresult, $page, $number_of_pages, $number_of_pages);
+
+}
+
+}
+
+
+
+list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
+
+$products =  join_product_table_wstock( $this_page_fresult, $results_per_page);
 $notifications = join_notification_table();
 $all_categories = find_all('categories');
 $best_deal_arr = setBestInClassFlag($all_categories);
@@ -40,10 +99,133 @@ if (!$is_tracked) {
 
 
 <?php require_once('./includes/navbar.php')?>
+
 <h2 class="title">Product List<span>.</span></h2>
-<?php foreach ($products as $product):?>
-<div class="card product-card">
-    <div class="card-body">
+
+<input type="text" id="product-search-input" placeholder="Search" title="Type in a name">
+
+<div class="card-wrapper">
+
+<div class="card pagination-card">
+
+   
+   
+    <!-- <div class="box-spacer"> 
+
+     <div class="dropdown-wrapper">
+   <div class="dropdown">
+  <span>Mouse over me</span>
+  <div class="dropdown-content">
+    <button id = "bt1" name="10" onclick="setOption()">10</button>
+    <a name="15" href="productlist.php?page=1">15</a>
+    <a name="25" href="productlist.php?page=1">25</a>
+    <a name="50" href="productlist.php?page=1">50</a>
+    <a name="100" href="productlist.php?page=1">100</a>
+    
+  </div>
+</div>
+</div>
+        </div> -->
+
+
+
+ 
+
+<?php 
+
+if ($page > 1) {
+    
+
+    echo "<a href='productlist.php?page=" . ($page - 1) . "' class='page-spacer arrow-stretcher'> <i class='fas fa-arrow-left'></i></a>";
+     
+
+}
+
+for ($i = 1; $i <= $number_of_pages; $i++){
+  
+
+   if($i === $page){
+       echo "<a href='productlist.php?page=" . $i . "' class='page-spacer-active'>$i</a>";
+
+   }else{
+echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
+
+   }
+    
+     
+
+}
+    if ($page < $number_of_pages ){
+       
+
+        echo "<a href='productlist.php?page=" . ($page + 1) . "' class='page-spacer arrow-stretcher'> <i class='fas fa-arrow-right'></i></a>";
+        
+
+     
+
+    }
+      else {
+          
+      }
+    
+
+ ?>
+
+
+  
+ </div> <!-- filter-options -->
+    </div>
+<div id="card-table">
+
+
+    
+</div>
+
+
+<script>
+//displays data
+  buildTable("$products")
+
+        $('#product-search-input').on('input',   function() {
+            var value = $(this).val()
+           document.cookie = "value = $(this).val()";
+            <?php
+$value = $_COOKIE['value'];
+
+echo $value;
+
+?>
+
+       buildTable("$products")     
+            
+console.log("value:", value)
+
+
+        })
+
+//  function searchTable(value, data) {
+//     var filterProducts = []
+//     console.log("filter:", filterProducts)
+//     <?php
+//     foreach ($products as $product):?>
+//     value = value.toLowerCase()
+//     var name = "<?php /* echo $product['name'] */?>".toLowerCase()
+//         if(name.includes(value)){
+//             filterProducts.push("<?php /* echo $product['name'] */?>")
+//         }
+//     <?php /* endforeach; */?>
+//     return filterProducts
+// }
+
+
+async function buildTable(data) {
+    var table = document.getElementById('card-table')
+    table.innerHTML =''
+
+    <?php foreach ($products as $product): ?>
+   
+    var codeblock = `<div class="card product-card">
+     <div class="card-body">
 
         <a href="view_product.php?id=<?php echo (int) $product['id']; ?>">
             <?php if ($product['media_id'] === '0'): ?>
@@ -57,7 +239,7 @@ if (!$is_tracked) {
             <?php endif;?>
         </a>
         <div class="cat-container">
-            <div class="category"><?php echo remove_junk($product['categorie']);?> </div>
+            <div class="category"><?php echo remove_junk($product['categorie']); ?> </div>
             </br>
             <div class="name"> <?php echo remove_junk($product['name']); ?> </div>
             </br>
@@ -65,27 +247,24 @@ if (!$is_tracked) {
         </div>
         <div class="bestClass-wrapper">
             <div class="center">
-                <?php
-
-if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
+                <?php if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
     echo "<img class='bestClass img-circle blinking' src = './uploads/products/bestClass.png'>";}
 ?>
             </div>
         </div>
-<div class="product-details-wrapper"> 
+<div class="product-details-wrapper">
     <div class="inner-wrapper num-per">
     <?php
-    echo "<div class='values'>";
-     echo ($product['singleValue']);
-     echo "</div>";
-     echo "</br>";
-     echo "<div class='units'>";
+echo "<div class='values'>";
+echo ($product['singleValue']);
+echo "</div>";
+echo "</br>";
+echo "<div class='units'>";
 
-     echo ($product['singleUnits']); 
-     echo "</div>";
+echo ($product['singleUnits']);
+echo "</div>";
 ?>
-     
-     </div>
+</div>
      <div class="inner-wrapper price-per">
          <div class="values">
      $<?php calculatePrice($product, $all_categories);?>
@@ -111,34 +290,35 @@ if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
 
 
 </div>
+
 </div>
 
-<div class="purchase-details-wrapper"> 
-    <div class="company-details"> 
+<div class="purchase-details-wrapper">
+    <div class="company-details">
         <div>
         <?php echo $product['company']; ?>
 </div>
 
-  <div class="units"> 
-        <?php if(empty($product['city']) || $product['city'] === "NA" ):
-        echo "No Address found";
-        else:
+  <div class="units">
+        <?php if (empty($product['city']) || $product['city'] === "NA"):
+    echo "No Address found";
+else:
 
-        echo ($product['city'] . "  " . $product['zipcode']); 
-        endif;?>
-</div> 
+    echo ($product['city'] . "  " . $product['zipcode']);
+endif;?>
+</div>
     </br>
-<div class="units"> 
-    <?php if(empty($product['phone']) || $product['phone'] === "N/A"):
+<div class="units">
+    <?php if (empty($product['phone']) || $product['phone'] === "N/A"):
     echo "No contact found";
-    elseif($product['phone'] === "NA"):
-        echo "No contact found";
-    else:
-    echo $product['phone']; 
-    endif;?>
-    </div> 
-    </div> 
-    <div class="product-panel"> 
+elseif ($product['phone'] === "NA"):
+    echo "No contact found";
+else:
+    echo $product['phone'];
+endif;?>
+    </div>
+    </div>
+    <div class="product-panel">
         <div class="spacing top">
         <?php if (empty($product["website"]) || $product['website'] === "N/A"): ?>
                                                     No Link
@@ -150,7 +330,7 @@ if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
     <?php if (empty($product["reviewLink"]) || $product['reviewLink'] === "N/A"): ?>
                                                     No Link Added
                                                 <?php else: ?>
-                                                    
+
                                                     <a target='_blank' class="review-details"  href="<?php echo $product['reviewLink']; ?>">Review
                                                         Link</a>
                                                 <?php endif;?>
@@ -160,20 +340,31 @@ if ($product['id'] === $best_deal_arr[$product['categorie_id']]) {
                                                     <?php if (empty($product["itemLink"]) || $product['itemLink'] === "N/A"): ?>
                                                     No Link Added
                                                 <?php else: ?>
-                                                
-                                                 
-                                                        
+
+
+
                                                     <a target='_blank' class="purchase-button" href="<?php echo $product['itemLink']; ?>">Purchase</a>
                                                 <?php endif;?>
                                                 </div>
                                                 </div>
+
+
+</div>
 </div>
 
 
-    </div> <!-- cardbody -->
-</div> <!-- card -->
-<?php endforeach; ?>
+</div>`
+ table.innerHTML += codeblock
+<?php endforeach;?>
+    
+}
 
-</div>
+    </script>
+
+
+                                                
+
+
+
 <?php include_once('layouts/footer.php');?>
 <?php endif;?>
