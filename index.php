@@ -8,7 +8,8 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(false);
 //$products = join_product_table();
-$products = join_product_table_wstock();
+list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
+$products = join_product_table_wstock($this_page_fresult, $results_per_page);
 $notifications = join_notification_table();
 $categories = combineCats();
 

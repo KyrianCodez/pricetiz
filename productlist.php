@@ -10,64 +10,17 @@ page_require_level(false);
 //$products = join_product_table();
 
 
-function setFiltertag($option)
-{
-     $filter_results = $option;
-    return  array($filter_results);
-}
 
 
 
 
-function pagination($filter_results)
-{
-    
-if(isset($filter_results)){
-
-
-    $results_per_page = $filter_results;
-    
-    $results = count_active_products();
-    // echo $results['total'];
-    // echo "</br>";
-    $number_of_pages = ceil($results['total'] / $results_per_page);
-    if (!isset($_GET['page'])) {
-        $page = 1;
-    } else {
-        $page = $_GET['page'];
-    }
-    $this_page_fresult = ($page - 1) * $results_per_page;
-// echo $this_page_fresult;
-    // echo "</br>";
-    
-    return array($results_per_page, $this_page_fresult, $page, $number_of_pages, $number_of_pages);
-}else{
-    $results_per_page = 25;
-
-$results = count_active_products();
-// echo $results['total'];
-// echo "</br>";
-$number_of_pages = ceil($results['total'] / $results_per_page);
-if (!isset($_GET['page'])) {
-    $page = 1;
-} else {
-    $page = $_GET['page'];
-}
-$this_page_fresult = ($page - 1) * $results_per_page;
-// echo $this_page_fresult;
-// echo "</br>";
-
-return array($results_per_page, $this_page_fresult, $page, $number_of_pages, $number_of_pages);
-
-}
-
-}
 
 
 
+list($filter_results) = setFilterTag($option);
 list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
 
-$products =  join_product_table_wstock( $this_page_fresult, $results_per_page);
+$products =  join_product_table_wstock($this_page_fresult, $results_per_page);
 $notifications = join_notification_table();
 $all_categories = find_all('categories');
 $best_deal_arr = setBestInClassFlag($all_categories);
@@ -144,13 +97,9 @@ if ($page > 1) {
 for ($i = 1; $i <= $number_of_pages; $i++){
   
 
-   if($i === $page){
-       echo "<a href='productlist.php?page=" . $i . "' class='page-spacer-active'>$i</a>";
-
-   }else{
 echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
 
-   }
+   
     
      
 
@@ -184,19 +133,15 @@ echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
 
 <script>
 //displays data
-  buildTable("$products")
+
+  buildTable()
 
         $('#product-search-input').on('input',   function() {
             var value = $(this).val()
-           document.cookie = "value = $(this).val()";
-            <?php
-$value = $_COOKIE['value'];
+            value = $(this).val()
 
-echo $value;
 
-?>
-
-       buildTable("$products")     
+       buildTable()     
             
 console.log("value:", value)
 
@@ -218,7 +163,7 @@ console.log("value:", value)
 // }
 
 
-async function buildTable(data) {
+async function buildTable() {
     var table = document.getElementById('card-table')
     table.innerHTML =''
 
