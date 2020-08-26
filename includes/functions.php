@@ -220,7 +220,7 @@ function get_subCats($key)
 }
 
 
-function pagination($filter_results)
+function pagination()
 {
 
     if (isset($filter_results)) {

@@ -16,10 +16,14 @@
 <?php
 if(isset($_POST['edit_cat'])){
   $req_field = array('categorie-name');
+  $req_field = array('categorie-image');
   validate_fields($req_field);
   $cat_name =  ($db->escape($_POST['categorie-name']));
+  $cat_image =  ($db->escape($_POST['categorie-image']));
+  
+
   if(empty($errors)){
-        $sql = "UPDATE categories SET name='{$cat_name}'";
+        $sql = "UPDATE categories SET name='{$cat_name}', image='{$cat_image}'";
        $sql .= " WHERE id='{$categorie['id']}'";
      $result = $db->query($sql);
      if($result && $db->affected_rows() === 1) {
@@ -54,6 +58,9 @@ if(isset($_POST['edit_cat'])){
            <div class="form-group">
                <input type="text" class="form-control" name="categorie-name" value="<?php echo  (ucfirst($categorie['name']));?>">
            </div>
+           <div class="form-group">
+                <input type="text" class="form-control" name="categorie-image" value="<?php echo  (ucfirst($categorie['image']));?>">
+            </div>
            <button type="submit" name="edit_cat" class="btn btn-primary">Update categorie</button>
        </form>
        </div>
