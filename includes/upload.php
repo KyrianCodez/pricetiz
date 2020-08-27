@@ -9,6 +9,7 @@ class  Media {
   //Set destination for upload
   public $userPath = SITE_ROOT.DS.'..'.DS.'uploads/users';
   public $productPath = SITE_ROOT.DS.'..'.DS.'uploads/products';
+  public $categoriePath = SITE_ROOT.DS. '..'.DS.'uploads/categories';
 
 
   public $errors = array();
@@ -27,6 +28,7 @@ class  Media {
    'jpg',
    'jpeg',
    'png',
+   'svg',
   );
   public function file_ext($filename){
      $ext = strtolower(substr( $filename, strrpos( $filename, '.' ) + 1 ) );
@@ -110,6 +112,46 @@ class  Media {
     }
 
   }
+/*--------------------------------------------------------------*/
+/* Function for Process categorie images
+/*--------------------------------------------------------------*/
+
+
+   public function process_cat($cat_name, $cat_image){
+    if(!empty($this->errors)){
+        return false;
+      }
+    if(empty($this->fileName) || empty($this->fileTempPath)){
+        $this->errors[] = "The file location was not available.";
+        return false;
+      }
+
+    if(!is_writable($this->categoriePath)){
+        $this->errors[] = $this->categoriePath." Must be writable!!!.";
+        return false;
+      }
+
+    if(file_exists($this->categoriePath."/".$this->fileName)){
+      $this->errors[] = "The file {$this->fileName} already exists.";
+      return false;
+    }
+
+    if(move_uploaded_file($this->fileTempPath,$this->categoriePath.'/'.$this->fileName))
+    {
+
+      if($this->insert_cat($cat_name, $cat_image)){
+        unset($this->fileTempPath);
+        return true;
+      }
+
+    } else {
+
+      $this->errors[] = "The file upload failed, possibly due to incorrect permissions on the upload folder.";
+      return false;
+    }
+
+  }
+  
   /*--------------------------------------------------------------*/
   /* Function for Process user image
   /*--------------------------------------------------------------*/
@@ -184,6 +226,24 @@ class  Media {
          $sql  = "INSERT INTO media ( file_name,file_type )";
          $sql .=" VALUES ";
          $sql .="(
+                  '{$db->escape($this->fileName)}',
+                  '{$db->escape($this->fileType)}'
+                  )";
+       return ($db->query($sql) ? true : false);
+
+  }
+  
+
+  
+/*--------------------------------------------------------------*/
+/* Function for insert categorie and image
+/*--------------------------------------------------------------*/
+  private function insert_cat($cat_name){
+
+         global $db;
+         $sql  = "INSERT INTO categories (name,file_name,file_type)";
+         $sql .=" VALUES ";
+         $sql .="('{$cat_name}',
                   '{$db->escape($this->fileName)}',
                   '{$db->escape($this->fileType)}'
                   )";

@@ -36,33 +36,45 @@ if(!$is_tracked){
 
 <?php require_once('./includes/navbar.php')?>
 <div class="title-panel">
+    <div class="title-card">
 <h2 class="title">Explore by category<span>.</span></h2>
 <h3 class="sub-title"> Compare prices and inventory of US PPE supplies </h3>
 </div>
+<div class="view-btn-wrapper">
+    <a href="./display.php" class="view-products-btn">
+        View All Products</a>
+</div>
+</div>
+<div class = "">
 <div class = "cards">
 
     <?php foreach ($categories as $cat):?>
-        <div class="col">
+        
             <?php if ($cat['has_subcat']):?>
             <a href="displayall.php?key=<?php echo $cat['name']; ?>">
                 <?php else: ?>
                 <a href="display.php?key=<?php echo $cat['name']; ?>">
                     <?php endif ?>
-                    <div class="card" >
-                        <div class = "card-body">
+                    <div class="card cat-card" >
+                        <div class = "card-body cat-body">
                             <div class = "display">
-                        <img class="card-img-top" src="libs/images/<?php echo $cat['image'] ?>" alt="..." >
+                        <img class="card-image " src="./uploads/categories/<?php echo $cat['file_name'] ?>" alt="..." >
                 </div>
+                <div class = "cat-name">
+                    <?php echo $cat['name']; ?>
+                </div>
+                <div class = "cat-arrow">
+                    <img class="arrow-img" src="./libs/images/arrow.svg" alt="..." >
+                </div>
+
                 </div>
                     </div>
                 </a>
-        </div>
+       
     <?php endforeach; ?>
 </div>
-<div>
-    <a href="./display.php" class="btn btn-back " style="float: right; margin: 30px; ">
-        View All Products</a>
-</div>
+                </div>
+
 
 <?php include_once('layouts/footer.php'); ?>
 <?php endif; ?>

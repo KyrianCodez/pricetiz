@@ -23,7 +23,7 @@ if(isset($_POST['edit_cat'])){
   
 
   if(empty($errors)){
-        $sql = "UPDATE categories SET name='{$cat_name}', image='{$cat_image}'";
+        $sql = "UPDATE categories SET name='{$cat_name}', file_name='{$cat_image}'";
        $sql .= " WHERE id='{$categorie['id']}'";
      $result = $db->query($sql);
      if($result && $db->affected_rows() === 1) {
@@ -59,7 +59,7 @@ if(isset($_POST['edit_cat'])){
                <input type="text" class="form-control" name="categorie-name" value="<?php echo  (ucfirst($categorie['name']));?>">
            </div>
            <div class="form-group">
-                <input type="text" class="form-control" name="categorie-image" value="<?php echo  (ucfirst($categorie['image']));?>">
+                <input type="text" class="form-control" name="categorie-image" value="<?php echo  (ucfirst($categorie['file_name']));?>">
             </div>
            <button type="submit" name="edit_cat" class="btn btn-primary">Update categorie</button>
        </form>

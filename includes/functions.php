@@ -187,7 +187,7 @@ function combineCats()
             if (count($pieces)>1){
                 $has_subcat = TRUE;
             }
-            $comcat[$i] = array("name" => $pieces[0], "image" =>$cat['image'], "has_subcat"=>$has_subcat);
+            $comcat[$i] = array("name" => $pieces[0], "file_name" =>$cat['file_name'], "has_subcat"=>$has_subcat);
             $i++;
 
         }
