@@ -1,5 +1,7 @@
 config.php
-uploads/
+uploads/products/
+uploads/users/
+
 .idea/
 
 ptchat/
