@@ -72,7 +72,7 @@ function count_by_id($table){
 
 function count_active_products(){
   global $db;
-  $sql = "SELECT COUNT(id) AS total FROM PRODUCTS WHERE quantity != 0";
+  $sql = "SELECT COUNT(id) AS total FROM products WHERE quantity != 0";
   $result = $db->query($sql);
      return($db->fetch_assoc($result));
   }
