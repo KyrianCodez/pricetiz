@@ -245,6 +245,7 @@ width: 400px;
     position: absolute;
     top: 8px;
     left: 1200px;
+    line-height: 50px;
 }
 .arrow-img{
   padding: 5px;
@@ -262,6 +263,7 @@ width: 400px;
     text-decoration: none;
     padding-top: 5px;
     margin: 0px 5px;
+    line-height: 30px;
 }
 .cat-card{
   border: none;
@@ -282,6 +284,9 @@ width: 400px;
    width: 30px;
   height: 100%;
   display: inline-block;
+}
+.card-text{
+  display:inline-block;
 }
 .cards>a{
   text-decoration: none !important;
@@ -340,7 +345,82 @@ animation: blink normal 2s infinite ease-in-out;;
 .info-menu li.profile {
   position: relative;
 }
- 
+/* MODAL SECTION  */
+
+.c-modal{
+  max-width: 670px;
+  
+}
+.m-content{
+  height: 285px;
+  width: 670px;
+  border: none;
+}
+.m-header{
+  border:none;
+  margin-bottom: 15px;
+}
+#myModal{
+  padding-right: 0%;
+}
+.m-card-body{
+width: 200px;
+padding: 0;
+height: 40px;
+border: 1px solid #EBEBEB;
+border-radius: 8px;
+
+}
+.m-card-content{
+ margin: 0;
+    margin-left: 0px;
+grid-gap: 15px 0px;
+grid-template-columns: 215px 215px 215px;
+margin-left: 16px;
+
+width: 0;
+}
+.m-col{
+  padding:0;
+}
+.name-center{
+height: 60px;
+line-height: 60px;
+
+}
+.viewall-btn-wrapper{
+  position: relative;
+background: #24c6da !important;
+border-radius: 8px;
+width: 140px;
+height: 40px;
+color: #ffffff !important;
+display: inline-block;
+font: normal normal 16px/30px "Open Sans", sans-serif;
+text-align: center;
+text-transform: none !important;
+text-decoration: none !important;
+left: 505px;
+margin-top: 15px;
+line-height: 40px;
+}
+.noDecoration, a:link, a:visited {
+    text-decoration: none;
+}
+.m-stylin{
+  font-size: 14px;
+  margin: 9px;
+color: #465071;
+text-decoration: none;
+padding: 0;
+}
+.arrow-style{
+padding: 0px;
+margin: 0;
+position: absolute;
+left: 166px;
+top: 10px;
+}
 .banner{
    
     background-image: url("../../uploads/products/banner1.png");
@@ -1093,29 +1173,6 @@ img.img-size-2 {
   font-size: 30px;
 }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 90px;
-  border: 1px solid #888;
-  width: fit-content;
-}
 
 .bottomright {
   position: absolute;
