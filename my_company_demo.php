@@ -422,6 +422,6 @@ else{
         }
 
     </script>
-    <?php include_once 'layouts/footer.php';?>
+    <?php include_once 'layouts/legacyfooter.php';?>
 <?php endif;?>
 

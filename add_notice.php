@@ -90,4 +90,4 @@ if (isset($_POST['add_notice'])) {
     </div>
 </div>
 
-<?php include_once('layouts/footer.php'); ?>
+<?php include_once('layouts/legacyfooter.php'); ?>
