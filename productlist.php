@@ -170,7 +170,7 @@ async function buildTable() {
     <?php foreach ($products as $product): ?>
    
     var codeblock = `<div class="card product-card">
-     <div class="card-body">
+     <div class="card-body product-body">
 
         <a href="view_product.php?id=<?php echo (int) $product['id']; ?>">
             <?php if ($product['media_id'] === '0'): ?>
