@@ -52,11 +52,14 @@ if (!$is_tracked) {
 
 
 <?php require_once('./includes/navbar.php')?>
-
+<div class = "title-wrapper">
+<div class = "p-title">
+<div class = "title-card">
 <h2 class="title">Product List<span>.</span></h2>
-
+</div>
 <input type="text" id="product-search-input" placeholder="Search" title="Type in a name">
-
+ <a href="./display.php" id = "clear" class="btn btn-chat " style="display: none; margin-bottom: 5px;">
+                        Clear results</a>
 <div class="card-wrapper">
 
 <div class="card pagination-card">
@@ -119,8 +122,8 @@ echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
     
 
  ?>
-
-
+</div>
+</div>
   
  </div> <!-- filter-options -->
     </div>
@@ -145,7 +148,21 @@ echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
             
 console.log("value:", value)
 
+function s() {
+                        var results = document.getElementById("clear");
+                        if ("<?php echo $key ?>" !=="none" ) {
+                            table.search("<?php echo $key ?>").draw();
 
+                            if (results.style.display === "none") {
+                                results.style.display = "inline-block";
+                            }
+                        }
+                        else {
+                            results.style.display = "none";
+                        }
+                    }
+
+                    s();
         })
 
 //  function searchTable(value, data) {
