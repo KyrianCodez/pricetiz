@@ -87,7 +87,7 @@ if(!$is_tracked){
                     <a class="arrow" href="displayall.php?key=<?php
                       echo preg_replace( '/\s+/', '%20', $cat['name']); ?> #modal-card"><img class="arrow-img" src="./libs/images/arrow.svg" alt="..." ></a>
                     <?php else: ?>
-                      <a href="display.php?key=<?php echo preg_replace('/\s+/', '%20', $cat['name']);
+                      <a href="productlist.php?key=<?php echo preg_replace('/\s+/', '%20', $cat['name']);
  ?>"><img class="arrow-img" src="./libs/images/arrow.svg" alt="..." ></a>
                        <?php endif ?>
                 </div>
