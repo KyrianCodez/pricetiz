@@ -72,7 +72,8 @@
         <div class="collapse navbar-collapse right" id="navbarNav">
             <ul class="navbar-nav nav-li">
                 <li class="nav-item">
-                    <a class="nav-link nav-li active" href="./productlist.php">All Categories <span class="sr-only">(current)</span></a>
+                    <a class="nav-link nav-li" href="./productlist.php">All Categories 
+                </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-li" href="./about.php">About</a>
@@ -84,15 +85,25 @@
             </ul>
         </div>
     </nav>
-    <script>
-// Add active class to the current button (highlight it)
-var header = document.getElementById("navbarNav");
-var nav = header.getElementsByClassName("nav-link");
-for (var i = 0; i < nav.length; i++) {
-  nav[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
-}
-</script>
+    <!-- <script>
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("navbarNav");
+        var nav = header.getElementsByClassName("nav-link");
+
+        
+        for (var i = 0; i < nav.length; i++) {
+            console.log(nav[i]);
+            nav[i].addEventListener("click", function() {
+                if (!nav[i].classList.contains("active")) {
+                    // this.classList.add("active");
+                    console.log()
+                }
+                // var current = document.getElementsByClassName("active");
+
+                // console.log(current);
+
+                // current[0].className = current[0].className.replace(" active", "");
+                // this.className += " active";
+            });
+        }
+    </script> -->
