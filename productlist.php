@@ -16,7 +16,7 @@ page_require_level(false);
 
 
 
-
+$option = 25;
 list($filter_results) = setFilterTag($option);
 list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
 
