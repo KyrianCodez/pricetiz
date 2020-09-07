@@ -64,9 +64,11 @@ if(!$is_tracked){
                 <div class="card-body m-stylin">
                     <?php $sub_name = str_replace($key,'',$sub['name']);
                     $sub_name = preg_replace('/[^\p{L}\p{N}\s]/u', '', $sub_name);
-?>
+                    $subbed = $sub['name'];
+?>      
                     <p class="card-text"> <?php echo  $sub_name?></p>
-                    <a class="arrow noDecoration" href="display.php?key=<?php echo $sub['name']; ?>"><img class="arrow-style" src="./libs/images/arrow.svg" alt="..." ></a>
+                    <a class="arrow noDecoration" href="productlist.php?key=<?php echo $sub_name;
+ ?>"><img class="arrow-style" src="./libs/images/arrow.svg" alt="..." ></a>
                 </div>
             </div>
            
@@ -77,7 +79,7 @@ if(!$is_tracked){
       </div>
       <div class="m-footer">
         <div class="view-btn-wrapper">
-    <a href="./display.php?key=<?php echo preg_replace('/\s+/', '%20', $key);
+    <a href="./productlist.php?key=<?php echo preg_replace('/\s+/', '%20', $key);
  ?>" class="viewall-btn-wrapper">
         View All</a>
 </div>
