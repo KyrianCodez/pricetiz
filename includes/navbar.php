@@ -62,48 +62,32 @@
 
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand logo" href="./productlist.php">Pricetize</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse right" id="navbarNav">
-            <ul class="navbar-nav nav-li">
-                <li class="nav-item">
-                    <a class="nav-link nav-li" href="./productlist.php">All Categories 
-                </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-li" href="./about.php">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-li" href="./contact.php">Contact Us</a>
-                </li>
-                
-            </ul>
-        </div>
-    </nav>
-    <!-- <script>
-        // Add active class to the current button (highlight it)
-        var header = document.getElementById("navbarNav");
-        var nav = header.getElementsByClassName("nav-link");
-
-        
-        for (var i = 0; i < nav.length; i++) {
-            console.log(nav[i]);
-            nav[i].addEventListener("click", function() {
-                if (!nav[i].classList.contains("active")) {
-                    // this.classList.add("active");
-                    console.log()
-                }
-                // var current = document.getElementsByClassName("active");
-
-                // console.log(current);
-
-                // current[0].className = current[0].className.replace(" active", "");
-                // this.className += " active";
-            });
-        }
-    </script> -->
+<header class="bg-light">
+    <div class="pageContainer">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+    
+            <a class="navbar-brand logo" href="./productlist.php">Pricetize</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav nav-li ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-li" href="./productlist.php">All Categories 
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-li" href="./about.php">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-li" href="./contact.php">Contact Us</a>
+                    </li>
+                    
+                </ul>
+            </div>
+    
+        </nav>
+    </div>
+</header>

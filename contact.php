@@ -8,18 +8,19 @@
                     <h2 class="title mb-4">Contact <span class="">Us.</span></h2>
                     <form action="" id="contactForm" class="contactForm">
                         <div class="formField">
-                            <input class="formFieldInput" type="text" placeholder="your name">
+                            <input id="contact_name" class="formFieldInput form-control" type="text" placeholder="your name" required>
                         </div>
                         <div class="formField">
-                            <input class="formFieldInput" type="text" placeholder="your email">
+                            <input id="contact_email" class="formFieldInput" type="text" placeholder="your email" required>
                         </div>
                         <div class="formField">
-                            <input class="formFieldInput" type="text" placeholder="your company">
+                            <input id="contact_company" class="formFieldInput" type="text" placeholder="your company">
                         </div>
                         <div class="formField">
-                            <textarea class="formFieldTextarea" type="text" placeholder="message"></textarea>
+                            <textarea id="contact_message" class="formFieldTextarea" type="text" placeholder="message" required></textarea>
                         </div>
                         <button type="submit" class="button button-full">Submit</button>
+                        <div id="mail-status"></div>
                     </form>
                 </div>
                 <div class="col-md-6 pl-md-5">

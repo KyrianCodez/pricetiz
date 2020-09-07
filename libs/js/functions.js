@@ -95,3 +95,45 @@ function suggetion() {
             autoclose: true
         });
   });
+
+
+$('#contactForm').submit(function(e) {
+    e.preventDefault();
+
+    var valid;	
+	valid = validateContact();
+
+    if(valid) {
+        jQuery.ajax({
+            url: "contact_mail.php",
+            data:'contact_name='+$("#contact_name").val()+'&contact_email='+$("#contact_email").val()+'&contact_company='+$("#contact_company").val()+'&contact_message='+$("#contact_message").val(),
+            type: "POST",
+            success:function(data){
+                $("#mail-status").html(data);
+                $('#contactForm').trigger("reset");
+            },
+            error:function (erro){
+                console.log(error);
+            }
+        });
+    }
+});
+        
+function validateContact() {
+    var valid = true;	
+    
+    if(!$("#contact_name").val()) {
+        valid = false;
+    }
+
+    if(!$("#contact_email").val().match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+        valid = false;
+    }
+
+    if(!$("#contact_message").val()) {
+        valid = false;
+    }
+
+    return valid;
+}
+
