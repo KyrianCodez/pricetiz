@@ -67,7 +67,7 @@ if(!$is_tracked){
                     $subbed = $sub['name'];
 ?>      
                     <p class="card-text"> <?php echo  $sub_name?></p>
-                    <a class="arrow noDecoration" href="productlist.php?key=<?php echo $sub_name;
+                    <a class="arrow noDecoration" href="product-cat.php?key=<?php echo $sub_name;
  ?>"><img class="arrow-style" src="./libs/images/arrow.svg" alt="..." ></a>
                 </div>
             </div>
@@ -79,7 +79,7 @@ if(!$is_tracked){
       </div>
       <div class="m-footer">
         <div class="view-btn-wrapper">
-    <a href="./productlist.php?key=<?php echo preg_replace('/\s+/', '%20', $key);
+    <a href="./product-cat.php?key=<?php echo preg_replace('/\s+/', '%20', $key);
  ?>" class="viewall-btn-wrapper">
         View All</a>
 </div>

@@ -16,7 +16,7 @@ page_require_level(false);
 
 
 
-
+$option = 25;
 list($filter_results) = setFilterTag($option);
 list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
 
@@ -66,62 +66,7 @@ if (!$is_tracked) {
 
    
    
-    <!-- <div class="box-spacer"> 
-
-     <div class="dropdown-wrapper">
-   <div class="dropdown">
-  <span>Mouse over me</span>
-  <div class="dropdown-content">
-    <button id = "bt1" name="10" onclick="setOption()">10</button>
-    <a name="15" href="productlist.php?page=1">15</a>
-    <a name="25" href="productlist.php?page=1">25</a>
-    <a name="50" href="productlist.php?page=1">50</a>
-    <a name="100" href="productlist.php?page=1">100</a>
     
-  </div>
-</div>
-</div>
-        </div> -->
-
-
-
- 
-
-<?php 
-
-if ($page > 1) {
-    
-
-    echo "<a href='productlist.php?page=" . ($page - 1) . "' class='page-spacer arrow-stretcher'> <i class='fas fa-arrow-left'></i></a>";
-     
-
-}
-
-for ($i = 1; $i <= $number_of_pages; $i++){
-  
-
-echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
-
-   
-    
-     
-
-}
-    if ($page < $number_of_pages ){
-       
-
-        echo "<a href='productlist.php?page=" . ($page + 1) . "' class='page-spacer arrow-stretcher'> <i class='fas fa-arrow-right'></i></a>";
-        
-
-     
-
-    }
-      else {
-          
-      }
-    
-
- ?>
 </div>
 </div>
   
@@ -150,6 +95,7 @@ echo "<a href='productlist.php?page=" . $i . "' class='page-spacer'>$i</a>";
 //   })
 function s() {
     var input, filter, table, tr, td, i, txtValue;
+
   input = "<?php echo $key ?>";
   
   filter = input.toUpperCase();

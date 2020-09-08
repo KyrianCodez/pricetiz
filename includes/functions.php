@@ -244,18 +244,19 @@ function pagination()
     } else {
         $results_per_page = 25;
 
-        $results = count_active_products();
-// echo $results['total'];
-        // echo "</br>";
-        $number_of_pages = ceil($results['total'] / $results_per_page);
+       $results  = count_active_products();
+
+ $number_of_pages = ceil($results['total'] / $results_per_page);
+        
         if (!isset($_GET['page'])) {
             $page = 1;
         } else {
             $page = $_GET['page'];
         }
-        $this_page_fresult = ($page - 1) * $results_per_page;
+     $this_page_fresult = ($page - 1) * $results_per_page;
+         
 // echo $this_page_fresult;
-        // echo "</br>";
+   
 
         return array($results_per_page, $this_page_fresult, $page, $number_of_pages, $number_of_pages);
 

@@ -43,7 +43,7 @@ if(!$is_tracked){
 <h3 class="sub-title"> Compare prices and inventory of US PPE supplies </h3>
 </div>
 <div class="view-btn-wrapper">
-    <a href="./display.php" class="view-products-btn">
+    <a href="./productlist.php" class="view-products-btn">
         View All Products</a>
 </div>
 </div>
@@ -87,7 +87,7 @@ if(!$is_tracked){
                     <a class="arrow" href="displayall.php?key=<?php
                       echo preg_replace( '/\s+/', '%20', $cat['name']); ?> #modal-card"><img class="arrow-img" src="./libs/images/arrow.svg" alt="..." ></a>
                     <?php else: ?>
-                      <a href="productlist.php?key=<?php echo preg_replace('/\s+/', '%20', $cat['name']);
+                      <a href="product-cat.php?key=<?php echo preg_replace('/\s+/', '%20', $cat['name']);
  ?>"><img class="arrow-img" src="./libs/images/arrow.svg" alt="..." ></a>
                        <?php endif ?>
                 </div>
