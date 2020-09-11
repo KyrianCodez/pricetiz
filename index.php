@@ -107,6 +107,10 @@ if(!$is_tracked){
                 </script>
 
     <?php endforeach; ?>
+    <div class="view-btn-wrapper lower">
+    <a href="./productlist.php" class="view-products-btn">
+        View All Products</a>
+</div>
 </div>
 <?php include_once('layouts/footer.php'); ?>
 <?php endif; ?>

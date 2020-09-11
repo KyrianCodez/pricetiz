@@ -54,7 +54,7 @@ if(!$is_tracked){
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-<div class="cards m-card-content" >
+<div class="m-card-content" >
 
     <?php foreach ($subs as $sub):?>
         <div class="col m-col">
@@ -78,9 +78,9 @@ if(!$is_tracked){
 
       </div>
       <div class="m-footer">
-        <div class="view-btn-wrapper">
+        <div class="viewall-btn-wrapper">
     <a href="./product-cat.php?key=<?php echo preg_replace('/\s+/', '%20', $key);
- ?>" class="viewall-btn-wrapper">
+ ?>" class="viewall-btn">
         View All</a>
 </div>
 </div>

@@ -61,7 +61,7 @@
 </head>
 
 <body>
-    
+    <div id = "content">
 <header class="bg-light">
     <div class="pageContainer">
         <nav class="navbar navbar-expand-lg navbar-light p-0">

@@ -54,7 +54,7 @@ if (!$is_tracked) {
 <?php require_once('./includes/navbar.php')?>
 <div class = "title-wrapper">
 <div class = "p-title">
-<div class = "title-card">
+<div class = "product-title-card">
 <h2 class="title">Product List<span>.</span></h2>
 </div>
 <input type="text" id="product-search-input" placeholder="Search" title="Type in a name">
@@ -287,6 +287,7 @@ endif;?>
     </div>
     </div>
     <div class="product-panel">
+        <div class= "product-wrapper">
         <div class="spacing top">
         <?php if (empty($product["website"]) || $product['website'] === "N/A"): ?>
                                                     No Link
@@ -303,7 +304,8 @@ endif;?>
                                                         Link</a>
                                                 <?php endif;?>
                                                 </div>
-
+</div>
+<div class="p-button-wrapper">
                                                 <div class="spacing">
                                                     <?php if (empty($product["itemLink"]) || $product['itemLink'] === "N/A"): ?>
                                                     No Link Added
@@ -313,6 +315,7 @@ endif;?>
 
                                                     <a target='_blank' class="purchase-button" href="<?php echo $product['itemLink']; ?>">Purchase</a>
                                                 <?php endif;?>
+                                                </div>
                                                 </div>
                                                 </div>
 
@@ -335,5 +338,5 @@ endif;?>
 
 
 <?php include_once('layouts/footer.php');?>
-<?php include_once('layouts/legacyfooter.php');?>
+
 <?php endif;?>
