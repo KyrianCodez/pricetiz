@@ -1,6 +1,6 @@
 <?php
 ob_start();
-
+error_reporting(0);
 
 $page_title = 'All Products - Pricetize';
 require_once('includes/load.php');
@@ -16,11 +16,9 @@ page_require_level(false);
 
 
 
-$option = 25;
-list($filter_results) = setFilterTag($option);
-list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
 
-$products =  join_product_table_wstock($this_page_fresult, $results_per_page);
+
+$products =  join_product_table_wstock();
 $notifications = join_notification_table();
 $all_categories = find_all('categories');
 $best_deal_arr = setBestInClassFlag($all_categories);
