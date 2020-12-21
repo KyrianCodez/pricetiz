@@ -5,11 +5,12 @@ error_reporting(0);
 $page_title = 'All Products - Pricetize';
 require_once('includes/load.php');
 
+list($results_per_page, $this_page_fresult, $page, $number_of_pages) = pagination($filter_results);
 
 // Checkin What level user has permission to view this page
 page_require_level(false);
 //$products = join_product_table();
-$products = join_product_table_wstock();
+$products = join_product_table_wstock($this_page_fresult, $results_per_page);
 $notifications = join_notification_table();
 $all_categories = find_all('categories');
 $best_deal_arr = setBestInClassFlag($all_categories);
@@ -90,9 +91,9 @@ if(!$is_tracked){
                     </div>
                 </div>
                 <button class="btn btn-chat chatOpen" style="margin-bottom:5px; margin-left: 30px">Chat</button>
-                <a href="/display.php" id = "clear" class="btn btn-chat " style="display: none; margin-bottom: 5px;">
+                <a href="./display.php" id = "clear" class="btn btn-chat " style="display: none; margin-bottom: 5px;">
                         Clear results</a>
-                <a href="/" class="btn btn-chat " style="float: right; margin-bottom: 5px; margin-right: 30px">
+                <a href="./index.php" class="btn btn-chat " style="float: right; margin-bottom: 5px; margin-right: 30px">
                         View by Product Categories</a>
             </div>
             <div id="resultsWindow" class="col-md-12">
@@ -386,6 +387,6 @@ if(!$is_tracked){
                 }());
 
             </script>
-            <?php include_once('layouts/footer.php'); ?>
+            <?php include_once('layouts/legacyfooter.php'); ?>
             <?php endif; ?>
 

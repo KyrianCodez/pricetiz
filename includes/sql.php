@@ -70,6 +70,14 @@ function count_by_id($table){
   return -1;
 }
 
+function count_active_products(){
+  global $db;
+  $sql = "SELECT COUNT(id) AS total FROM products WHERE quantity != 0";
+  $result = $db->query($sql);
+     return($db->fetch_assoc($result));
+  }
+  return -1;
+
 /*--------------------------------------------------------------*/
 /* Determine if database table exists
 /*--------------------------------------------------------------*/
@@ -257,14 +265,18 @@ function assignArray($catID)
 /*--------------------------------------------------------------*/
 function join_product_table_wstock(){
 
-    $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price, categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType, p.price_per_piece";
-    $sql  .=" ,c.name AS categorie,m.file_name AS image";
-    $sql  .=" FROM products p";
-    $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
-    $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
-    $sql  .=" WHERE (p.quantity > 0)";
-    $sql  .=" ORDER BY p.id ASC";
-    return find_by_sql($sql);
+$sql = " SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price, categorie_id, p.media_id,p.date,p.description,p.singleUnit,p.singleValue, p.singleUnits, p.itemLink,p.reviewLink,p.city,p.email,p.phone,p.zipcode,p.freeShipping,p.company,p.website,p.purchaseType, p.price_per_piece";
+$sql .= " ,c.name AS categorie,m.file_name AS image";
+$sql .= " FROM products p";
+$sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
+$sql .= " LEFT JOIN media m ON m.id = p.media_id";
+$sql .= " WHERE (p.quantity > 0)";
+$sql .= " ORDER BY p.id ASC";
+
+return find_by_sql($sql);
+
+
+   
 }
 
 

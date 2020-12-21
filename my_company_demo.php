@@ -7,7 +7,7 @@ require_once('includes/load.php');
 // Checkin What level user has permission to view this page
 page_require_level(false);
 //$products = join_product_table();
-$products = join_product_table_wstock();
+$products = join_product_table_wstock($this_page_fresult, $results_per_page);
 $notifications = join_notification_table();
 $all_categories = find_all('categories');
   $best_deal_arr = setBestInClassFlag($all_categories);
@@ -422,6 +422,6 @@ else{
         }
 
     </script>
-    <?php include_once 'layouts/footer.php';?>
+    <?php include_once 'layouts/legacyfooter.php';?>
 <?php endif;?>
 
