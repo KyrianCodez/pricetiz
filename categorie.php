@@ -21,7 +21,7 @@
  $sql = "INSERT INTO categories (name, file_name) ";
 $sql .= " VALUES ('{$cat_name}','{$cat_image}')";
 if ($db->query($sql)) {
-    $session->msg("s", "Successfully Added Categorie");
+    $session->msg("s", "Successfully Added Category");
     redirect('categorie.php', false);
 } else {
     $session->msg("d", "Sorry Failed to insert.");
@@ -33,7 +33,7 @@ if ($db->query($sql)) {
       $photo = new Media();
   $photo->upload($_FILES['file_upload']);
     if($photo->process_cat($cat_name, $cat_image)){
-        $session->msg('s','Successfully Added Categorie');
+        $session->msg('s','Successfully Added Category');
         redirect('categorie.php');
     } else{
       $session->msg('d',join($photo->errors));
@@ -62,7 +62,7 @@ if ($db->query($sql)) {
         <div class="panel-body">
           <form method="post" action="categorie.php" enctype="multipart/form-data">
             <div class="form-group">
-                <input type="text" class="form-control" name="categorie-name" placeholder="Categorie Name">
+                <input type="text" class="form-control" name="categorie-name" placeholder="Category Name">
             </div>
              <div class="form-group">
                 <input type="text" class="form-control" name="categorie-image" placeholder="Image name">
